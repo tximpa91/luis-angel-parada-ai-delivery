@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Build Dockerized deployment toolchain
         run: docker build -f Dockerfile.deploy -t luis-angel-parada-ai-delivery-deploy:ci .
