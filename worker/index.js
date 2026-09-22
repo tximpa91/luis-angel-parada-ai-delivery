@@ -1,10 +1,3 @@
-import { Container, getContainer } from '@cloudflare/containers'
-
-export class WebsiteContainer extends Container {
-  defaultPort = 8080
-  sleepAfter = '10m'
-}
-
 export default {
   async fetch(request, env) {
     const url = new URL(request.url)
@@ -14,7 +7,6 @@ export default {
       return Response.redirect(url.toString(), 308)
     }
 
-    const container = getContainer(env.WEBSITE_CONTAINER, 'luis-angel-parada-portfolio')
-    return container.fetch(request)
+    return env.ASSETS.fetch(request)
   },
 }

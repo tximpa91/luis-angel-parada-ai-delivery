@@ -1,10 +1,10 @@
-name: Deploy Worker Container
+name: Deploy Portfolio
 
 on:
   workflow_dispatch:
     inputs:
       confirm_deploy:
-        description: Deploy the Worker container and connect luisangelparada.com
+        description: Deploy the static Worker site and connect luisangelparada.com
         required: true
         default: false
         type: boolean
@@ -23,14 +23,13 @@ jobs:
       - name: Build Dockerized deployment toolchain
         run: docker build -f Dockerfile.deploy -t luis-angel-parada-ai-delivery-deploy:ci .
 
-      - name: Deploy Worker, container, and custom domains
+      - name: Deploy Worker static assets and custom domains
         run: |
           docker run --rm \
             -e CLOUDFLARE_API_TOKEN \
             -e CLOUDFLARE_ACCOUNT_ID \
             -e CLOUDFLARE_ZONE_ID \
             -e VITE_CONTACT_EMAIL \
-            -v /var/run/docker.sock:/var/run/docker.sock \
             luis-angel-parada-ai-delivery-deploy:ci
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

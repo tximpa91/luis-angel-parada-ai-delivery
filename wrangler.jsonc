@@ -3,25 +3,10 @@
   "name": "luis-angel-parada-ai-delivery",
   "main": "worker/index.js",
   "compatibility_date": "2026-09-22",
-  "containers": [
-    {
-      "class_name": "WebsiteContainer",
-      "image": "./Dockerfile",
-      "max_instances": 2
-    }
-  ],
-  "durable_objects": {
-    "bindings": [
-      {
-        "name": "WEBSITE_CONTAINER",
-        "class_name": "WebsiteContainer"
-      }
-    ]
-  },
-  "migrations": [
-    {
-      "tag": "v1",
-      "new_sqlite_classes": ["WebsiteContainer"]
-    }
-  ]
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/*", "!/assets/*"]
+  }
 }

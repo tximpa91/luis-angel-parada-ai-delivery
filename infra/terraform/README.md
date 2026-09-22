@@ -4,8 +4,9 @@ This Terraform configuration verifies the existing `luisangelparada.com` zone an
 the apex and `www` hostnames to the portfolio Worker as Cloudflare Custom Domains. The
 Registrar-managed zone is intentionally treated as read-only infrastructure.
 
-Cloudflare owns DNS and certificate provisioning for Custom Domains. The Worker redirects `www`
-requests to the apex hostname, so `https://luisangelparada.com` remains canonical.
+Cloudflare owns DNS and certificate provisioning for Custom Domains. The Worker serves the Vite
+build through Workers Static Assets and redirects `www` requests to the apex hostname, so
+`https://luisangelparada.com` remains canonical.
 
 ## Credentials
 
@@ -31,7 +32,8 @@ terraform -chdir=infra/terraform plan
 ```
 
 Do not apply this configuration before the Worker service exists. The repository's manual deploy
-workflow deploys the Docker-backed Worker first and applies Terraform second.
+workflow builds the site inside Docker, uploads it to Workers Static Assets, and applies Terraform
+second.
 
 Each run discovers and imports any existing Custom Domains before planning. This makes the manual
 deployment workflow repeatable without committing or remotely persisting Terraform state. State

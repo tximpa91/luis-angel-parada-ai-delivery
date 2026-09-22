@@ -9,19 +9,21 @@ The portfolio homepage is supported by three project stories:
 - `/work/commerce-platform` — the global commerce platform case study
 - `/work/boutique-sales-assistant` — the applied-AI product discovery case study
 
-The React client is built into an nginx image. The repository also contains the Worker and
-Container configuration required for a future Cloudflare deployment, but this repository does
-not imply that a live deployment has been made.
+The React client is built and tested through Docker. Production uses Cloudflare Workers Static
+Assets so the portfolio can run on Cloudflare's free tier without a persistent container. This
+repository contains the deployment configuration, but does not imply that a live deployment has
+been made.
 
 ## Architecture
 
 ```text
-luisangelparada.com → Cloudflare Custom Domain → Worker → Container → nginx → React SPA
+luisangelparada.com → Cloudflare Custom Domain → Worker → Static Assets → React SPA
 ```
 
-The same production Dockerfile powers local development, CI, and Cloudflare deployment. Terraform
+The production Dockerfile powers local execution and CI. A second Dockerized toolchain builds the
+same Vite application, uploads `dist/` to Workers Static Assets, and applies Terraform. Terraform
 verifies the existing Registrar-managed zone and attaches the apex and `www` hostnames to the
-Worker. Cloudflare Containers requires a Workers Paid plan.
+Worker. No Workers Paid plan or production container is required.
 
 ## Local Docker workflow
 
@@ -50,10 +52,10 @@ VITE_CONTACT_EMAIL=luis@example.com docker compose up --build app
 The public portfolio contact uses Luis Angel Parada's personal contact address by default. The
 build argument can replace it for another environment.
 
-## Optional Cloudflare Workers + Containers
+## Optional Cloudflare Workers Static Assets
 
-Create a `.env.deploy` file from `.env.deploy.example` and add a Cloudflare API token with Workers,
-Containers, Zone Read, and Worker Custom Domains permissions, plus the account and zone IDs.
+Create a `.env.deploy` file from `.env.deploy.example` and add a Cloudflare API token with Workers
+Scripts, Zone Read, and Workers Routes permissions, plus the account and zone IDs.
 
 When a deployment is intentionally approved, it can run entirely through Docker:
 
@@ -63,10 +65,11 @@ docker compose --env-file .env.deploy --profile deploy run --rm deploy
 
 The Dockerized toolchain performs the release in a controlled order:
 
-1. Wrangler uploads the Worker and builds the `linux/amd64` container image.
-2. Terraform verifies the active `luisangelparada.com` zone.
-3. Terraform attaches `luisangelparada.com` and `www.luisangelparada.com` as Worker Custom Domains.
-4. Cloudflare provisions the corresponding DNS records and TLS certificates.
+1. The Dockerized toolchain builds the Vite application.
+2. Wrangler uploads the Worker and the generated static assets.
+3. Terraform verifies the active `luisangelparada.com` zone.
+4. Terraform attaches `luisangelparada.com` and `www.luisangelparada.com` as Worker Custom Domains.
+5. Cloudflare provisions the corresponding DNS records and TLS certificates.
 
 The Worker permanently redirects `www` to the apex domain. No push to `main` deploys production;
 deployment remains an explicit manual action.
@@ -79,7 +82,7 @@ The intended repository is:
 https://github.com/tximpa91/luis-angel-parada-ai-delivery
 ```
 
-Container CI runs on pushes and pull requests. Production deployment is a manual GitHub Actions workflow and requires these repository secrets:
+Docker CI runs on pushes and pull requests. Production deployment is a manual GitHub Actions workflow and requires these repository secrets:
 
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
@@ -92,9 +95,9 @@ Container CI runs on pushes and pull requests. Production deployment is a manual
 - `public/assets/` — generated production artwork used by the portfolio
 - `design/portfolio-concepts/` — accepted visual direction and responsive references
 - `nginx/default.conf` — SPA routing, health check, caching, and security headers
-- `worker/index.js` — Worker-to-container routing
+- `worker/index.js` — canonical hostname redirect and static asset routing
 - `infra/terraform/` — zone verification and Worker Custom Domains
-- `wrangler.jsonc` — Cloudflare Worker and Container configuration
+- `wrangler.jsonc` — Cloudflare Worker Static Assets configuration
 - `Dockerfile` — production client image
 - `Dockerfile.deploy` — containerized Wrangler deployment toolchain
 - `.github/workflows/` — Docker CI and production deployment
@@ -103,6 +106,6 @@ Released under the [MIT License](LICENSE).
 
 ## Platform references
 
-- [Cloudflare Containers](https://developers.cloudflare.com/containers/)
+- [Cloudflare Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/)
 - [Cloudflare Worker Custom Domains](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/)
-- [Deploy Cloudflare Containers](https://developers.cloudflare.com/containers/guides/deploy/)
+- [Static Assets billing and limitations](https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/)

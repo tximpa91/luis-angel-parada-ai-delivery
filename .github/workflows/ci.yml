@@ -1,4 +1,4 @@
-name: Container CI
+name: Docker CI
 
 on:
   push:
@@ -19,6 +19,15 @@ jobs:
 
       - name: Build deployment toolchain
         run: docker build --platform linux/amd64 -f Dockerfile.deploy -t luis-angel-parada-deploy:ci .
+
+      - name: Validate Worker static asset bundle
+        run: |
+          docker run --rm --entrypoint sh \
+            -e VITE_CONTACT_EMAIL=portfolio@example.com \
+            luis-angel-parada-deploy:ci -lc '
+              npm run build &&
+              npm run deploy -- --dry-run --outdir=/tmp/wrangler-dry-run
+            '
 
       - name: Validate Terraform
         run: |

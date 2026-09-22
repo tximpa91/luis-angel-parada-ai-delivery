@@ -41,8 +41,8 @@ locals {
 }
 
 # Custom Domains make the Worker the origin and let Cloudflare provision the
-# required DNS records and TLS certificates. Both hostnames reach the Worker;
-# worker/index.js canonicalizes www to the apex domain.
+# required DNS records and TLS certificates. Both hostnames reach the static
+# asset Worker; worker/index.js canonicalizes www to the apex domain.
 resource "cloudflare_workers_custom_domain" "portfolio" {
   for_each = local.target_hostnames
 

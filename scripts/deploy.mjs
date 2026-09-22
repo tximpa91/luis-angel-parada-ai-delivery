@@ -1,17 +1,4 @@
 import { spawn } from 'node:child_process'
-import { readFileSync, writeFileSync } from 'node:fs'
-
-const configPath = new URL('../wrangler.jsonc', import.meta.url)
-const contactEmail = process.env.VITE_CONTACT_EMAIL?.trim()
-
-if (contactEmail) {
-  const config = JSON.parse(readFileSync(configPath, 'utf8'))
-  config.containers[0].image_vars = {
-    ...config.containers[0].image_vars,
-    VITE_CONTACT_EMAIL: contactEmail,
-  }
-  writeFileSync(configPath, `${JSON.stringify(config, null, 2)}\n`)
-}
 
 const requiredEnvironment = ['CLOUDFLARE_API_TOKEN', 'CLOUDFLARE_ACCOUNT_ID', 'CLOUDFLARE_ZONE_ID']
 const missingEnvironment = requiredEnvironment.filter((name) => !process.env[name]?.trim())
@@ -49,6 +36,7 @@ function run(command, args, env = process.env) {
 }
 
 try {
+  await run('npm', ['run', 'build'])
   await run('npm', ['run', 'deploy'])
   await run('terraform', ['-chdir=infra/terraform', 'init', '-input=false'], terraformEnvironment)
   await run(
