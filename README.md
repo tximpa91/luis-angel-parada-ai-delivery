@@ -1,6 +1,17 @@
-# Luis Angel Parada — AI Delivery Architect
+# Luis Angel Parada — Engineering portfolio
 
-Personal portfolio for Luis Angel Parada. The React client is built into an nginx image and deployed as a Cloudflare Container controlled by a Worker.
+Personal portfolio for Luis Angel Parada: engineering leadership, global commerce platforms,
+applied AI, cloud architecture, and governed software delivery.
+
+The portfolio homepage is supported by three project stories:
+
+- `/ai-delivery` — the original AI Delivery Operating System experience
+- `/work/commerce-platform` — the global commerce platform case study
+- `/work/boutique-sales-assistant` — the applied-AI product discovery case study
+
+The React client is built into an nginx image. The repository also contains the Worker and
+Container configuration required for a future Cloudflare deployment, but this repository does
+not imply that a live deployment has been made.
 
 ## Architecture
 
@@ -31,16 +42,17 @@ docker compose down
 Set the public contact address at image build time:
 
 ```bash
-VITE_CONTACT_EMAIL=angel@example.com docker compose up --build app
+VITE_CONTACT_EMAIL=luis@example.com docker compose up --build app
 ```
 
-Without that variable, the site copies a ready-made introduction instead of publishing invented contact information.
+The public portfolio contact uses Luis Angel Parada's personal contact address by default. The
+build argument can replace it for another environment.
 
-## Cloudflare Workers + Containers
+## Optional Cloudflare Workers + Containers
 
 Create a `.env.deploy` file from `.env.deploy.example` and add a Cloudflare API token with Workers and Containers deployment permissions plus the account ID.
 
-Deploy entirely through Docker:
+When a deployment is intentionally approved, it can run entirely through Docker:
 
 ```bash
 docker compose --env-file .env.deploy --profile deploy run --rm deploy
@@ -66,6 +78,8 @@ Container CI runs on pushes and pull requests. Production deployment is a manual
 ## Project structure
 
 - `src/` — React client
+- `public/assets/` — generated production artwork used by the portfolio
+- `design/portfolio-concepts/` — accepted visual direction and responsive references
 - `nginx/default.conf` — SPA routing, health check, caching, and security headers
 - `worker/index.js` — Worker-to-container routing
 - `wrangler.jsonc` — Cloudflare Worker and Container configuration

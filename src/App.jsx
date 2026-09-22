@@ -1,390 +1,344 @@
 import { useEffect, useState } from 'react'
+import AIDeliveryPage from './pages/AIDeliveryPage.jsx'
+import { career, caseStudies, practices, projects, proof, spectrum } from './data/portfolio.js'
 
-const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || ''
+const EMAIL = 'luisparada364@icloud.com'
 
-const capabilities = [
-  {
-    number: '01',
-    title: 'Governed context',
-    detail: 'The right repository knowledge, commands, and permissions reach the right agent.',
-  },
-  {
-    number: '02',
-    title: 'Independent validation',
-    detail: 'The agent that changes code never approves its own work.',
-  },
-  {
-    number: '03',
-    title: 'Controlled deployment',
-    detail: 'Every release returns test, security, deployment, and rollback evidence.',
-  },
-  {
-    number: '04',
-    title: 'Evidence-based decisions',
-    detail: 'Human authority remains explicit at the final decision gate.',
-  },
-]
-
-const phases = [
-  {
-    number: '01',
-    title: 'Foundation',
-    description: 'Connect repositories and declare the delivery contract.',
-    outcome: 'One governed cloud workspace with versioned context and approved commands.',
-  },
-  {
-    number: '02',
-    title: 'Independent validation',
-    description: 'Separate the agent that changes code from the agent that judges it.',
-    outcome: 'A repeatable verdict backed by build, test, security, and policy evidence.',
-  },
-  {
-    number: '03',
-    title: 'Controlled deployment + QA',
-    description: 'Return deployment, test, security, and rollback evidence.',
-    outcome: 'A controlled environment proves the change before anyone approves progression.',
-  },
-  {
-    number: '04',
-    title: 'Bounded pilot',
-    description: 'Measure lead time, first-pass validation, and the number of loops.',
-    outcome: 'A small, accountable pilot produces enough evidence to decide what scales.',
-  },
-]
-
-const challenges = [
-  'Scaling beyond pilots',
-  'Independent assurance',
-  'Cloud delivery controls',
-  'AI engineering leadership',
-]
-
-function Arrow({ className = '' }) {
+function Arrow({ diagonal = false }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M5 12h14M14 7l5 5-5 5" />
+    <svg className="pf-arrow" viewBox="0 0 24 24" aria-hidden="true">
+      {diagonal ? <path d="M6 18 18 6M8 6h10v10" /> : <path d="M4 12h16M14 6l6 6-6 6" />}
     </svg>
   )
 }
 
-function Header() {
+function usePathname() {
+  const [pathname, setPathname] = useState(window.location.pathname)
+
+  useEffect(() => {
+    const update = () => setPathname(window.location.pathname)
+    window.addEventListener('popstate', update)
+    return () => window.removeEventListener('popstate', update)
+  }, [])
+
+  return [pathname, setPathname]
+}
+
+function RouteLink({ to, children, className = '', onNavigate, ...props }) {
+  const handleClick = (event) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || props.target === '_blank') return
+    event.preventDefault()
+    window.history.pushState({}, '', to)
+    window.dispatchEvent(new PopStateEvent('popstate'))
+    const hash = new URL(to, window.location.origin).hash
+    window.setTimeout(() => {
+      if (hash) document.querySelector(hash)?.scrollIntoView({ behavior: 'instant' })
+      else window.scrollTo({ top: 0, behavior: 'instant' })
+    }, 0)
+    onNavigate?.()
+  }
+
+  return (
+    <a className={className} href={to} onClick={handleClick} {...props}>
+      {children}
+    </a>
+  )
+}
+
+function usePortfolioEffects(pathname) {
+  useEffect(() => {
+    document.body.classList.toggle('ai-mode', pathname === '/ai-delivery')
+    document.body.classList.toggle('portfolio-mode', pathname !== '/ai-delivery')
+    return () => document.body.classList.remove('ai-mode', 'portfolio-mode')
+  }, [pathname])
+
+  useEffect(() => {
+    if (pathname === '/ai-delivery') return undefined
+    const elements = document.querySelectorAll('[data-reveal]')
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach((element) => element.classList.add('is-visible'))
+      return undefined
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible')
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+    )
+    elements.forEach((element) => observer.observe(element))
+    return () => observer.disconnect()
+  }, [pathname])
+}
+
+function PortfolioHeader({ compact = false }) {
+  const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24)
-    handleScroll()
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const navItems = [
+    ['Work', '/#work'],
+    ['Career', '/#career'],
+    ['Practice', '/#practice'],
+    ['About', '/#about'],
+  ]
+
   return (
-    <header className={scrolled ? 'site-header site-header--scrolled' : 'site-header'}>
-      <a className="wordmark" href="#top" aria-label="Luis Angel Parada, home">
+    <header className={`pf-header ${scrolled ? 'pf-header--scrolled' : ''} ${compact ? 'pf-header--compact' : ''}`}>
+      <RouteLink className="pf-wordmark" to="/" onNavigate={() => setOpen(false)}>
         Luis Angel Parada
-      </a>
-      <nav aria-label="Primary navigation">
-        <a href="#capability">Capability</a>
-        <a href="#delivery-model">Delivery model</a>
-        <a href="#evidence">Evidence</a>
-        <a href="#contact">Contact</a>
+      </RouteLink>
+      <nav className={open ? 'pf-nav pf-nav--open' : 'pf-nav'} aria-label="Portfolio navigation">
+        {navItems.map(([label, href]) => (
+          <a href={href} key={label} onClick={() => setOpen(false)}>{label}</a>
+        ))}
       </nav>
-      <a className="header-cta" href="#contact">
-        Discuss a pilot
-      </a>
+      <a className="pf-header-cta" href={`mailto:${EMAIL}`}>Let’s talk <Arrow diagonal /></a>
+      <button
+        className="pf-menu"
+        type="button"
+        aria-expanded={open}
+        aria-label={open ? 'Close navigation' : 'Open navigation'}
+        onClick={() => setOpen((value) => !value)}
+      >
+        <span />
+        <span />
+      </button>
     </header>
   )
 }
 
-function DeliveryLoop() {
+function PortfolioHome() {
   return (
-    <div className="loop-visual" aria-label="Strategy, build, deploy, and measure form one governed delivery loop">
-      <svg viewBox="0 0 720 460" role="img" aria-hidden="true">
-        <g className="loop-lines">
-          <path d="M346 223c-56-84-108-132-170-132-74 0-126 58-126 132s52 132 126 132c62 0 114-48 170-132Z" />
-          <path d="M374 223c56-84 108-132 170-132 74 0 126 58 126 132s-52 132-126 132c-62 0-114-48-170-132Z" />
-          <path className="loop-line--inner" d="M342 223c-46-62-88-94-138-94-54 0-92 40-92 94s38 94 92 94c50 0 92-32 138-94Z" />
-          <path className="loop-line--inner" d="M378 223c46-62 88-94 138-94 54 0 92 40 92 94s-38 94-92 94c-50 0-92-32-138-94Z" />
-        </g>
-        <g className="loop-nodes">
-          <circle cx="162" cy="92" r="7" />
-          <circle cx="558" cy="92" r="7" />
-          <circle cx="162" cy="354" r="7" />
-          <circle cx="558" cy="354" r="7" />
-        </g>
-        <g className="loop-arrows">
-          <path d="M199 94l14 1-8 11Z" />
-          <path d="M521 94l-14 1 8 11Z" />
-          <path d="M199 352l14-1-8-11Z" />
-          <path d="M521 352l-14-1 8-11Z" />
-        </g>
-      </svg>
-      <span className="loop-label loop-label--strategy">Strategy<br />to use cases</span>
-      <span className="loop-label loop-label--build">Build<br />with guardrails</span>
-      <span className="loop-label loop-label--measure">Measure<br />and improve</span>
-      <span className="loop-label loop-label--deploy">Deploy<br />and enable</span>
-      <span className="loop-center">People<br />Process<br />AI<br />Outcomes</span>
-      <span className="loop-result">Sustainable<br />AI impact<br />at scale</span>
-    </div>
-  )
-}
-
-function Hero() {
-  return (
-    <section className="hero" id="top">
-      <div className="hero-copy reveal">
-        <p className="role-line">AI Delivery Architect</p>
-        <h1>I turn AI ambition into a delivery system your engineers can trust.</h1>
-        <p className="hero-lede">
-          I help companies move from AI-assisted coding to governed, human-led AI delivery.
-        </p>
-        <div className="hero-actions">
-          <a className="button button--gold" href="#contact">
-            Discuss a pilot <Arrow />
-          </a>
-          <a className="text-link" href="#delivery-model">
-            See the delivery model <Arrow />
-          </a>
-        </div>
-      </div>
-      <DeliveryLoop />
-      <div className="hero-index" aria-hidden="true">
-        <span>01</span>
-        <span>From ambition to governed delivery</span>
-      </div>
-    </section>
-  )
-}
-
-function CapabilitySection() {
-  return (
-    <section className="capability section" id="capability">
-      <div className="section-intro reveal">
-        <p className="section-number">02 / Operating model</p>
-        <h2>AI needs an operating model.</h2>
-        <p>
-          A useful agent can complete a task. A delivery system must also control context,
-          permissions, validation, deployment, QA, and the final decision.
-        </p>
-      </div>
-
-      <div className="capability-flow" aria-label="Four controls in the AI delivery operating model">
-        {capabilities.map((item, index) => (
-          <article className="capability-item reveal" key={item.title} style={{ '--delay': `${index * 70}ms` }}>
-            <div className="capability-rail">
-              <span>{item.number}</span>
-              <i aria-hidden="true" />
+    <div className="pf-shell">
+      <PortfolioHeader />
+      <main>
+        <section className="pf-hero" id="top">
+          <div className="pf-hero-copy" data-reveal>
+            <p className="pf-kicker">Global Head of Digital Engineering · Switzerland</p>
+            <h1>I build the engineering systems behind ambitious digital products.</h1>
+            <p className="pf-lede">
+              Engineering leader and hands-on builder across global commerce, applied AI, cloud platforms and governed software delivery.
+            </p>
+            <div className="pf-actions">
+              <a className="pf-button pf-button--primary" href="#work">Explore selected work <Arrow /></a>
+              <a className="pf-text-link" href="#career">View career <Arrow /></a>
             </div>
-            <h3>{item.title}</h3>
-            <p>{item.detail}</p>
-          </article>
-        ))}
-      </div>
+          </div>
+          <div className="pf-hero-art" data-reveal aria-hidden="true">
+            <span className="pf-orbit pf-orbit--one" />
+            <span className="pf-orbit pf-orbit--two" />
+            <img src="/assets/portfolio-systems.png" alt="" fetchPriority="high" />
+          </div>
+          <div className="pf-hero-note" aria-hidden="true">
+            <span>Systems</span><span>Teams</span><span>Outcomes</span>
+          </div>
+        </section>
 
-      <div className="evidence-line reveal" id="evidence">
-        <div>
-          <p className="section-number">Evidence</p>
-          <h3>Designed for a <em>30-repository</em> engineering landscape</h3>
-        </div>
-        <p>
-          One cloud workspace. Clear role boundaries. Human authority at the decision gate.
-        </p>
-      </div>
-    </section>
-  )
-}
-
-function DeliveryModel() {
-  return (
-    <section className="delivery section" id="delivery-model">
-      <div className="delivery-heading reveal">
-        <p className="section-number">03 / Delivery roadmap</p>
-        <h2>A practical path from assisted coding to <em>governed delivery.</em></h2>
-        <p>
-          A focused path to real outcomes, with clear separation of agent execution and human
-          judgment at every stage.
-        </p>
-      </div>
-      <InteractiveRoadmap />
-      <div className="principle-band">
-        <div>
-          <p className="section-number">The principle</p>
-          <h3>Agents execute. Humans set intent, risk, and the final GO / NO-GO.</h3>
-        </div>
-        <a className="principle-link" href="#architecture">
-          Explore the architecture <Arrow />
-        </a>
-      </div>
-      <Architecture />
-    </section>
-  )
-}
-
-function InteractiveRoadmap() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const active = phases[activeIndex]
-
-  return (
-    <div className="roadmap-wrap">
-      <div className="roadmap-tabs" role="tablist" aria-label="Delivery roadmap phases">
-        {phases.map((phase, index) => (
-          <button
-            className={activeIndex === index ? 'phase phase--active' : 'phase'}
-            id={`phase-${index}`}
-            key={phase.title}
-            type="button"
-            role="tab"
-            aria-selected={activeIndex === index}
-            aria-controls="phase-panel"
-            onClick={() => setActiveIndex(index)}
-          >
-            <span className="phase-number">{phase.number}</span>
-            <span className="phase-line" aria-hidden="true"><i /></span>
-            <span className="phase-title">{phase.title}</span>
-            <span className="phase-description">{phase.description}</span>
-          </button>
-        ))}
-      </div>
-      <div
-        className="phase-outcome"
-        id="phase-panel"
-        role="tabpanel"
-        aria-labelledby={`phase-${activeIndex}`}
-        key={active.title}
-      >
-        <span>Exit evidence</span>
-        <p>{active.outcome}</p>
-      </div>
-    </div>
-  )
-}
-
-function Architecture() {
-  const steps = ['Context', 'Implement', 'Validate', 'Deploy + QA', 'Decide']
-  return (
-    <div className="architecture reveal" id="architecture">
-      <div className="architecture-copy">
-        <p className="section-number">The controlled loop</p>
-        <h3>No agent approves its own output.</h3>
-        <p>
-          Repository context and an approved change feed a bounded implementation role. A separate
-          validator returns PASS, FAIL, or ESCALATE with evidence. The Delivery Lead keeps the final
-          decision.
-        </p>
-      </div>
-      <ol className="architecture-flow">
-        {steps.map((step, index) => (
-          <li key={step}>
-            <span>{String(index + 1).padStart(2, '0')}</span>
-            <strong>{step}</strong>
-            {index < steps.length - 1 && <Arrow />}
-          </li>
-        ))}
-      </ol>
-      <div className="verdicts" aria-label="Possible validation verdicts">
-        <span className="verdict verdict--pass">PASS</span>
-        <span className="verdict">FAIL WITH EVIDENCE</span>
-        <span className="verdict">ESCALATE</span>
-      </div>
-    </div>
-  )
-}
-
-function ContactSection() {
-  const [selected, setSelected] = useState(challenges[0])
-  const [status, setStatus] = useState('')
-  const outreachText = `I would like to speak with Luis Angel Parada about ${selected.toLowerCase()} and a governed AI delivery model for our engineering organization.`
-
-  const startConversation = async () => {
-    if (CONTACT_EMAIL) {
-      const subject = encodeURIComponent(`AI delivery conversation: ${selected}`)
-      const body = encodeURIComponent(`${outreachText}\n\nCompany:\nRole:\nBest time to speak:`)
-      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
-      return
-    }
-
-    try {
-      await navigator.clipboard.writeText(outreachText)
-      setStatus('Introduction copied. Send it to Luis through the channel where you received this site.')
-    } catch {
-      setStatus(outreachText)
-    }
-  }
-
-  return (
-    <section className="contact section" id="contact">
-      <div className="contact-heading reveal">
-        <p className="section-number">04 / Let’s build what works</p>
-        <h2>If AI is already entering your SDLC, give it a <em>delivery system.</em></h2>
-        <p>I am looking for the company where this work can become the standard, not a side experiment.</p>
-      </div>
-
-      <div className="challenge-picker reveal">
-        <div className="picker-heading">
-          <span>Your challenge</span>
-          <span>Select the priority that matters most</span>
-        </div>
-        <div className="challenge-options" role="radiogroup" aria-label="Your AI delivery challenge">
-          {challenges.map((challenge) => (
-            <button
-              className={selected === challenge ? 'challenge challenge--selected' : 'challenge'}
-              key={challenge}
-              type="button"
-              role="radio"
-              aria-checked={selected === challenge}
-              onClick={() => {
-                setSelected(challenge)
-                setStatus('')
-              }}
-            >
-              <span>{challenge}</span>
-              <Arrow />
-            </button>
+        <section className="pf-proof" aria-label="Selected engineering outcomes">
+          {proof.map((item, index) => (
+            <div className="pf-proof-item" data-reveal style={{ '--delay': `${index * 60}ms` }} key={item.label}>
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </div>
           ))}
-        </div>
-        <div className="contact-actions">
-          <button className="button button--gold" type="button" onClick={startConversation}>
-            {CONTACT_EMAIL ? 'Start a conversation' : 'Copy an introduction'} <Arrow />
-          </button>
-          <a className="button button--outline" href="#evidence">
-            Review the evidence <Arrow />
-          </a>
-        </div>
-        <p className="contact-status" role="status" aria-live="polite">{status}</p>
-      </div>
-    </section>
+        </section>
+
+        <section className="pf-section pf-work" id="work">
+          <div className="pf-section-heading" data-reveal>
+            <div>
+              <p className="pf-eyebrow">01 / Selected work</p>
+              <h2>Systems that make<br />ambition operational.</h2>
+            </div>
+            <p>Three views into the work: how software is delivered, how platforms scale, and how applied AI becomes a dependable product.</p>
+          </div>
+          <div className="pf-projects">
+            {projects.map((project, index) => (
+              <article className={`pf-project pf-project--${project.tone}`} data-reveal key={project.title}>
+                <div className="pf-project-copy">
+                  <span className="pf-project-index">{project.index}</span>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <small>{project.meta}</small>
+                  <RouteLink className="pf-project-link" to={project.link}>
+                    {project.cta} <Arrow diagonal />
+                  </RouteLink>
+                </div>
+                <RouteLink className="pf-project-media" to={project.link} aria-label={`${project.cta}: ${project.title}`}>
+                  <img src={project.image} alt="" loading={index === 0 ? 'eager' : 'lazy'} />
+                </RouteLink>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="pf-section pf-career" id="career">
+          <div className="pf-career-intro" data-reveal>
+            <p className="pf-eyebrow">02 / Career</p>
+            <h2>A decade building software, platforms and teams.</h2>
+            <p>From hands-on product engineering to global digital leadership.</p>
+          </div>
+          <ol className="pf-timeline">
+            {career.map((entry, index) => (
+              <li data-reveal style={{ '--delay': `${index * 40}ms` }} key={`${entry.date}-${entry.role}`}>
+                <span className="pf-date">{entry.date}</span>
+                <span className="pf-timeline-dot" aria-hidden="true" />
+                <div className="pf-role">
+                  <h3>{entry.role}</h3>
+                  <span>{entry.company}</span>
+                </div>
+                <p>{entry.detail}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="pf-practice" id="practice">
+          <div className="pf-practice-heading" data-reveal>
+            <p className="pf-eyebrow">03 / Practice</p>
+            <h2>Leadership that stays close to the system.</h2>
+            <p>I lead through clear operating models, technical depth and evidence—connecting people, architecture and outcomes.</p>
+          </div>
+          <div className="pf-practice-grid">
+            {practices.map((item, index) => (
+              <article data-reveal style={{ '--delay': `${index * 70}ms` }} key={item.title}>
+                <span>{item.index}</span>
+                <h3>{item.title}</h3>
+                <p>{item.detail}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="pf-section pf-about" id="about">
+          <div className="pf-about-lead" data-reveal>
+            <p className="pf-eyebrow">04 / About</p>
+            <h2>Technology is the medium. Better systems are the work.</h2>
+          </div>
+          <div className="pf-about-copy" data-reveal>
+            <p>I am an engineering leader and hands-on builder based in Switzerland. My work connects product ambition, platform architecture, delivery discipline and applied AI—so teams can move faster without losing control.</p>
+            <dl>
+              <div><dt>Education</dt><dd>B.Sc. Software Engineering</dd></div>
+              <div><dt>Languages</dt><dd>Spanish · Native<br />English · C1</dd></div>
+              <div><dt>Location</dt><dd>Switzerland · Permit B</dd></div>
+            </dl>
+          </div>
+          <div className="pf-spectrum" data-reveal>
+            <p className="pf-spectrum-title">Technical spectrum</p>
+            {spectrum.map((item) => (
+              <div key={item.title}><h3>{item.title}</h3><p>{item.detail}</p></div>
+            ))}
+          </div>
+        </section>
+
+        <section className="pf-contact" id="contact">
+          <p className="pf-eyebrow">05 / Contact</p>
+          <div data-reveal>
+            <h2>Let’s build the system behind what’s next.</h2>
+            <p>For engineering leadership, platform transformation and applied AI opportunities.</p>
+            <a className="pf-button pf-button--light" href={`mailto:${EMAIL}`}>Start a conversation <Arrow diagonal /></a>
+          </div>
+          <nav aria-label="Contact links">
+            <a href="https://www.linkedin.com/in/luis-angel-parada" target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a>
+            <a href="https://github.com/tximpa91" target="_blank" rel="noreferrer">GitHub <Arrow diagonal /></a>
+            <a href={`mailto:${EMAIL}`}>Email <Arrow diagonal /></a>
+          </nav>
+        </section>
+      </main>
+      <PortfolioFooter />
+    </div>
   )
 }
 
-function Footer() {
+function CaseStudyPage({ study }) {
   return (
-    <footer>
-      <div>
-        <p>Luis Angel Parada — AI Delivery Architect</p>
-        <span>Human-led. Evidence-driven.</span>
-      </div>
-      <nav aria-label="Footer navigation">
-        <a href="#top">Home</a>
-        <a href="#capability">Capability</a>
-        <a href="#evidence">Evidence</a>
-        <a href="#contact">Contact</a>
-      </nav>
+    <div className="pf-shell pf-case-shell">
+      <PortfolioHeader compact />
+      <main>
+        <section className="pf-case-hero">
+          <RouteLink className="pf-back" to="/#work"><Arrow /> Back to selected work</RouteLink>
+          <div className="pf-case-heading" data-reveal>
+            <div>
+              <p className="pf-eyebrow">{study.number}</p>
+              <h1>{study.title}</h1>
+            </div>
+            <p>{study.intro}</p>
+          </div>
+          <div className="pf-case-art" data-reveal><img src={study.image} alt="" /></div>
+        </section>
+        <section className="pf-case-facts" aria-label="Project facts">
+          {study.facts.map((fact) => <div key={fact.label}><strong>{fact.value}</strong><span>{fact.label}</span></div>)}
+        </section>
+        <section className="pf-case-chapters">
+          {study.chapters.map((chapter, index) => (
+            <article data-reveal key={chapter.label}>
+              <span>{String(index + 1).padStart(2, '0')} / {chapter.label}</span>
+              <h2>{chapter.title}</h2>
+              <p>{chapter.copy}</p>
+            </article>
+          ))}
+        </section>
+        <section className="pf-ownership" data-reveal>
+          <p className="pf-eyebrow">My scope</p>
+          <h2>{study.ownership}</h2>
+        </section>
+        <section className="pf-next">
+          <div><p className="pf-eyebrow">Continue</p><h2>See the AI delivery operating system.</h2></div>
+          <RouteLink className="pf-button pf-button--primary" to="/ai-delivery">Open AI delivery <Arrow /></RouteLink>
+        </section>
+      </main>
+      <PortfolioFooter />
+    </div>
+  )
+}
+
+function PortfolioFooter() {
+  return (
+    <footer className="pf-footer">
+      <div><strong>Luis Angel Parada</strong><span>Switzerland</span></div>
+      <p>Human-led. Evidence-driven.</p>
+      <a href="#top">Back to top ↑</a>
     </footer>
   )
 }
 
-function App() {
+function NotFound() {
   return (
-    <>
-      <Header />
-      <main>
-        <Hero />
-        <CapabilitySection />
-        <DeliveryModel />
-        <ContactSection />
-      </main>
-      <Footer />
-    </>
+    <div className="pf-shell">
+      <PortfolioHeader compact />
+      <main className="pf-not-found"><p className="pf-eyebrow">404</p><h1>This route is still being engineered.</h1><RouteLink className="pf-button pf-button--primary" to="/">Return home <Arrow /></RouteLink></main>
+    </div>
   )
+}
+
+function App() {
+  const [pathname] = usePathname()
+  usePortfolioEffects(pathname)
+
+  useEffect(() => {
+    const titles = {
+      '/': 'Luis Angel Parada — Engineering Leader & Builder',
+      '/ai-delivery': 'AI Delivery Operating System — Luis Angel Parada',
+      '/work/commerce-platform': 'Global Commerce Platform — Luis Angel Parada',
+      '/work/boutique-sales-assistant': 'Boutique Sales Assistant — Luis Angel Parada',
+    }
+    document.title = titles[pathname] || 'Luis Angel Parada'
+  }, [pathname])
+
+  if (pathname === '/ai-delivery') return <AIDeliveryPage />
+  if (pathname === '/') return <PortfolioHome />
+  if (caseStudies[pathname]) return <CaseStudyPage study={caseStudies[pathname]} />
+  return <NotFound />
 }
 
 export default App
