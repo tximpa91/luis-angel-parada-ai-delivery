@@ -28,7 +28,8 @@ jobs:
             fi
             sleep 1
           done
-          curl --fail --silent http://127.0.0.1:8080/ | grep -F "Luis Angel Parada — AI Delivery Architect"
+          curl --fail --silent http://127.0.0.1:8080/ | grep -F "Luis Angel Parada — Engineering Leader"
+          curl --fail --silent http://127.0.0.1:8080/work/commerce-platform | grep -F "Luis Angel Parada — Engineering Leader"
 
       - name: Show logs on failure
         if: failure()
