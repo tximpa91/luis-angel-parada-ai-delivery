@@ -1,0 +1,30 @@
+name: luis-angel-parada-ai-delivery
+
+services:
+  app:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_CONTACT_EMAIL: ${VITE_CONTACT_EMAIL:-}
+    image: luis-angel-parada-ai-delivery:local
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/healthz"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  deploy:
+    profiles: ["deploy"]
+    build:
+      context: .
+      dockerfile: Dockerfile.deploy
+    environment:
+      CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN:-}
+      CLOUDFLARE_ACCOUNT_ID: ${CLOUDFLARE_ACCOUNT_ID:-}
+      VITE_CONTACT_EMAIL: ${VITE_CONTACT_EMAIL:-}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

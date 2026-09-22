@@ -1,0 +1,12 @@
+.git
+.github
+.wrangler
+design
+dist
+node_modules
+.env
+.env.*
+!.env.example
+!.env.deploy.example
+npm-debug.log*
+.DS_Store

@@ -1,0 +1,26 @@
+{
+  "name": "luis-angel-parada-ai-delivery",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "docker:build": "docker build --platform linux/amd64 -t luis-angel-parada-ai-delivery:local .",
+    "docker:up": "docker compose up --build app",
+    "docker:down": "docker compose down",
+    "worker:dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@cloudflare/containers": "0.3.7",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "vite": "8.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "6.1.1",
+    "wrangler": "4.136.1"
+  }
+}
