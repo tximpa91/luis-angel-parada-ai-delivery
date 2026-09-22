@@ -3,6 +3,7 @@
   "name": "luis-angel-parada-ai-delivery",
   "main": "worker/index.js",
   "compatibility_date": "2026-09-22",
+  "workers_dev": false,
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
