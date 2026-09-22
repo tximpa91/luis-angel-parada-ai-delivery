@@ -47,7 +47,7 @@ export const career = [
     detail: 'Engineering organisation, technology roadmap, global commerce, applied AI and delivery systems.',
   },
   {
-    date: '2025—2026',
+    date: '2024—2026',
     role: 'Delivery Lead, Digital Platforms',
     company: 'Global luxury brand',
     detail: 'Platform delivery, SDLC, release governance and multibrand architecture.',
