@@ -97,7 +97,7 @@ export const spectrum = [
   },
   {
     title: 'Applied AI',
-    detail: 'RAG · agents · Bedrock · LangChain · evaluation · guardrails',
+    detail: 'RAG · agents · Bedrock · LangChain · LangGraph · AI-DLC · evaluation · guardrails',
   },
   {
     title: 'Platforms',
