@@ -332,7 +332,13 @@ function App() {
       '/work/commerce-platform': 'Global Commerce Platform — Luis Angel Parada',
       '/work/boutique-sales-assistant': 'Boutique Sales Assistant — Luis Angel Parada',
     }
-    document.title = titles[pathname] || 'Luis Angel Parada'
+    const title = titles[pathname] || 'Luis Angel Parada'
+    const canonicalUrl = `https://luisangelparada.com${titles[pathname] ? pathname : '/'}`
+
+    document.title = title
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl)
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonicalUrl)
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', title)
   }, [pathname])
 
   if (pathname === '/ai-delivery') return <AIDeliveryPage />

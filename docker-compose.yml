@@ -25,6 +25,7 @@ services:
     environment:
       CLOUDFLARE_API_TOKEN: ${CLOUDFLARE_API_TOKEN:-}
       CLOUDFLARE_ACCOUNT_ID: ${CLOUDFLARE_ACCOUNT_ID:-}
+      CLOUDFLARE_ZONE_ID: ${CLOUDFLARE_ZONE_ID:-}
       VITE_CONTACT_EMAIL: ${VITE_CONTACT_EMAIL:-}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

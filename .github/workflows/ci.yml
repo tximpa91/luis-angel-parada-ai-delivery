@@ -17,6 +17,17 @@ jobs:
       - name: Build production image
         run: docker build --platform linux/amd64 -t luis-angel-parada-ai-delivery:ci .
 
+      - name: Build deployment toolchain
+        run: docker build --platform linux/amd64 -f Dockerfile.deploy -t luis-angel-parada-deploy:ci .
+
+      - name: Validate Terraform
+        run: |
+          docker run --rm --entrypoint sh luis-angel-parada-deploy:ci -lc '
+            terraform -chdir=infra/terraform fmt -check -recursive &&
+            terraform -chdir=infra/terraform init -backend=false -input=false &&
+            terraform -chdir=infra/terraform validate
+          '
+
       - name: Run container
         run: docker run --rm -d --name luis-angel-parada-site -p 8080:8080 luis-angel-parada-ai-delivery:ci
 

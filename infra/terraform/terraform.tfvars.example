@@ -1,0 +1,7 @@
+cloudflare_account_id = "00000000000000000000000000000000"
+cloudflare_zone_id    = "00000000000000000000000000000000"
+
+# These defaults already match this repository and only need to be declared
+# when intentionally targeting a different domain or Worker service.
+# domain_name        = "luisangelparada.com"
+# worker_service_name = "luis-angel-parada-ai-delivery"

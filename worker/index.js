@@ -7,6 +7,13 @@ export class WebsiteContainer extends Container {
 
 export default {
   async fetch(request, env) {
+    const url = new URL(request.url)
+
+    if (url.hostname === 'www.luisangelparada.com') {
+      url.hostname = 'luisangelparada.com'
+      return Response.redirect(url.toString(), 308)
+    }
+
     const container = getContainer(env.WEBSITE_CONTAINER, 'luis-angel-parada-portfolio')
     return container.fetch(request)
   },

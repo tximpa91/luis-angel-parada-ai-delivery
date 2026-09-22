@@ -16,10 +16,12 @@ not imply that a live deployment has been made.
 ## Architecture
 
 ```text
-Browser → Cloudflare Worker → Cloudflare Container → nginx → React SPA
+luisangelparada.com → Cloudflare Custom Domain → Worker → Container → nginx → React SPA
 ```
 
-The same production Dockerfile powers local development, CI, and Cloudflare deployment. Cloudflare Containers requires a Workers Paid plan.
+The same production Dockerfile powers local development, CI, and Cloudflare deployment. Terraform
+verifies the existing Registrar-managed zone and attaches the apex and `www` hostnames to the
+Worker. Cloudflare Containers requires a Workers Paid plan.
 
 ## Local Docker workflow
 
@@ -50,7 +52,8 @@ build argument can replace it for another environment.
 
 ## Optional Cloudflare Workers + Containers
 
-Create a `.env.deploy` file from `.env.deploy.example` and add a Cloudflare API token with Workers and Containers deployment permissions plus the account ID.
+Create a `.env.deploy` file from `.env.deploy.example` and add a Cloudflare API token with Workers,
+Containers, Zone Read, and Worker Custom Domains permissions, plus the account and zone IDs.
 
 When a deployment is intentionally approved, it can run entirely through Docker:
 
@@ -58,8 +61,15 @@ When a deployment is intentionally approved, it can run entirely through Docker:
 docker compose --env-file .env.deploy --profile deploy run --rm deploy
 ```
 
-Wrangler uploads the Worker, builds the `linux/amd64` image from `Dockerfile`, pushes it to Cloudflare, and starts the container rollout.
-If `VITE_CONTACT_EMAIL` is set, the Dockerized deployment passes that public address into the production image as a build argument.
+The Dockerized toolchain performs the release in a controlled order:
+
+1. Wrangler uploads the Worker and builds the `linux/amd64` container image.
+2. Terraform verifies the active `luisangelparada.com` zone.
+3. Terraform attaches `luisangelparada.com` and `www.luisangelparada.com` as Worker Custom Domains.
+4. Cloudflare provisions the corresponding DNS records and TLS certificates.
+
+The Worker permanently redirects `www` to the apex domain. No push to `main` deploys production;
+deployment remains an explicit manual action.
 
 ## Personal GitHub
 
@@ -73,6 +83,7 @@ Container CI runs on pushes and pull requests. Production deployment is a manual
 
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
+- `CLOUDFLARE_ZONE_ID`
 - `VITE_CONTACT_EMAIL`
 
 ## Project structure
@@ -82,6 +93,7 @@ Container CI runs on pushes and pull requests. Production deployment is a manual
 - `design/portfolio-concepts/` — accepted visual direction and responsive references
 - `nginx/default.conf` — SPA routing, health check, caching, and security headers
 - `worker/index.js` — Worker-to-container routing
+- `infra/terraform/` — zone verification and Worker Custom Domains
 - `wrangler.jsonc` — Cloudflare Worker and Container configuration
 - `Dockerfile` — production client image
 - `Dockerfile.deploy` — containerized Wrangler deployment toolchain
@@ -92,4 +104,5 @@ Released under the [MIT License](LICENSE).
 ## Platform references
 
 - [Cloudflare Containers](https://developers.cloudflare.com/containers/)
+- [Cloudflare Worker Custom Domains](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/)
 - [Deploy Cloudflare Containers](https://developers.cloudflare.com/containers/guides/deploy/)

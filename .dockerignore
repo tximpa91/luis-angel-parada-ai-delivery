@@ -1,6 +1,10 @@
 .git
 .github
 .wrangler
+**/.terraform
+**/*.tfstate
+**/*.tfstate.*
+**/*.tfplan
 design
 dist
 node_modules
