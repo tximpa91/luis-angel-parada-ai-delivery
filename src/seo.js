@@ -30,11 +30,11 @@ export const routeSeo = {
     schemaType: 'TechArticle',
   },
   '/work/applied-ai-product-discovery': {
-    title: 'Conversational Product Discovery | Luis Angel Parada',
+    title: 'Boutique AI Sales Assistant Architecture | Luis Angel Parada',
     description:
-      'A privacy-conscious capability overview for grounded conversational product discovery, evaluation, guardrails and human oversight.',
+      'An independent technical reference architecture for a boutique AI sales assistant using LangGraph, RAG, FastAPI, Bedrock, evaluation and guardrails.',
     image: '/assets/applied-ai-discovery.png',
-    imageAlt: 'Conceptual conversational product discovery system',
+    imageAlt: 'Independent boutique AI sales assistant reference architecture',
     openGraphType: 'article',
     schemaType: 'TechArticle',
   },

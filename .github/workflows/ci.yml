@@ -50,7 +50,7 @@ jobs:
           done
           curl --fail --silent http://127.0.0.1:8080/ | grep -F "I build the engineering systems behind ambitious digital products."
           curl --fail --silent http://127.0.0.1:8080/work/commerce-platform | grep -F "A commerce platform engineered for global scale."
-          curl --fail --silent http://127.0.0.1:8080/work/applied-ai-product-discovery | grep -F "A safe pattern for conversational product discovery."
+          curl --fail --silent http://127.0.0.1:8080/work/applied-ai-product-discovery | grep -F "A technical blueprint for a boutique AI sales assistant."
           curl --silent --output /dev/null --write-out '%{http_code}\n' http://127.0.0.1:8080/work/boutique-sales-assistant | grep -Fx "308"
           curl --fail --silent http://127.0.0.1:8080/ai-delivery | grep -F '<link rel="canonical" href="https://luisangelparada.com/ai-delivery"'
           curl --fail --silent http://127.0.0.1:8080/ai-delivery | grep -F 'id="seo-jsonld"'
