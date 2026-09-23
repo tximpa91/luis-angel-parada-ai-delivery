@@ -25,10 +25,17 @@ function setMeta(html, attribute, key, content) {
 function createHtml(pathname) {
   const seo = getSeoForPath(pathname)
   const structuredData = getStructuredData(pathname)
+  const rendered = serverBundle.render(pathname)
+  const resourceHints = rendered.match(/<link\s+rel="preload"[^>]*\/?>/gi) || []
+  const appMarkup = rendered.replace(/<link\s+rel="preload"[^>]*\/?>/gi, '')
   let html = template.replace(
     '<div id="root"></div>',
-    `<div id="root">${serverBundle.render(pathname)}</div>`,
+    `<div id="root">${appMarkup}</div>`,
   )
+
+  if (resourceHints.length) {
+    html = html.replace('</head>', `    ${resourceHints.join('\n    ')}\n  </head>`)
+  }
 
   html = html.replace(/<title>[^<]*<\/title>/i, `<title>${escapeAttribute(seo.title)}</title>`)
   html = setMeta(html, 'name', 'description', seo.description)

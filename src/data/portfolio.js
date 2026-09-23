@@ -3,8 +3,31 @@ import { boutiqueReferences } from './references.js'
 export const proof = [
   { value: '1B', label: 'peak monthly requests' },
   { value: '273', label: 'deployments / week' },
-  { value: '26', label: 'person engineering organisation' },
+  { value: '6 min', label: 'average deployment' },
   { value: '$800k', label: 'annual Opex saved' },
+]
+
+export const leadershipScope = [
+  {
+    value: '5',
+    label: 'direct managers',
+    detail: 'Leading through Backend, Frontend, DevOps, QA and Delivery management.',
+  },
+  {
+    value: '26',
+    label: 'people in the organisation',
+    detail: 'A distributed engineering organisation designed for clear ownership and dependable delivery.',
+  },
+  {
+    value: '6',
+    label: 'countries',
+    detail: 'Global collaboration across cultures, time zones and specialist partners.',
+  },
+  {
+    value: 'End-to-end',
+    label: 'operating scope',
+    detail: 'Roadmap, hiring, vendor and budget decisions, SRE, incidents, FinOps and architecture.',
+  },
 ]
 
 export const projects = [
@@ -53,31 +76,31 @@ export const career = [
     date: '2026—Now',
     role: 'Global Head of Digital Engineering',
     company: 'Global luxury brand',
-    detail: 'Engineering organisation, technology roadmap, global commerce, applied AI and delivery systems.',
+    detail: 'Five direct managers and a 26-person organisation across six countries, with accountability for the technology roadmap, hiring, vendors, budgets, reliability and applied AI.',
   },
   {
     date: '2024—2026',
     role: 'Delivery Lead, Digital Platforms',
     company: 'Global luxury brand',
-    detail: 'Platform delivery, SDLC, release governance and multibrand architecture.',
+    detail: 'Led zero-to-production platform delivery, SDLC and release governance for a shared multibrand commerce architecture.',
   },
   {
     date: '2022—2024',
     role: 'Technical Lead Engineer',
     company: 'Beyond Pricing',
-    detail: 'Event-driven integrations and production Go services.',
+    detail: 'Led four engineers delivering event-driven integrations and production Go services.',
   },
   {
     date: '2022—2024',
     role: 'Cloud Platform Engineer & MongoDB PS Consultant',
     company: 'Cogniflare',
-    detail: 'Enterprise architecture, MongoDB and cloud delivery.',
+    detail: 'Delivered enterprise architecture assessments, MongoDB professional services, training and cloud platform work.',
   },
   {
     date: '2016—2021',
     role: 'Engineering foundations',
     company: 'Worldline · Techonrails · A3SEC · NAGRA · CEPSA',
-    detail: 'Cloud migration, distributed systems, cybersecurity, product development and full-stack delivery.',
+    detail: 'Built the hands-on foundation across AWS migration, distributed systems, cybersecurity, product development and full-stack delivery.',
   },
 ]
 
@@ -158,6 +181,22 @@ export const caseStudies = {
         claim: 'Operating leverage',
         value: 'Approximately $800k annual Opex removed',
         context: 'Annualized infrastructure savings attributed to the Akamai-to-Cloudflare migration.',
+      },
+    ],
+    roleSummary:
+      'I led the architecture and zero-to-production delivery, aligned engineering execution with the roadmap, and owned SDLC, release, vendor and reliability decisions across the platform.',
+    decisions: [
+      {
+        title: 'One platform instead of duplicated stacks',
+        detail: 'Established a shared multibrand architecture with brand-aware routing, common services and backward-compatible evolution across markets.',
+      },
+      {
+        title: 'Delivery as an observable system',
+        detail: 'Standardised infrastructure and delivery around Terraform, ArgoCD and operational telemetry so teams could release frequently with evidence.',
+      },
+      {
+        title: 'Move control and cost to the edge',
+        detail: 'Led the staged Akamai-to-Cloudflare migration to improve platform control while removing approximately $800k in annual operating cost.',
       },
     ],
     chapters: [

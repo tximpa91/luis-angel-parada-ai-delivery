@@ -8,12 +8,22 @@ export const routeSeo = {
   '/': {
     title: 'Luis Angel Parada | Digital Engineering & Applied AI Leader',
     description:
-      'Luis Angel Parada is a Switzerland-based digital engineering leader specializing in global commerce platforms, applied AI, cloud architecture and AI-DLC.',
+      'Luis Angel Parada is a Switzerland-based engineering leader managing five managers and a 26-person global organisation across platforms, commerce and applied AI.',
     image: '/assets/portfolio-systems.png',
     imageAlt: 'Luis Angel Parada portfolio: engineering systems, teams and outcomes',
     openGraphType: 'website',
     schemaType: 'ProfilePage',
     breadcrumbLabel: 'Portfolio',
+  },
+  '/leadership-profile': {
+    title: 'Engineering Leadership Profile | Luis Angel Parada',
+    description:
+      'Leadership profile of Luis Angel Parada: Global Head of Digital Engineering leading five managers and a 26-person engineering organisation across six countries.',
+    image: '/assets/portfolio-systems.png',
+    imageAlt: 'Luis Angel Parada engineering leadership profile',
+    openGraphType: 'profile',
+    schemaType: 'ProfilePage',
+    breadcrumbLabel: 'Leadership Profile',
   },
   '/ai-delivery': {
     title: 'AI Delivery Lifecycle (AI-DLC) | Luis Angel Parada',
@@ -124,9 +134,9 @@ export function getStructuredData(pathname) {
       skills: 'Engineering leadership, applied AI, platform architecture, cloud architecture, software delivery governance',
     },
     subjectOf: Object.entries(routeSeo)
-      .filter(([route]) => route !== '/')
+      .filter(([, routeData]) => routeData.schemaType === 'TechArticle')
       .map(([route, routeData]) => ({
-        '@type': 'TechArticle',
+        '@type': routeData.schemaType,
         name: routeData.title,
         url: `${SITE_URL}${route}`,
       })),
@@ -142,7 +152,7 @@ export function getStructuredData(pathname) {
     inLanguage: 'en',
   }
 
-  const page = pathname === '/'
+  const page = seo.schemaType === 'ProfilePage'
     ? {
         '@type': 'ProfilePage',
         '@id': `${seo.canonical}#profile`,

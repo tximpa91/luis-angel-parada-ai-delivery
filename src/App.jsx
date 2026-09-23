@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import AIDeliveryPage from './pages/AIDeliveryPage.jsx'
-import { career, caseStudies, practices, projects, proof, spectrum } from './data/portfolio.js'
+import { career, caseStudies, leadershipScope, practices, projects, proof, spectrum } from './data/portfolio.js'
 import { getSeoForPath, getStructuredData, routeSeo } from './seo.js'
 
 const EMAIL = 'luisparada364@icloud.com'
+const SOURCE_REPOSITORY = 'https://github.com/tximpa91/luis-angel-parada-ai-delivery'
 
 function Arrow({ diagonal = false }) {
   return (
@@ -92,6 +93,7 @@ function PortfolioHeader({ compact = false }) {
   const navItems = [
     ['Work', '/#work'],
     ['Career', '/#career'],
+    ['Leadership', '/leadership-profile'],
     ['Practice', '/#practice'],
     ['About', '/#about'],
   ]
@@ -129,13 +131,14 @@ function PortfolioHome() {
         <section className="pf-hero" id="top">
           <div className="pf-hero-copy" data-reveal>
             <p className="pf-kicker">Global Head of Digital Engineering · Switzerland</p>
-            <h1>I build the engineering systems behind ambitious digital products.</h1>
+            <h1>I build engineering organisations and the systems behind ambitious digital products.</h1>
             <p className="pf-lede">
-              Luis Angel Parada is a Switzerland-based digital engineering leader specializing in global commerce platforms, applied AI, cloud architecture and governed software delivery.
+              I lead a 26-person organisation across six countries while staying close to architecture,
+              delivery and applied AI. I turn complex technology into accountable teams and measurable outcomes.
             </p>
             <div className="pf-actions">
               <a className="pf-button pf-button--primary" href="#work">Explore selected work <Arrow /></a>
-              <a className="pf-text-link" href="#career">View career <Arrow /></a>
+              <RouteLink className="pf-text-link" to="/leadership-profile">Leadership profile <Arrow /></RouteLink>
             </div>
           </div>
           <div className="pf-hero-art" data-reveal aria-hidden="true">
@@ -169,6 +172,28 @@ function PortfolioHome() {
               Team scope is stated in the <a href="#career">career record</a>.
             </p>
           </aside>
+        </section>
+
+        <section className="pf-leadership" aria-labelledby="leadership-scope-title">
+          <div className="pf-leadership-heading" data-reveal>
+            <div>
+              <p className="pf-eyebrow">Leadership scope</p>
+              <h2 id="leadership-scope-title">Manager of managers.<br />Operator of systems.</h2>
+            </div>
+            <div>
+              <p>I connect organisation design, platform architecture and delivery economics—then stay accountable when the system is under pressure.</p>
+              <RouteLink className="pf-text-link" to="/leadership-profile">Read the full profile <Arrow /></RouteLink>
+            </div>
+          </div>
+          <div className="pf-leadership-grid">
+            {leadershipScope.map((item, index) => (
+              <article data-reveal style={{ '--delay': `${index * 60}ms` }} key={item.label}>
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+                <p>{item.detail}</p>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section className="pf-section pf-work" id="work">
@@ -210,6 +235,7 @@ function PortfolioHome() {
             <p className="pf-eyebrow">02 / Career</p>
             <h2>A decade building software, platforms and teams.</h2>
             <p>From hands-on product engineering to global digital leadership.</p>
+            <RouteLink className="pf-text-link" to="/leadership-profile">Open leadership profile <Arrow /></RouteLink>
           </div>
           <ol className="pf-timeline">
             {career.map((entry, index) => (
@@ -273,13 +299,14 @@ function PortfolioHome() {
         <section className="pf-contact" id="contact">
           <p className="pf-eyebrow">05 / Contact</p>
           <div data-reveal>
-            <h2>Let’s build the system behind what’s next.</h2>
-            <p>For engineering leadership, platform transformation and applied AI opportunities.</p>
-            <a className="pf-button pf-button--light" href={`mailto:${EMAIL}`}>Start a conversation <Arrow diagonal /></a>
+            <h2>Looking for an engineering leader who can still build?</h2>
+            <p>Open to senior engineering and applied AI leadership conversations in Switzerland and internationally.</p>
+            <a className="pf-button pf-button--light" href={`mailto:${EMAIL}?subject=Engineering%20leadership%20conversation`}>Discuss a leadership role <Arrow diagonal /></a>
           </div>
           <nav aria-label="Contact links">
             <a href="https://www.linkedin.com/in/luis-angel-parada" target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a>
-            <a href="https://github.com/tximpa91" target="_blank" rel="noreferrer">GitHub <Arrow diagonal /></a>
+            <RouteLink to="/leadership-profile">Leadership profile <Arrow diagonal /></RouteLink>
+            <a href={SOURCE_REPOSITORY} target="_blank" rel="noreferrer">View source <Arrow diagonal /></a>
             <a href={`mailto:${EMAIL}`}>Email <Arrow diagonal /></a>
           </nav>
         </section>
@@ -294,7 +321,7 @@ function CaseStudyPage({ study }) {
     <div className="pf-shell pf-case-shell">
       <PortfolioHeader compact />
       <main>
-        <section className="pf-case-hero">
+        <section className="pf-case-hero" id="top">
           <nav className="pf-breadcrumb" aria-label="Breadcrumb">
             <RouteLink to="/">Home</RouteLink>
             <span aria-hidden="true">/</span>
@@ -330,6 +357,12 @@ function CaseStudyPage({ study }) {
         <section className="pf-case-facts" aria-label="Project facts">
           {study.facts.map((fact) => <div key={fact.label}><strong>{fact.value}</strong><span>{fact.label}</span></div>)}
         </section>
+        {study.roleSummary && (
+          <section className="pf-role-summary" aria-labelledby="role-summary-title" data-reveal>
+            <p className="pf-eyebrow">My role</p>
+            <h2 id="role-summary-title">{study.roleSummary}</h2>
+          </section>
+        )}
         {study.evidence && (
           <section className="pf-evidence-ledger" aria-labelledby="evidence-ledger-title">
             <div className="pf-evidence-heading" data-reveal>
@@ -342,6 +375,23 @@ function CaseStudyPage({ study }) {
                   <span>{item.claim}</span>
                   <h3>{item.value}</h3>
                   <p>{item.context}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+        {study.decisions && (
+          <section className="pf-decisions" aria-labelledby="key-decisions-title">
+            <div className="pf-decisions-heading" data-reveal>
+              <p className="pf-eyebrow">Key decisions</p>
+              <h2 id="key-decisions-title">What I chose—and why it mattered.</h2>
+            </div>
+            <div className="pf-decisions-grid">
+              {study.decisions.map((decision, index) => (
+                <article data-reveal style={{ '--delay': `${index * 60}ms` }} key={decision.title}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{decision.title}</h3>
+                  <p>{decision.detail}</p>
                 </article>
               ))}
             </div>
@@ -400,6 +450,95 @@ function CaseStudyPage({ study }) {
         <section className="pf-next">
           <div><p className="pf-eyebrow">Continue</p><h2>See the AI delivery operating system.</h2></div>
           <RouteLink className="pf-button pf-button--primary" to="/ai-delivery">Open AI delivery <Arrow /></RouteLink>
+        </section>
+      </main>
+      <PortfolioFooter />
+    </div>
+  )
+}
+
+function LeadershipProfile() {
+  const impact = [
+    ['Organisation', '5 direct managers · 26 people · 6 countries'],
+    ['Platform scale', '40 markets · up to 1B requests in a peak month'],
+    ['Delivery', '273 deployments per week · 6-minute average deployment'],
+    ['Economics', 'Approximately $800k annual Opex removed'],
+  ]
+  const remit = [
+    ['Organisation', 'Manager-of-managers leadership, hiring, coaching and operating-model design.'],
+    ['Technology', 'Roadmap ownership, architecture direction, platform strategy and applied AI.'],
+    ['Operations', 'SRE, on-call, incident leadership, post-mortems, observability and FinOps.'],
+    ['Commercial', 'Tool and vendor selection, contract negotiation and vendor and hiring budgets.'],
+  ]
+
+  return (
+    <div className="pf-shell pf-profile-shell">
+      <PortfolioHeader compact />
+      <main>
+        <section className="pf-profile-hero" id="top">
+          <nav className="pf-breadcrumb" aria-label="Breadcrumb">
+            <RouteLink to="/">Home</RouteLink><span aria-hidden="true">/</span><span aria-current="page">Leadership profile</span>
+          </nav>
+          <div className="pf-profile-heading" data-reveal>
+            <div>
+              <p className="pf-eyebrow">Engineering & applied AI leadership</p>
+              <h1>Engineering leader who stays close to the system.</h1>
+            </div>
+            <div>
+              <p>Global Head of Digital Engineering with a decade spanning product engineering, cloud platforms, global commerce and governed AI delivery.</p>
+              <div className="pf-profile-actions">
+                <a className="pf-button pf-button--primary" href={`mailto:${EMAIL}?subject=Engineering%20leadership%20conversation`}>Start a conversation <Arrow diagonal /></a>
+                <button className="pf-print-button" type="button" onClick={() => window.print()}>Print / save as PDF</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="pf-profile-impact" aria-label="Leadership impact">
+          {impact.map(([label, value], index) => (
+            <article data-reveal style={{ '--delay': `${index * 50}ms` }} key={label}><span>{label}</span><strong>{value}</strong></article>
+          ))}
+        </section>
+
+        <section className="pf-profile-section">
+          <div className="pf-profile-section-heading" data-reveal>
+            <p className="pf-eyebrow">Leadership remit</p>
+            <h2>Accountable from roadmap to reliability.</h2>
+          </div>
+          <div className="pf-profile-remit">
+            {remit.map(([title, detail], index) => (
+              <article data-reveal style={{ '--delay': `${index * 50}ms` }} key={title}><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{detail}</p></article>
+            ))}
+          </div>
+        </section>
+
+        <section className="pf-profile-section pf-profile-experience" aria-labelledby="profile-experience-title">
+          <div className="pf-profile-section-heading" data-reveal>
+            <p className="pf-eyebrow">Experience</p>
+            <h2 id="profile-experience-title">From hands-on engineering to global leadership.</h2>
+          </div>
+          <ol>
+            {career.map((entry, index) => (
+              <li data-reveal style={{ '--delay': `${index * 40}ms` }} key={`${entry.date}-${entry.role}`}>
+                <span>{entry.date}</span>
+                <div><h3>{entry.role}</h3><strong>{entry.company}</strong><p>{entry.detail}</p></div>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="pf-profile-close">
+          <div data-reveal>
+            <p className="pf-eyebrow">Profile</p>
+            <h2>Based in Switzerland. Available for the right senior leadership challenge.</h2>
+          </div>
+          <dl data-reveal>
+            <div><dt>Education</dt><dd>B.Sc. Software Engineering</dd></div>
+            <div><dt>Languages</dt><dd>Spanish · Native<br />English · C1</dd></div>
+            <div><dt>Location</dt><dd>Switzerland · Permit B</dd></div>
+            <div><dt>Focus</dt><dd>Engineering leadership · platforms · applied AI</dd></div>
+          </dl>
+          <a className="pf-button pf-button--light" href={`mailto:${EMAIL}?subject=Engineering%20leadership%20conversation`}>Discuss a role <Arrow diagonal /></a>
         </section>
       </main>
       <PortfolioFooter />
@@ -484,6 +623,7 @@ function App({ initialPathname }) {
   }, [pathname])
 
   if (pathname === '/ai-delivery') return <AIDeliveryPage />
+  if (pathname === '/leadership-profile') return <LeadershipProfile />
   if (pathname === '/') return <PortfolioHome />
   if (routeSeo[pathname] && caseStudies[pathname]) return <CaseStudyPage study={caseStudies[pathname]} />
   return <NotFound />

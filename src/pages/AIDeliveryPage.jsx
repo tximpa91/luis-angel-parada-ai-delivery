@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { aiDeliveryReferences } from '../data/references.js'
 
 const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'luisparada364@icloud.com'
+const SOURCE_REPOSITORY = 'https://github.com/tximpa91/luis-angel-parada-ai-delivery'
 
 const capabilities = [
   {
@@ -83,6 +84,27 @@ const deliveryAnswers = [
   },
 ]
 
+const proofArtifacts = [
+  {
+    number: '01',
+    title: 'Delivery contract',
+    detail: 'Versioned intent, approved context, permissions, acceptance criteria and an accountable human owner.',
+    fields: 'Requirement · context · permissions · owner',
+  },
+  {
+    number: '02',
+    title: 'Risk classification',
+    detail: 'A change-level decision about autonomy, validation depth, escalation and release authority.',
+    fields: 'Risk tier · controls · validator · decision gate',
+  },
+  {
+    number: '03',
+    title: 'Evidence record',
+    detail: 'One trace from requirement through implementation, independent verdict, deployment and rollback proof.',
+    fields: 'Tests · evaluation · security · deploy · rollback',
+  },
+]
+
 function Arrow({ className = '' }) {
   return (
     <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
@@ -92,6 +114,7 @@ function Arrow({ className = '' }) {
 }
 
 function Header() {
+  const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -106,15 +129,26 @@ function Header() {
       <a className="wordmark" href="/" aria-label="Luis Angel Parada, portfolio home">
         Luis Angel Parada
       </a>
-      <nav aria-label="Primary navigation">
-        <a href="/ai-delivery#capability">Capability</a>
-        <a href="/ai-delivery#delivery-model">Delivery model</a>
-        <a href="/ai-delivery#answers">Answers</a>
-        <a href="/ai-delivery#contact">Contact</a>
+      <nav className={open ? 'site-nav site-nav--open' : 'site-nav'} aria-label="Primary navigation">
+        <a href="/ai-delivery#capability" onClick={() => setOpen(false)}>Capability</a>
+        <a href="/ai-delivery#delivery-model" onClick={() => setOpen(false)}>Delivery model</a>
+        <a href="/ai-delivery#proof-pack" onClick={() => setOpen(false)}>Proof pack</a>
+        <a href="/ai-delivery#answers" onClick={() => setOpen(false)}>Answers</a>
+        <a href="/ai-delivery#contact" onClick={() => setOpen(false)}>Contact</a>
       </nav>
       <a className="header-cta" href="/">
         View portfolio
       </a>
+      <button
+        className="site-menu"
+        type="button"
+        aria-expanded={open}
+        aria-label={open ? 'Close navigation' : 'Open navigation'}
+        onClick={() => setOpen((value) => !value)}
+      >
+        <span />
+        <span />
+      </button>
     </header>
   )
 }
@@ -161,7 +195,7 @@ function Hero() {
           <span aria-hidden="true">/</span>
           <span aria-current="page">AI Delivery Lifecycle</span>
         </nav>
-        <p className="role-line">AI Delivery Architect</p>
+        <p className="role-line">Engineering & Applied AI Leader</p>
         <h1>I turn AI ambition into a delivery system your engineers can trust.</h1>
         <p className="hero-lede">
           I help companies move from AI-assisted coding to governed, human-led AI delivery.
@@ -173,7 +207,7 @@ function Hero() {
         </div>
         <div className="hero-actions">
           <a className="button button--gold" href="#contact">
-            Discuss a pilot <Arrow />
+            Discuss a leadership role <Arrow />
           </a>
           <a className="text-link" href="#delivery-model">
             See the delivery model <Arrow />
@@ -341,7 +375,7 @@ function AnswersSection() {
   return (
     <section className="answers section" id="answers">
       <div className="answers-heading reveal">
-        <p className="section-number">04 / Direct answers</p>
+        <p className="section-number">05 / Direct answers</p>
         <h2>Questions an AI delivery leader should be able to answer.</h2>
         <p>Clear definitions make the operating model easier to review, compare and challenge.</p>
       </div>
@@ -377,15 +411,41 @@ function AnswersSection() {
   )
 }
 
+function ProofPack() {
+  return (
+    <section className="proof-pack section" id="proof-pack">
+      <div className="proof-pack-heading reveal">
+        <p className="section-number">04 / Tangible proof</p>
+        <h2>What the operating model actually produces.</h2>
+        <p>AI-DLC is not a diagram alone. These are the working records that make an AI-assisted change reviewable, controllable and ready for a human decision.</p>
+      </div>
+      <div className="proof-artifacts">
+        {proofArtifacts.map((artifact, index) => (
+          <article className="proof-artifact reveal" style={{ '--delay': `${index * 70}ms` }} key={artifact.title}>
+            <span>{artifact.number}</span>
+            <h3>{artifact.title}</h3>
+            <p>{artifact.detail}</p>
+            <small>{artifact.fields}</small>
+          </article>
+        ))}
+      </div>
+      <div className="proof-source reveal">
+        <div><span>Implementation evidence</span><p>The public source includes the Docker build, Cloudflare Worker configuration, Terraform and the portfolio implementation.</p></div>
+        <a href={SOURCE_REPOSITORY} target="_blank" rel="noreferrer">View source repository <Arrow /></a>
+      </div>
+    </section>
+  )
+}
+
 function ContactSection() {
   const [selected, setSelected] = useState(challenges[0])
   const [status, setStatus] = useState('')
-  const outreachText = `I would like to speak with Luis Angel Parada about ${selected.toLowerCase()} and a governed AI delivery model for our engineering organization.`
+  const outreachText = `I would like to speak with Luis Angel Parada about an engineering leadership opportunity focused on ${selected.toLowerCase()}.`
 
   const startConversation = async () => {
     if (CONTACT_EMAIL) {
-      const subject = encodeURIComponent(`AI delivery conversation: ${selected}`)
-      const body = encodeURIComponent(`${outreachText}\n\nCompany:\nRole:\nBest time to speak:`)
+      const subject = encodeURIComponent(`Engineering leadership conversation: ${selected}`)
+      const body = encodeURIComponent(`${outreachText}\n\nCompany:\nRole or mandate:\nBest time to speak:`)
       window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
       return
     }
@@ -401,15 +461,15 @@ function ContactSection() {
   return (
     <section className="contact section" id="contact">
       <div className="contact-heading reveal">
-        <p className="section-number">05 / Let’s build what works</p>
-        <h2>If AI is already entering your SDLC, give it a <em>delivery system.</em></h2>
-        <p>I am looking for the company where this work can become the standard, not a side experiment.</p>
+        <p className="section-number">06 / Leadership conversation</p>
+        <h2>If AI is entering your SDLC, I can lead the <em>system around it.</em></h2>
+        <p>I am looking for a senior engineering role where platform leadership and applied AI become durable organisational capability.</p>
       </div>
 
       <div className="challenge-picker reveal">
         <div className="picker-heading">
-          <span>Your challenge</span>
-          <span>Select the priority that matters most</span>
+          <span>Your leadership priority</span>
+          <span>Select the mandate that matters most</span>
         </div>
         <div className="challenge-options" role="radiogroup" aria-label="Your AI delivery challenge">
           {challenges.map((challenge) => (
@@ -431,7 +491,7 @@ function ContactSection() {
         </div>
         <div className="contact-actions">
           <button className="button button--gold" type="button" onClick={startConversation}>
-            {CONTACT_EMAIL ? 'Start a conversation' : 'Copy an introduction'} <Arrow />
+            {CONTACT_EMAIL ? 'Discuss a leadership role' : 'Copy an introduction'} <Arrow />
           </button>
           <a className="button button--outline" href="#evidence">
             Review the evidence <Arrow />
@@ -447,13 +507,14 @@ function Footer() {
   return (
     <footer>
       <div>
-        <p>Luis Angel Parada — AI Delivery Architect</p>
+        <p>Luis Angel Parada — Engineering & Applied AI Leader</p>
         <span>Human-led. Evidence-driven.</span>
       </div>
       <nav aria-label="Footer navigation">
         <a href="/">Portfolio</a>
         <a href="/ai-delivery#capability">Capability</a>
         <a href="/ai-delivery#answers">Answers</a>
+        <a href={SOURCE_REPOSITORY} target="_blank" rel="noreferrer">Source</a>
         <a href="/ai-delivery#contact">Contact</a>
       </nav>
     </footer>
@@ -469,6 +530,7 @@ function AIDeliveryPage() {
         <EvidenceBasis />
         <CapabilitySection />
         <DeliveryModel />
+        <ProofPack />
         <AnswersSection />
         <ContactSection />
       </main>
