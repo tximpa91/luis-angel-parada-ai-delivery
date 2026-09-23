@@ -7,7 +7,7 @@ The portfolio homepage is supported by three project stories:
 
 - `/ai-delivery` — the original AI Delivery Operating System experience
 - `/work/commerce-platform` — the global commerce platform case study
-- `/work/boutique-sales-assistant` — the applied-AI product discovery case study
+- `/work/applied-ai-product-discovery` — a client-safe applied-AI capability overview
 
 The React client is built and tested through Docker. Production uses Cloudflare Workers Static
 Assets so the portfolio can run on Cloudflare's free tier without a persistent container. The live

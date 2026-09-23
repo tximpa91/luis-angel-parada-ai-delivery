@@ -29,12 +29,12 @@ export const routeSeo = {
     openGraphType: 'article',
     schemaType: 'TechArticle',
   },
-  '/work/boutique-sales-assistant': {
-    title: 'Applied AI Sales Assistant Case Study | Luis Angel Parada',
+  '/work/applied-ai-product-discovery': {
+    title: 'Conversational Product Discovery | Luis Angel Parada',
     description:
-      'A grounded RAG sales assistant using Bedrock, Claude, Nova, LangChain, FastAPI, vector retrieval, SQL retrieval and RAGAS evaluation.',
-    image: '/assets/boutique-assistant.png',
-    imageAlt: 'Applied AI boutique sales assistant architecture',
+      'A privacy-conscious capability overview for grounded conversational product discovery, evaluation, guardrails and human oversight.',
+    image: '/assets/applied-ai-discovery.png',
+    imageAlt: 'Conceptual conversational product discovery system',
     openGraphType: 'article',
     schemaType: 'TechArticle',
   },
