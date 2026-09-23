@@ -8,6 +8,7 @@ RUN npm ci
 COPY index.html vite.config.js ./
 COPY src ./src
 COPY public ./public
+COPY scripts/prerender.mjs ./scripts/prerender.mjs
 
 ARG VITE_CONTACT_EMAIL=""
 ENV VITE_CONTACT_EMAIL=${VITE_CONTACT_EMAIL}

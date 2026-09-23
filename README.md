@@ -10,9 +10,12 @@ The portfolio homepage is supported by three project stories:
 - `/work/boutique-sales-assistant` — the applied-AI product discovery case study
 
 The React client is built and tested through Docker. Production uses Cloudflare Workers Static
-Assets so the portfolio can run on Cloudflare's free tier without a persistent container. This
-repository contains the deployment configuration, but does not imply that a live deployment has
-been made.
+Assets so the portfolio can run on Cloudflare's free tier without a persistent container. The live
+portfolio is available at [luisangelparada.com](https://luisangelparada.com).
+
+The build pre-renders every public route with its visible page content, canonical URL, social
+metadata and JSON-LD. Search crawlers therefore receive complete HTML without waiting for client
+JavaScript. Unknown routes return a real `404` page marked `noindex`.
 
 ## Architecture
 
@@ -92,6 +95,8 @@ Docker CI runs on pushes and pull requests. Production deployment is a manual Gi
 ## Project structure
 
 - `src/` — React client
+- `src/seo.js` — route metadata and structured data
+- `scripts/prerender.mjs` — static route generation after the Vite build
 - `public/assets/` — generated production artwork used by the portfolio
 - `design/portfolio-concepts/` — accepted visual direction and responsive references
 - `nginx/default.conf` — SPA routing, health check, caching, and security headers

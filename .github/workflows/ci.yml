@@ -48,8 +48,12 @@ jobs:
             fi
             sleep 1
           done
-          curl --fail --silent http://127.0.0.1:8080/ | grep -F "Luis Angel Parada — Engineering Leader"
-          curl --fail --silent http://127.0.0.1:8080/work/commerce-platform | grep -F "Luis Angel Parada — Engineering Leader"
+          curl --fail --silent http://127.0.0.1:8080/ | grep -F "I build the engineering systems behind ambitious digital products."
+          curl --fail --silent http://127.0.0.1:8080/work/commerce-platform | grep -F "A commerce platform engineered for global scale."
+          curl --fail --silent http://127.0.0.1:8080/ai-delivery | grep -F '<link rel="canonical" href="https://luisangelparada.com/ai-delivery"'
+          curl --fail --silent http://127.0.0.1:8080/ai-delivery | grep -F 'id="seo-jsonld"'
+          curl --silent --output /tmp/not-found.html --write-out '%{http_code}\n' http://127.0.0.1:8080/not-a-real-page | grep -Fx "404"
+          grep -F 'name="robots" content="noindex, follow"' /tmp/not-found.html
 
       - name: Show logs on failure
         if: failure()

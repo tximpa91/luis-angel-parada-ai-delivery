@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import AIDeliveryPage from './pages/AIDeliveryPage.jsx'
 import { career, caseStudies, practices, projects, proof, spectrum } from './data/portfolio.js'
+import { getSeoForPath, getStructuredData, routeSeo } from './seo.js'
 
 const EMAIL = 'luisparada364@icloud.com'
 
@@ -12,8 +13,10 @@ function Arrow({ diagonal = false }) {
   )
 }
 
-function usePathname() {
-  const [pathname, setPathname] = useState(window.location.pathname)
+function usePathname(initialPathname) {
+  const [pathname, setPathname] = useState(
+    () => initialPathname || (typeof window === 'undefined' ? '/' : window.location.pathname),
+  )
 
   useEffect(() => {
     const update = () => setPathname(window.location.pathname)
@@ -138,7 +141,13 @@ function PortfolioHome() {
           <div className="pf-hero-art" data-reveal aria-hidden="true">
             <span className="pf-orbit pf-orbit--one" />
             <span className="pf-orbit pf-orbit--two" />
-            <img src="/assets/portfolio-systems.png" alt="" fetchPriority="high" />
+            <img
+              src="/assets/portfolio-systems.png"
+              alt=""
+              width="1672"
+              height="941"
+              fetchPriority="high"
+            />
           </div>
           <div className="pf-hero-note" aria-hidden="true">
             <span>Systems</span><span>Teams</span><span>Outcomes</span>
@@ -175,7 +184,13 @@ function PortfolioHome() {
                   </RouteLink>
                 </div>
                 <RouteLink className="pf-project-media" to={project.link} aria-label={`${project.cta}: ${project.title}`}>
-                  <img src={project.image} alt="" loading={index === 0 ? 'eager' : 'lazy'} />
+                  <img
+                    src={project.image}
+                    alt=""
+                    width={project.imageWidth}
+                    height={project.imageHeight}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                  />
                 </RouteLink>
               </article>
             ))}
@@ -274,7 +289,14 @@ function CaseStudyPage({ study }) {
             </div>
             <p>{study.intro}</p>
           </div>
-          <div className="pf-case-art" data-reveal><img src={study.image} alt="" /></div>
+          <div className="pf-case-art" data-reveal>
+            <img
+              src={study.image}
+              alt=""
+              width={study.imageWidth}
+              height={study.imageHeight}
+            />
+          </div>
         </section>
         <section className="pf-case-facts" aria-label="Project facts">
           {study.facts.map((fact) => <div key={fact.label}><strong>{fact.value}</strong><span>{fact.label}</span></div>)}
@@ -321,29 +343,66 @@ function NotFound() {
   )
 }
 
-function App() {
-  const [pathname] = usePathname()
+function App({ initialPathname }) {
+  const [pathname] = usePathname(initialPathname)
   usePortfolioEffects(pathname)
 
   useEffect(() => {
-    const titles = {
-      '/': 'Luis Angel Parada — Engineering Leader & Builder',
-      '/ai-delivery': 'AI Delivery Operating System — Luis Angel Parada',
-      '/work/commerce-platform': 'Global Commerce Platform — Luis Angel Parada',
-      '/work/boutique-sales-assistant': 'Boutique Sales Assistant — Luis Angel Parada',
+    const seo = getSeoForPath(pathname)
+    const setMeta = (attribute, key, value) => {
+      let element = document.querySelector(`meta[${attribute}="${key}"]`)
+      if (!element) {
+        element = document.createElement('meta')
+        element.setAttribute(attribute, key)
+        document.head.append(element)
+      }
+      element.setAttribute('content', value)
     }
-    const title = titles[pathname] || 'Luis Angel Parada'
-    const canonicalUrl = `https://luisangelparada.com${titles[pathname] ? pathname : '/'}`
 
-    document.title = title
-    document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl)
-    document.querySelector('meta[property="og:url"]')?.setAttribute('content', canonicalUrl)
-    document.querySelector('meta[property="og:title"]')?.setAttribute('content', title)
+    document.title = seo.title
+    setMeta('name', 'description', seo.description)
+    setMeta('name', 'robots', seo.robots)
+    setMeta('property', 'og:type', seo.openGraphType)
+    setMeta('property', 'og:title', seo.title)
+    setMeta('property', 'og:description', seo.description)
+    setMeta('property', 'og:image', seo.imageUrl || `https://luisangelparada.com${seo.image}`)
+    setMeta('property', 'og:image:alt', seo.imageAlt)
+    setMeta('name', 'twitter:title', seo.title)
+    setMeta('name', 'twitter:description', seo.description)
+    setMeta('name', 'twitter:image', seo.imageUrl || `https://luisangelparada.com${seo.image}`)
+
+    let canonical = document.querySelector('link[rel="canonical"]')
+    if (seo.canonical) {
+      if (!canonical) {
+        canonical = document.createElement('link')
+        canonical.setAttribute('rel', 'canonical')
+        document.head.append(canonical)
+      }
+      canonical.setAttribute('href', seo.canonical)
+      setMeta('property', 'og:url', seo.canonical)
+    } else {
+      canonical?.remove()
+      document.querySelector('meta[property="og:url"]')?.remove()
+    }
+
+    const structuredData = getStructuredData(pathname)
+    let jsonLd = document.querySelector('#seo-jsonld')
+    if (structuredData) {
+      if (!jsonLd) {
+        jsonLd = document.createElement('script')
+        jsonLd.id = 'seo-jsonld'
+        jsonLd.type = 'application/ld+json'
+        document.head.append(jsonLd)
+      }
+      jsonLd.textContent = JSON.stringify(structuredData)
+    } else {
+      jsonLd?.remove()
+    }
   }, [pathname])
 
   if (pathname === '/ai-delivery') return <AIDeliveryPage />
   if (pathname === '/') return <PortfolioHome />
-  if (caseStudies[pathname]) return <CaseStudyPage study={caseStudies[pathname]} />
+  if (routeSeo[pathname] && caseStudies[pathname]) return <CaseStudyPage study={caseStudies[pathname]} />
   return <NotFound />
 }
 

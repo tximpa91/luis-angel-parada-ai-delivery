@@ -14,6 +14,8 @@ export const projects = [
     link: '/ai-delivery',
     cta: 'Open case study',
     image: '/assets/ai-delivery-system.png',
+    imageWidth: 1536,
+    imageHeight: 1024,
     tone: 'dark',
   },
   {
@@ -25,6 +27,8 @@ export const projects = [
     link: '/work/commerce-platform',
     cta: 'Explore the platform',
     image: '/assets/commerce-platform.png',
+    imageWidth: 1774,
+    imageHeight: 887,
     tone: 'light',
   },
   {
@@ -35,6 +39,8 @@ export const projects = [
     link: '/work/boutique-sales-assistant',
     cta: 'View the system',
     image: '/assets/boutique-assistant.png',
+    imageWidth: 1774,
+    imageHeight: 887,
     tone: 'light',
   },
 ]
@@ -116,6 +122,8 @@ export const caseStudies = {
     intro:
       'A shared, multibrand platform that turns complex global operations into one observable and continuously delivered engineering system.',
     image: '/assets/commerce-platform.png',
+    imageWidth: 1774,
+    imageHeight: 887,
     facts: [
       { value: '40', label: 'transactional markets' },
       { value: '26', label: 'AWS EKS microservices' },
@@ -147,6 +155,8 @@ export const caseStudies = {
     intro:
       'A hybrid RAG product-discovery system designed to make conversational recommendations useful, controlled and connected to structured product truth.',
     image: '/assets/boutique-assistant.png',
+    imageWidth: 1774,
+    imageHeight: 887,
     facts: [
       { value: 'Hybrid', label: 'vector + SQL retrieval' },
       { value: 'RAGAS', label: 'evaluation framework' },
