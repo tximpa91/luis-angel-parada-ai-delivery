@@ -131,7 +131,7 @@ function PortfolioHome() {
             <p className="pf-kicker">Global Head of Digital Engineering · Switzerland</p>
             <h1>I build the engineering systems behind ambitious digital products.</h1>
             <p className="pf-lede">
-              Engineering leader and hands-on builder across global commerce, applied AI, cloud platforms and governed software delivery.
+              Luis Angel Parada is a Switzerland-based digital engineering leader specializing in global commerce platforms, applied AI, cloud architecture and governed software delivery.
             </p>
             <div className="pf-actions">
               <a className="pf-button pf-button--primary" href="#work">Explore selected work <Arrow /></a>
@@ -281,7 +281,13 @@ function CaseStudyPage({ study }) {
       <PortfolioHeader compact />
       <main>
         <section className="pf-case-hero">
-          <RouteLink className="pf-back" to="/#work"><Arrow /> Back to selected work</RouteLink>
+          <nav className="pf-breadcrumb" aria-label="Breadcrumb">
+            <RouteLink to="/">Home</RouteLink>
+            <span aria-hidden="true">/</span>
+            <RouteLink to="/#work">Selected work</RouteLink>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{study.breadcrumbLabel}</span>
+          </nav>
           <div className="pf-case-heading" data-reveal>
             <div>
               <p className="pf-eyebrow">{study.number}</p>
@@ -289,10 +295,15 @@ function CaseStudyPage({ study }) {
             </div>
             <p>{study.intro}</p>
           </div>
+          <div className="pf-article-meta" aria-label="Article details" data-reveal>
+            <p><span>Author</span><strong>Luis Angel Parada</strong></p>
+            <p><span>Status</span><strong>{study.status}</strong></p>
+            <p><span>Last reviewed</span><strong><time dateTime="2026-09-23">23 September 2026</time></strong></p>
+          </div>
           <div className="pf-case-art" data-reveal>
             <img
               src={study.image}
-              alt=""
+              alt={study.imageAlt}
               width={study.imageWidth}
               height={study.imageHeight}
             />
@@ -310,6 +321,43 @@ function CaseStudyPage({ study }) {
             </article>
           ))}
         </section>
+        {study.flow && (
+          <section className="pf-reference-flow" aria-labelledby="reference-flow-title" data-reveal>
+            <p className="pf-eyebrow">Text architecture</p>
+            <h2 id="reference-flow-title">How a grounded answer moves through the system.</h2>
+            <ol>
+              {study.flow.map((step, index) => (
+                <li key={step}><span>{String(index + 1).padStart(2, '0')}</span><strong>{step}</strong></li>
+              ))}
+            </ol>
+          </section>
+        )}
+        {study.questions && (
+          <section className="pf-answer-section" aria-labelledby="technical-answers-title">
+            <div className="pf-answer-heading" data-reveal>
+              <p className="pf-eyebrow">Technical answers</p>
+              <h2 id="technical-answers-title">The architecture, in plain language.</h2>
+            </div>
+            <div className="pf-answer-grid">
+              {study.questions.map((item, index) => (
+                <article data-reveal style={{ '--delay': `${index * 60}ms` }} key={item.question}>
+                  <h3>{item.question}</h3>
+                  <p>{item.answer}</p>
+                </article>
+              ))}
+            </div>
+            <div className="pf-references" data-reveal>
+              <p>Primary technical references</p>
+              <div>
+                {study.references.map((reference) => (
+                  <a href={reference.href} key={reference.href} target="_blank" rel="noreferrer">
+                    {reference.label} <Arrow diagonal />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
         <section className="pf-ownership" data-reveal>
           <p className="pf-eyebrow">My scope</p>
           <h2>{study.ownership}</h2>

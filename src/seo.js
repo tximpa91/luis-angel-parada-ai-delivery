@@ -1,5 +1,6 @@
 const SITE_URL = 'https://luisangelparada.com'
 const PERSON_ID = `${SITE_URL}/#person`
+const WEBSITE_ID = `${SITE_URL}/#website`
 
 export const routeSeo = {
   '/': {
@@ -10,6 +11,7 @@ export const routeSeo = {
     imageAlt: 'Luis Angel Parada portfolio: engineering systems, teams and outcomes',
     openGraphType: 'website',
     schemaType: 'ProfilePage',
+    breadcrumbLabel: 'Portfolio',
   },
   '/ai-delivery': {
     title: 'AI Delivery Lifecycle (AI-DLC) | Luis Angel Parada',
@@ -19,6 +21,9 @@ export const routeSeo = {
     imageAlt: 'Governed AI delivery lifecycle and operating model',
     openGraphType: 'article',
     schemaType: 'TechArticle',
+    breadcrumbLabel: 'AI Delivery Lifecycle',
+    articleSection: 'Applied AI Engineering',
+    keywords: ['AI-DLC', 'AI delivery lifecycle', 'AI engineering', 'human validation', 'software delivery governance'],
   },
   '/work/commerce-platform': {
     title: 'Global Commerce Platform Engineering | Luis Angel Parada',
@@ -28,6 +33,9 @@ export const routeSeo = {
     imageAlt: 'Global commerce platform engineering case study',
     openGraphType: 'article',
     schemaType: 'TechArticle',
+    breadcrumbLabel: 'Global Commerce Platform',
+    articleSection: 'Platform Engineering',
+    keywords: ['global commerce platform', 'AWS EKS', 'platform engineering', 'continuous delivery', 'cloud architecture'],
   },
   '/work/applied-ai-product-discovery': {
     title: 'Boutique AI Sales Assistant Architecture | Luis Angel Parada',
@@ -37,6 +45,9 @@ export const routeSeo = {
     imageAlt: 'Independent boutique AI sales assistant reference architecture',
     openGraphType: 'article',
     schemaType: 'TechArticle',
+    breadcrumbLabel: 'Boutique AI Sales Assistant',
+    articleSection: 'Applied AI Engineering',
+    keywords: ['LangGraph', 'AI sales assistant', 'hybrid RAG', 'Amazon Bedrock', 'RAGAS', 'FastAPI'],
   },
 }
 
@@ -90,6 +101,16 @@ export function getStructuredData(pathname) {
     ],
   }
 
+  const website = {
+    '@type': 'WebSite',
+    '@id': WEBSITE_ID,
+    url: `${SITE_URL}/`,
+    name: 'Luis Angel Parada',
+    description: routeSeo['/'].description,
+    publisher: { '@id': PERSON_ID },
+    inLanguage: 'en',
+  }
+
   const page = pathname === '/'
     ? {
         '@type': 'ProfilePage',
@@ -99,6 +120,8 @@ export function getStructuredData(pathname) {
         description: seo.description,
         primaryImageOfPage: seo.imageUrl,
         mainEntity: { '@id': PERSON_ID },
+        isPartOf: { '@id': WEBSITE_ID },
+        inLanguage: 'en',
       }
     : {
         '@type': seo.schemaType,
@@ -109,12 +132,35 @@ export function getStructuredData(pathname) {
         description: seo.description,
         image: seo.imageUrl,
         author: { '@id': PERSON_ID },
+        isPartOf: { '@id': WEBSITE_ID },
+        articleSection: seo.articleSection,
+        keywords: seo.keywords,
+        inLanguage: 'en',
         datePublished: '2026-09-22',
         dateModified: '2026-09-23',
       }
 
+  const breadcrumb = pathname === '/' ? null : {
+    '@type': 'BreadcrumbList',
+    '@id': `${seo.canonical}#breadcrumb`,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: `${SITE_URL}/`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: seo.breadcrumbLabel,
+        item: seo.canonical,
+      },
+    ],
+  }
+
   return {
     '@context': 'https://schema.org',
-    '@graph': [person, page],
+    '@graph': [person, website, page, ...(breadcrumb ? [breadcrumb] : [])],
   }
 }

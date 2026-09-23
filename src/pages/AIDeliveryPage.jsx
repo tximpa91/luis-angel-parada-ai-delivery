@@ -59,6 +59,29 @@ const challenges = [
   'AI engineering leadership',
 ]
 
+const deliveryAnswers = [
+  {
+    question: 'What is AI-DLC?',
+    answer: 'AI-DLC is a human-led operating model for using AI across software delivery. It separates implementation from independent validation and keeps deployment authority, audit evidence and risk acceptance with accountable people.',
+  },
+  {
+    question: 'How is AI-DLC different from a traditional SDLC?',
+    answer: 'It extends the existing SDLC with governed AI context, generated-change provenance, model and prompt evaluation, independent validation and explicit decision gates. The engineering lifecycle remains; the controls expand for AI-assisted work.',
+  },
+  {
+    question: 'Where does human validation happen?',
+    answer: 'People define intent and risk boundaries, approve the plan, review independent validation evidence and authorize release. Agents can execute bounded work, but they do not approve their own output or make the final GO / NO-GO decision.',
+  },
+  {
+    question: 'What delivery evidence does AI-DLC produce?',
+    answer: 'Each change should connect the requirement, implementation, tests, evaluations, security results, reviewer verdict, deployment result and rollback path. That evidence makes speed auditable rather than anecdotal.',
+  },
+  {
+    question: 'How should a company start?',
+    answer: 'Start with a bounded pilot, baseline lead time and defect measures, define approved context and permissions, separate implementation from validation, then compare evidence before deciding what should scale.',
+  },
+]
+
 function Arrow({ className = '' }) {
   return (
     <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
@@ -85,7 +108,7 @@ function Header() {
       <nav aria-label="Primary navigation">
         <a href="/ai-delivery#capability">Capability</a>
         <a href="/ai-delivery#delivery-model">Delivery model</a>
-        <a href="/ai-delivery#evidence">Evidence</a>
+        <a href="/ai-delivery#answers">Answers</a>
         <a href="/ai-delivery#contact">Contact</a>
       </nav>
       <a className="header-cta" href="/">
@@ -132,11 +155,21 @@ function Hero() {
   return (
     <section className="hero" id="top">
       <div className="hero-copy reveal">
+        <nav className="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Portfolio</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">AI Delivery Lifecycle</span>
+        </nav>
         <p className="role-line">AI Delivery Architect</p>
         <h1>I turn AI ambition into a delivery system your engineers can trust.</h1>
         <p className="hero-lede">
           I help companies move from AI-assisted coding to governed, human-led AI delivery.
         </p>
+        <div className="article-meta" aria-label="Article details">
+          <span>By Luis Angel Parada</span>
+          <span>Independent operating model</span>
+          <time dateTime="2026-09-23">Reviewed 23 September 2026</time>
+        </div>
         <div className="hero-actions">
           <a className="button button--gold" href="#contact">
             Discuss a pilot <Arrow />
@@ -289,6 +322,33 @@ function Architecture() {
   )
 }
 
+function AnswersSection() {
+  return (
+    <section className="answers section" id="answers">
+      <div className="answers-heading reveal">
+        <p className="section-number">04 / Direct answers</p>
+        <h2>Questions an AI delivery leader should be able to answer.</h2>
+        <p>Clear definitions make the operating model easier to review, compare and challenge.</p>
+      </div>
+      <div className="answer-grid">
+        {deliveryAnswers.map((item, index) => (
+          <article className="answer-card reveal" style={{ '--delay': `${index * 60}ms` }} key={item.question}>
+            <span>{String(index + 1).padStart(2, '0')}</span>
+            <h3>{item.question}</h3>
+            <p>{item.answer}</p>
+          </article>
+        ))}
+      </div>
+      <div className="answer-references reveal">
+        <span>Governance reference</span>
+        <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noreferrer">
+          NIST AI Risk Management Framework <Arrow />
+        </a>
+      </div>
+    </section>
+  )
+}
+
 function ContactSection() {
   const [selected, setSelected] = useState(challenges[0])
   const [status, setStatus] = useState('')
@@ -313,7 +373,7 @@ function ContactSection() {
   return (
     <section className="contact section" id="contact">
       <div className="contact-heading reveal">
-        <p className="section-number">04 / Let’s build what works</p>
+        <p className="section-number">05 / Let’s build what works</p>
         <h2>If AI is already entering your SDLC, give it a <em>delivery system.</em></h2>
         <p>I am looking for the company where this work can become the standard, not a side experiment.</p>
       </div>
@@ -365,7 +425,7 @@ function Footer() {
       <nav aria-label="Footer navigation">
         <a href="/">Portfolio</a>
         <a href="/ai-delivery#capability">Capability</a>
-        <a href="/ai-delivery#evidence">Evidence</a>
+        <a href="/ai-delivery#answers">Answers</a>
         <a href="/ai-delivery#contact">Contact</a>
       </nav>
     </footer>
@@ -380,6 +440,7 @@ function AIDeliveryPage() {
         <Hero />
         <CapabilitySection />
         <DeliveryModel />
+        <AnswersSection />
         <ContactSection />
       </main>
       <Footer />

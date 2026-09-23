@@ -119,10 +119,13 @@ export const spectrum = [
 export const caseStudies = {
   '/work/commerce-platform': {
     number: '02 / Global commerce',
+    breadcrumbLabel: 'Global Commerce Platform',
+    status: 'Engineering leadership case study',
     title: 'A commerce platform engineered for global scale.',
     intro:
       'A shared, multibrand platform that turns complex global operations into one observable and continuously delivered engineering system.',
     image: '/assets/commerce-platform.png',
+    imageAlt: 'Diagram of a cloud-native global commerce platform spanning markets, services and delivery pipelines',
     imageWidth: 1774,
     imageHeight: 887,
     facts: [
@@ -152,10 +155,13 @@ export const caseStudies = {
   },
   '/work/applied-ai-product-discovery': {
     number: '03 / Independent AI reference architecture',
+    breadcrumbLabel: 'Boutique AI Sales Assistant',
+    status: 'Independent reference architecture — not a client deployment',
     title: 'A technical blueprint for a boutique AI sales assistant.',
     intro:
       'A personal, client-neutral reference architecture for combining conversational guidance with trustworthy product context. It is not presented as commissioned by, deployed for or representative of any employer or client.',
     image: '/assets/applied-ai-discovery.png',
+    imageAlt: 'Reference architecture for a boutique AI sales assistant using LangGraph, hybrid retrieval and Bedrock',
     imageWidth: 1774,
     imageHeight: 887,
     facts: [
@@ -180,6 +186,39 @@ export const caseStudies = {
         title: 'Evaluate the system, not only the answer.',
         copy: 'A golden test set and RAGAS-style measures cover faithfulness, relevance and retrieval quality. Citations, traces, guardrails and low-confidence fallbacks keep behaviour reviewable and human-led.',
       },
+    ],
+    flow: [
+      'User intent',
+      'Policy check',
+      'Hybrid retrieval',
+      'LangGraph workflow',
+      'Bedrock model',
+      'Grounded validation',
+      'Cited response or safe fallback',
+    ],
+    questions: [
+      {
+        question: 'What does the assistant do?',
+        answer: 'It turns open-ended product questions into grounded guidance by combining conversational intent with approved catalogue attributes, availability and commercial rules. When evidence is insufficient, the assistant explains the limitation or falls back safely.',
+      },
+      {
+        question: 'How does LangGraph control the workflow?',
+        answer: 'LangGraph models the interaction as explicit states and transitions for intent classification, retrieval, bounded tool use, synthesis and review. That structure makes execution traceable and prevents an agent from skipping required checks.',
+      },
+      {
+        question: 'Why combine semantic and structured retrieval?',
+        answer: 'Semantic retrieval handles meaning and discovery; structured queries preserve precision for attributes, availability and rules. Hybrid retrieval keeps the experience conversational without treating generated language as product truth.',
+      },
+      {
+        question: 'How is the assistant evaluated and guarded?',
+        answer: 'A golden test set and RAGAS-style measures track faithfulness, relevance and retrieval quality. Citations, tool boundaries, traces and low-confidence fallbacks keep responses reviewable and human-led.',
+      },
+    ],
+    references: [
+      { label: 'LangGraph reference', href: 'https://reference.langchain.com/python/langgraph/overview' },
+      { label: 'Amazon Bedrock documentation', href: 'https://docs.aws.amazon.com/bedrock/' },
+      { label: 'FastAPI documentation', href: 'https://fastapi.tiangolo.com/' },
+      { label: 'Ragas documentation', href: 'https://docs.ragas.io/en/latest/' },
     ],
     ownership: 'Reference architecture · LangGraph orchestration · retrieval design · API contracts · evaluation · guardrails',
   },
