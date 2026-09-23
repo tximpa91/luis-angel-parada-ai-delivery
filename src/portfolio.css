@@ -201,6 +201,8 @@ body.ai-mode {
 .pf-contact h2,
 .pf-case-heading h1,
 .pf-case-chapters h2,
+.pf-evidence-heading h2,
+.pf-evidence-grid h3,
 .pf-reference-flow h2,
 .pf-answer-heading h2,
 .pf-answer-grid h3,
@@ -382,6 +384,37 @@ body.ai-mode {
   letter-spacing: 0.04em;
   line-height: 1.4;
   text-transform: uppercase;
+}
+
+.pf-proof-context {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 38px;
+  padding: 28px 30px;
+  border: 1px solid var(--pf-line);
+  border-bottom: 0;
+}
+
+.pf-proof-context > span {
+  color: var(--pf-blue);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.pf-proof-context p {
+  max-width: 900px;
+  margin: 0;
+  color: var(--pf-slate);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.pf-proof-context a {
+  color: var(--pf-ink);
+  border-bottom: 1px solid var(--pf-ink);
 }
 
 .pf-section {
@@ -654,6 +687,19 @@ body.ai-mode {
 .pf-about-copy dt { color: var(--pf-slate); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
 .pf-about-copy dd { margin: 0; font-size: 14px; line-height: 1.55; }
 
+.pf-about-copy > .pf-editorial-standard {
+  margin-top: 34px;
+  padding-left: 20px;
+  border-left: 2px solid var(--pf-blue);
+  color: var(--pf-slate);
+  font-family: var(--pf-sans);
+  font-size: 13px;
+  letter-spacing: 0;
+  line-height: 1.65;
+}
+
+.pf-editorial-standard strong { color: var(--pf-ink); }
+
 .pf-spectrum {
   grid-column: 1 / -1;
   display: grid;
@@ -740,6 +786,9 @@ body.ai-mode {
 .pf-article-meta p:last-child { border-right: 0; }
 .pf-article-meta span { color: var(--pf-slate); font-size: 10px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
 .pf-article-meta strong { font-size: 13px; font-weight: 600; line-height: 1.45; }
+.pf-editorial-note { display: grid; grid-template-columns: 200px 1fr; gap: 34px; max-width: var(--pf-max); margin: 0 auto; padding: 26px 0; border-bottom: 1px solid var(--pf-line); }
+.pf-editorial-note > span { color: var(--pf-blue); font-size: 10px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.pf-editorial-note p { max-width: 980px; margin: 0; color: var(--pf-slate); font-size: 14px; line-height: 1.65; }
 .pf-case-art { position: relative; display: grid; max-width: var(--pf-max); min-height: 590px; margin: 84px auto 0; overflow: hidden; border-top: 1px solid var(--pf-line); place-items: center; }
 .pf-case-art img { position: relative; z-index: 1; width: 94%; height: 540px; object-fit: contain; }
 
@@ -754,6 +803,16 @@ body.ai-mode {
 .pf-case-facts > div:last-child { border-right: 1px solid var(--pf-line); }
 .pf-case-facts strong { color: var(--pf-blue); font-family: var(--pf-serif); font-size: clamp(35px, 3vw, 52px); font-weight: 400; }
 .pf-case-facts span { color: var(--pf-slate); font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+
+.pf-evidence-ledger { max-width: var(--pf-max); margin: 0 auto; padding: 120px var(--pf-gutter) 0; }
+.pf-evidence-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .55fr); gap: 7vw; align-items: end; }
+.pf-evidence-heading .pf-eyebrow { grid-column: 1 / -1; }
+.pf-evidence-heading h2 { max-width: 940px; margin-top: 26px; font-size: clamp(50px, 5.2vw, 84px); line-height: .98; }
+.pf-evidence-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 64px; border-top: 1px solid var(--pf-line); border-left: 1px solid var(--pf-line); }
+.pf-evidence-grid article { min-height: 280px; padding: 30px; border-right: 1px solid var(--pf-line); border-bottom: 1px solid var(--pf-line); }
+.pf-evidence-grid article > span { color: var(--pf-blue); font-size: 10px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+.pf-evidence-grid h3 { max-width: 610px; margin: 48px 0 22px; font-size: clamp(32px, 3vw, 48px); line-height: 1.06; }
+.pf-evidence-grid p { max-width: 640px; margin: 0; color: var(--pf-slate); font-size: 15px; line-height: 1.65; }
 
 .pf-case-chapters { max-width: var(--pf-max); margin: 0 auto; padding: 120px var(--pf-gutter); }
 .pf-case-chapters article { display: grid; grid-template-columns: 180px minmax(300px, .8fr) minmax(280px, .65fr); gap: 5vw; padding: 52px 0; border-top: 1px solid var(--pf-line); }
@@ -823,6 +882,7 @@ body.ai-mode {
   .pf-spectrum-title { grid-column: 1 / -1; border-bottom: 1px solid var(--pf-line); }
   .pf-spectrum > div:nth-last-child(2) { border-right: 0; }
   .pf-case-heading .pf-eyebrow { grid-column: 1; }
+  .pf-evidence-heading { grid-template-columns: 1fr; }
   .pf-reference-flow ol { grid-template-columns: repeat(4, 1fr); }
   .pf-answer-heading { grid-template-columns: 1fr; }
 }
@@ -865,6 +925,7 @@ body.ai-mode {
   .pf-proof-item:nth-child(2) { border-right: 1px solid var(--pf-line); }
   .pf-proof-item:nth-child(n+3) { border-top: 1px solid var(--pf-line); }
   .pf-proof-item strong { font-size: 44px; }
+  .pf-proof-context { grid-template-columns: 1fr; gap: 12px; padding: 24px 18px; }
 
   .pf-section { padding-block: 88px; }
   .pf-section-heading h2, .pf-career-intro h2, .pf-about-lead h2 { font-size: clamp(50px, 13vw, 68px); }
@@ -921,6 +982,7 @@ body.ai-mode {
   .pf-article-meta { grid-template-columns: 1fr; margin-top: 42px; }
   .pf-article-meta p, .pf-article-meta p + p { min-height: 76px; padding: 16px 0; border-right: 0; border-bottom: 1px solid var(--pf-line); }
   .pf-article-meta p:last-child { border-bottom: 0; }
+  .pf-editorial-note { grid-template-columns: 1fr; gap: 12px; padding: 22px 0; }
   .pf-case-facts { grid-template-columns: repeat(2, 1fr); }
   .pf-case-facts > div { min-height: 140px; padding: 20px; }
   .pf-case-facts > div:nth-child(2) { border-right: 1px solid var(--pf-line); }
@@ -928,6 +990,11 @@ body.ai-mode {
   .pf-case-chapters { padding-block: 82px; }
   .pf-case-chapters article { grid-template-columns: 1fr; gap: 24px; padding: 42px 0; }
   .pf-case-chapters h2 { font-size: 48px; }
+  .pf-evidence-ledger { padding-top: 82px; }
+  .pf-evidence-heading h2 { font-size: 49px; }
+  .pf-evidence-grid { grid-template-columns: 1fr; margin-top: 48px; }
+  .pf-evidence-grid article { min-height: 0; padding: 26px 22px 32px; }
+  .pf-evidence-grid h3 { margin-top: 34px; font-size: 37px; }
   .pf-reference-flow { padding-bottom: 82px; }
   .pf-reference-flow h2, .pf-answer-heading h2 { font-size: 49px; }
   .pf-reference-flow ol { grid-template-columns: 1fr; }

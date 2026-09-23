@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { aiDeliveryReferences } from '../data/references.js'
 
 const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'luisparada364@icloud.com'
 
@@ -188,6 +189,20 @@ function Hero() {
   )
 }
 
+function EvidenceBasis() {
+  return (
+    <aside className="provenance-band" id="evidence-basis">
+      <span>Evidence basis</span>
+      <p>
+        AI-DLC is an original operating model by Luis Angel Parada, informed by first-hand platform
+        delivery and SDLC governance work. It is a personal framework—not an industry standard or a
+        prior client deliverable. Public risk, secure-development and supply-chain frameworks are
+        cited as external foundations.
+      </p>
+    </aside>
+  )
+}
+
 function CapabilitySection() {
   return (
     <section className="capability section" id="capability">
@@ -339,11 +354,24 @@ function AnswersSection() {
           </article>
         ))}
       </div>
-      <div className="answer-references reveal">
-        <span>Governance reference</span>
-        <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noreferrer">
-          NIST AI Risk Management Framework <Arrow />
-        </a>
+      <div className="answer-resources reveal">
+        <div className="answer-references">
+          <span>Standards and references</span>
+          <nav aria-label="AI delivery references">
+            {aiDeliveryReferences.map((reference) => (
+              <a href={reference.href} key={reference.href} target="_blank" rel="noreferrer">
+                {reference.label} <Arrow />
+              </a>
+            ))}
+          </nav>
+        </div>
+        <div className="answer-related">
+          <span>Related architecture</span>
+          <p>See how governed orchestration, hybrid retrieval and evaluation fit together in a product system.</p>
+          <a href="/work/applied-ai-product-discovery">
+            Open the independent boutique AI reference architecture <Arrow />
+          </a>
+        </div>
       </div>
     </section>
   )
@@ -438,6 +466,7 @@ function AIDeliveryPage() {
       <Header />
       <main>
         <Hero />
+        <EvidenceBasis />
         <CapabilitySection />
         <DeliveryModel />
         <AnswersSection />

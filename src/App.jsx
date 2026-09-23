@@ -161,6 +161,14 @@ function PortfolioHome() {
               <span>{item.label}</span>
             </div>
           ))}
+          <aside className="pf-proof-context" data-reveal>
+            <span>Evidence context</span>
+            <p>
+              Scale, delivery and operating-cost figures are explained in the{' '}
+              <RouteLink to="/work/commerce-platform">global commerce case study</RouteLink>.
+              Team scope is stated in the <a href="#career">career record</a>.
+            </p>
+          </aside>
         </section>
 
         <section className="pf-section pf-work" id="work">
@@ -243,10 +251,16 @@ function PortfolioHome() {
           <div className="pf-about-copy" data-reveal>
             <p>I am an engineering leader and hands-on builder based in Switzerland. My work connects product ambition, platform architecture, delivery discipline and applied AI—so teams can move faster without losing control.</p>
             <dl>
+              <div><dt>Current role</dt><dd>Global Head of Digital Engineering</dd></div>
               <div><dt>Education</dt><dd>B.Sc. Software Engineering</dd></div>
               <div><dt>Languages</dt><dd>Spanish · Native<br />English · C1</dd></div>
               <div><dt>Location</dt><dd>Switzerland · Permit B</dd></div>
             </dl>
+            <p className="pf-editorial-standard" id="editorial-standard">
+              <strong>Editorial standard.</strong> This portfolio separates first-hand operating results,
+              original frameworks and independent reference architectures. Every case labels its status
+              and evidence basis.
+            </p>
           </div>
           <div className="pf-spectrum" data-reveal>
             <p className="pf-spectrum-title">Technical spectrum</p>
@@ -300,6 +314,10 @@ function CaseStudyPage({ study }) {
             <p><span>Status</span><strong>{study.status}</strong></p>
             <p><span>Last reviewed</span><strong><time dateTime="2026-09-23">23 September 2026</time></strong></p>
           </div>
+          <aside className="pf-editorial-note" id="evidence-basis" data-reveal>
+            <span>Evidence basis</span>
+            <p>{study.editorialBasis}</p>
+          </aside>
           <div className="pf-case-art" data-reveal>
             <img
               src={study.image}
@@ -312,6 +330,23 @@ function CaseStudyPage({ study }) {
         <section className="pf-case-facts" aria-label="Project facts">
           {study.facts.map((fact) => <div key={fact.label}><strong>{fact.value}</strong><span>{fact.label}</span></div>)}
         </section>
+        {study.evidence && (
+          <section className="pf-evidence-ledger" aria-labelledby="evidence-ledger-title">
+            <div className="pf-evidence-heading" data-reveal>
+              <p className="pf-eyebrow">Evidence ledger</p>
+              <h2 id="evidence-ledger-title">Operating claims, with their context.</h2>
+            </div>
+            <div className="pf-evidence-grid">
+              {study.evidence.map((item, index) => (
+                <article data-reveal style={{ '--delay': `${index * 50}ms` }} key={item.claim}>
+                  <span>{item.claim}</span>
+                  <h3>{item.value}</h3>
+                  <p>{item.context}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
         <section className="pf-case-chapters">
           {study.chapters.map((chapter, index) => (
             <article data-reveal key={chapter.label}>

@@ -1,3 +1,5 @@
+import { aiDeliveryReferences, boutiqueReferences } from './data/references.js'
+
 const SITE_URL = 'https://luisangelparada.com'
 const PERSON_ID = `${SITE_URL}/#person`
 const WEBSITE_ID = `${SITE_URL}/#website`
@@ -24,6 +26,10 @@ export const routeSeo = {
     breadcrumbLabel: 'AI Delivery Lifecycle',
     articleSection: 'Applied AI Engineering',
     keywords: ['AI-DLC', 'AI delivery lifecycle', 'AI engineering', 'human validation', 'software delivery governance'],
+    abstract: 'AI-DLC is a human-led operating model for using AI across software delivery while keeping validation, deployment authority and risk acceptance accountable to people.',
+    backstory: 'An original operating model by Luis Angel Parada, informed by first-hand platform delivery and SDLC governance work. It is a personal framework, not an industry standard or prior client deliverable.',
+    about: ['AI delivery lifecycle', 'AI engineering governance', 'Independent software validation', 'Human-in-the-loop delivery'],
+    citations: aiDeliveryReferences,
   },
   '/work/commerce-platform': {
     title: 'Global Commerce Platform Engineering | Luis Angel Parada',
@@ -36,6 +42,9 @@ export const routeSeo = {
     breadcrumbLabel: 'Global Commerce Platform',
     articleSection: 'Platform Engineering',
     keywords: ['global commerce platform', 'AWS EKS', 'platform engineering', 'continuous delivery', 'cloud architecture'],
+    abstract: 'A first-hand engineering leadership case study of a cloud-native multibrand commerce platform operating across 40 transactional markets.',
+    backstory: 'Scale, delivery and operating-cost figures summarize platform operating data from the period described; employer and client identity are intentionally omitted.',
+    about: ['Global commerce platforms', 'Platform engineering', 'AWS EKS', 'Continuous delivery', 'Cloud infrastructure'],
   },
   '/work/applied-ai-product-discovery': {
     title: 'Boutique AI Sales Assistant Architecture | Luis Angel Parada',
@@ -48,6 +57,10 @@ export const routeSeo = {
     breadcrumbLabel: 'Boutique AI Sales Assistant',
     articleSection: 'Applied AI Engineering',
     keywords: ['LangGraph', 'AI sales assistant', 'hybrid RAG', 'Amazon Bedrock', 'RAGAS', 'FastAPI'],
+    abstract: 'An independent reference architecture for grounding conversational product guidance in approved catalogue data, evaluation evidence and controlled agent workflows.',
+    backstory: 'An original personal reference architecture by Luis Angel Parada. It is supported by public product documentation and does not describe a commissioned or deployed client system.',
+    about: ['LangGraph', 'Retrieval-augmented generation', 'Amazon Bedrock', 'AI evaluation', 'AI guardrails'],
+    citations: boutiqueReferences,
   },
 }
 
@@ -92,13 +105,31 @@ export function getStructuredData(pathname) {
       'https://github.com/tximpa91',
     ],
     knowsAbout: [
-      'Digital engineering',
-      'Applied AI',
-      'AI delivery lifecycle',
-      'LangGraph',
-      'Global commerce platforms',
-      'Cloud architecture',
+      { '@type': 'Thing', name: 'Digital engineering' },
+      { '@type': 'Thing', name: 'Applied AI' },
+      { '@type': 'Thing', name: 'AI delivery lifecycle' },
+      {
+        '@type': 'Thing',
+        name: 'LangGraph',
+        sameAs: 'https://reference.langchain.com/python/langgraph/overview',
+      },
+      { '@type': 'Thing', name: 'Global commerce platforms' },
+      { '@type': 'Thing', name: 'Cloud architecture' },
     ],
+    homeLocation: { '@type': 'Country', name: 'Switzerland' },
+    hasOccupation: {
+      '@type': 'Occupation',
+      name: 'Global Head of Digital Engineering',
+      description: 'Engineering leadership across global commerce, digital platforms, applied AI and governed software delivery.',
+      skills: 'Engineering leadership, applied AI, platform architecture, cloud architecture, software delivery governance',
+    },
+    subjectOf: Object.entries(routeSeo)
+      .filter(([route]) => route !== '/')
+      .map(([route, routeData]) => ({
+        '@type': 'TechArticle',
+        name: routeData.title,
+        url: `${SITE_URL}${route}`,
+      })),
   }
 
   const website = {
@@ -122,6 +153,8 @@ export function getStructuredData(pathname) {
         mainEntity: { '@id': PERSON_ID },
         isPartOf: { '@id': WEBSITE_ID },
         inLanguage: 'en',
+        dateModified: '2026-09-23',
+        publishingPrinciples: `${SITE_URL}/#editorial-standard`,
       }
     : {
         '@type': seo.schemaType,
@@ -135,6 +168,19 @@ export function getStructuredData(pathname) {
         isPartOf: { '@id': WEBSITE_ID },
         articleSection: seo.articleSection,
         keywords: seo.keywords,
+        abstract: seo.abstract,
+        backstory: seo.backstory,
+        about: seo.about.map((name) => ({ '@type': 'Thing', name })),
+        ...(seo.citations?.length ? {
+          citation: seo.citations.map((reference) => ({
+            '@type': 'CreativeWork',
+            name: reference.label,
+            url: reference.href,
+          })),
+        } : {}),
+        accountablePerson: { '@id': PERSON_ID },
+        proficiencyLevel: 'Professional',
+        publishingPrinciples: `${SITE_URL}/#editorial-standard`,
         inLanguage: 'en',
         datePublished: '2026-09-22',
         dateModified: '2026-09-23',

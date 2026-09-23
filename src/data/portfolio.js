@@ -1,3 +1,5 @@
+import { boutiqueReferences } from './references.js'
+
 export const proof = [
   { value: '1B', label: 'peak monthly requests' },
   { value: '273', label: 'deployments / week' },
@@ -121,6 +123,8 @@ export const caseStudies = {
     number: '02 / Global commerce',
     breadcrumbLabel: 'Global Commerce Platform',
     status: 'Engineering leadership case study',
+    editorialBasis:
+      'First-hand engineering leadership case study. Scale, delivery and operating-cost figures summarize platform operating data from the period described; employer and client identity are intentionally omitted.',
     title: 'A commerce platform engineered for global scale.',
     intro:
       'A shared, multibrand platform that turns complex global operations into one observable and continuously delivered engineering system.',
@@ -133,6 +137,28 @@ export const caseStudies = {
       { value: '26', label: 'AWS EKS microservices' },
       { value: '176', label: 'pipelines and environments' },
       { value: '6 min', label: 'average deployment' },
+    ],
+    evidence: [
+      {
+        claim: 'Peak traffic',
+        value: 'Up to 1B requests in a peak month',
+        context: 'Observed operating scale across the multibrand commerce platform during peak periods.',
+      },
+      {
+        claim: 'Delivery cadence',
+        value: '273 deployments per week',
+        context: 'A delivery-throughput measure across the platform pipeline and environment landscape.',
+      },
+      {
+        claim: 'Deployment speed',
+        value: '6-minute average deployment',
+        context: 'Average pipeline deployment duration used to track delivery-system performance.',
+      },
+      {
+        claim: 'Operating leverage',
+        value: 'Approximately $800k annual Opex removed',
+        context: 'Annualized infrastructure savings attributed to the Akamai-to-Cloudflare migration.',
+      },
     ],
     chapters: [
       {
@@ -157,6 +183,8 @@ export const caseStudies = {
     number: '03 / Independent AI reference architecture',
     breadcrumbLabel: 'Boutique AI Sales Assistant',
     status: 'Independent reference architecture — not a client deployment',
+    editorialBasis:
+      'Original personal reference architecture by Luis Angel Parada. Technical choices are explained against public product documentation and do not describe a commissioned or deployed client system.',
     title: 'A technical blueprint for a boutique AI sales assistant.',
     intro:
       'A personal, client-neutral reference architecture for combining conversational guidance with trustworthy product context. It is not presented as commissioned by, deployed for or representative of any employer or client.',
@@ -214,12 +242,7 @@ export const caseStudies = {
         answer: 'A golden test set and RAGAS-style measures track faithfulness, relevance and retrieval quality. Citations, tool boundaries, traces and low-confidence fallbacks keep responses reviewable and human-led.',
       },
     ],
-    references: [
-      { label: 'LangGraph reference', href: 'https://reference.langchain.com/python/langgraph/overview' },
-      { label: 'Amazon Bedrock documentation', href: 'https://docs.aws.amazon.com/bedrock/' },
-      { label: 'FastAPI documentation', href: 'https://fastapi.tiangolo.com/' },
-      { label: 'Ragas documentation', href: 'https://docs.ragas.io/en/latest/' },
-    ],
+    references: boutiqueReferences,
     ownership: 'Reference architecture · LangGraph orchestration · retrieval design · API contracts · evaluation · guardrails',
   },
 }
