@@ -1,4 +1,4 @@
-import { aiDeliveryReferences, boutiqueReferences } from './data/references.js'
+import { aiDeliveryReferences, productDiscoveryReferences } from './data/references.js'
 
 const SITE_URL = 'https://luisangelparada.com'
 const PERSON_ID = `${SITE_URL}/#person`
@@ -57,20 +57,20 @@ export const routeSeo = {
     about: ['Global commerce platforms', 'Platform engineering', 'AWS EKS', 'Continuous delivery', 'Cloud infrastructure'],
   },
   '/work/applied-ai-product-discovery': {
-    title: 'Boutique AI Sales Assistant Architecture | Luis Angel Parada',
+    title: 'AI Product Discovery Reference Architecture | Luis Angel Parada',
     description:
-      'An independent technical reference architecture for a boutique AI sales assistant using LangGraph, RAG, FastAPI, Bedrock, evaluation and guardrails.',
+      'An independent, non-deployed technical reference architecture for governed AI product discovery using LangGraph, RAG, FastAPI, Bedrock, evaluation and guardrails.',
     image: '/assets/applied-ai-discovery.png',
-    imageAlt: 'Independent boutique AI sales assistant reference architecture',
+    imageAlt: 'Independent conceptual AI product discovery reference architecture',
     openGraphType: 'article',
     schemaType: 'TechArticle',
-    breadcrumbLabel: 'Boutique AI Sales Assistant',
+    breadcrumbLabel: 'AI Product Discovery Architecture',
     articleSection: 'Applied AI Engineering',
-    keywords: ['LangGraph', 'AI sales assistant', 'hybrid RAG', 'Amazon Bedrock', 'RAGAS', 'FastAPI'],
-    abstract: 'An independent reference architecture for grounding conversational product guidance in approved catalogue data, evaluation evidence and controlled agent workflows.',
-    backstory: 'An original personal reference architecture by Luis Angel Parada. It is supported by public product documentation and does not describe a commissioned or deployed client system.',
+    keywords: ['LangGraph', 'AI product discovery', 'hybrid RAG', 'Amazon Bedrock', 'RAGAS', 'FastAPI'],
+    abstract: 'An independent conceptual reference architecture showing how conversational product guidance could be grounded in approved catalogue data, evaluation evidence and controlled agent workflows.',
+    backstory: 'An original personal reference architecture by Luis Angel Parada. It is supported by public product documentation and has not been commissioned or deployed for an employer or client.',
     about: ['LangGraph', 'Retrieval-augmented generation', 'Amazon Bedrock', 'AI evaluation', 'AI guardrails'],
-    citations: boutiqueReferences,
+    citations: productDiscoveryReferences,
   },
 }
 
@@ -163,7 +163,7 @@ export function getStructuredData(pathname) {
         mainEntity: { '@id': PERSON_ID },
         isPartOf: { '@id': WEBSITE_ID },
         inLanguage: 'en',
-        dateModified: '2026-09-23',
+        dateModified: '2026-09-24',
         publishingPrinciples: `${SITE_URL}/#editorial-standard`,
       }
     : {
@@ -193,7 +193,7 @@ export function getStructuredData(pathname) {
         publishingPrinciples: `${SITE_URL}/#editorial-standard`,
         inLanguage: 'en',
         datePublished: '2026-09-22',
-        dateModified: '2026-09-23',
+        dateModified: '2026-09-24',
       }
 
   const breadcrumb = pathname === '/' ? null : {

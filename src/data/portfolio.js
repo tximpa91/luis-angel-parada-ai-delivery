@@ -1,4 +1,4 @@
-import { boutiqueReferences } from './references.js'
+import { productDiscoveryReferences } from './references.js'
 
 export const proof = [
   { value: '1B', label: 'peak monthly requests' },
@@ -58,9 +58,9 @@ export const projects = [
   },
   {
     index: '03',
-    title: 'Boutique AI Sales Assistant',
+    title: 'AI Product Discovery Architecture',
     description:
-      'An independent reference architecture for grounded product discovery and governed AI assistance.',
+      'An independent, non-deployed reference architecture for grounded product discovery and governed AI assistance.',
     meta: 'Bedrock · Claude · LangGraph · FastAPI · RAGAS',
     link: '/work/applied-ai-product-discovery',
     cta: 'Explore the approach',
@@ -94,7 +94,7 @@ export const career = [
     date: '2022—2024',
     role: 'Cloud Platform Engineer & MongoDB PS Consultant',
     company: 'Cogniflare',
-    detail: 'Delivered enterprise architecture assessments, MongoDB professional services, training and cloud platform work.',
+    detail: 'Concurrent professional-services engagement alongside Beyond Pricing, delivering enterprise architecture assessments, MongoDB training and cloud platform work through April 2024.',
   },
   {
     date: '2016—2021',
@@ -220,15 +220,15 @@ export const caseStudies = {
   },
   '/work/applied-ai-product-discovery': {
     number: '03 / Independent AI reference architecture',
-    breadcrumbLabel: 'Boutique AI Sales Assistant',
-    status: 'Independent reference architecture — not a client deployment',
+    breadcrumbLabel: 'AI Product Discovery Architecture',
+    status: 'Conceptual reference architecture — not deployed',
     editorialBasis:
-      'Original personal reference architecture by Luis Angel Parada. Technical choices are explained against public product documentation and do not describe a commissioned or deployed client system.',
-    title: 'A technical blueprint for a boutique AI sales assistant.',
+      'Original conceptual reference architecture by Luis Angel Parada. Technical choices are explained against public product documentation; the architecture has not been commissioned or deployed for an employer or client.',
+    title: 'A technical blueprint for governed AI product discovery.',
     intro:
-      'A personal, client-neutral reference architecture for combining conversational guidance with trustworthy product context. It is not presented as commissioned by, deployed for or representative of any employer or client.',
+      'A personal, employer-neutral conceptual architecture for combining conversational guidance with trustworthy product context. It has not been commissioned or deployed for any employer or client.',
     image: '/assets/applied-ai-discovery.png',
-    imageAlt: 'Reference architecture for a boutique AI sales assistant using LangGraph, hybrid retrieval and Bedrock',
+    imageAlt: 'Conceptual AI product discovery architecture using LangGraph, hybrid retrieval and Bedrock',
     imageWidth: 1774,
     imageHeight: 887,
     facts: [
@@ -241,7 +241,7 @@ export const caseStudies = {
       {
         label: 'Product challenge',
         title: 'Conversation needs product truth.',
-        copy: 'The assistant must understand open-ended intent while keeping recommendations anchored to approved attributes, availability and commercial rules. Unsupported answers fall back instead of becoming product advice.',
+        copy: 'The reference system must understand open-ended intent while keeping recommendations anchored to approved attributes, availability and commercial rules. Unsupported answers fall back instead of becoming product advice.',
       },
       {
         label: 'Reference architecture',
@@ -265,8 +265,8 @@ export const caseStudies = {
     ],
     questions: [
       {
-        question: 'What does the assistant do?',
-        answer: 'It turns open-ended product questions into grounded guidance by combining conversational intent with approved catalogue attributes, availability and commercial rules. When evidence is insufficient, the assistant explains the limitation or falls back safely.',
+        question: 'What does the reference system do?',
+        answer: 'It illustrates how open-ended product questions can become grounded guidance by combining conversational intent with approved catalogue attributes, availability and commercial rules. When evidence is insufficient, the proposed system explains the limitation or falls back safely.',
       },
       {
         question: 'How does LangGraph control the workflow?',
@@ -277,11 +277,11 @@ export const caseStudies = {
         answer: 'Semantic retrieval handles meaning and discovery; structured queries preserve precision for attributes, availability and rules. Hybrid retrieval keeps the experience conversational without treating generated language as product truth.',
       },
       {
-        question: 'How is the assistant evaluated and guarded?',
+        question: 'How would the system be evaluated and guarded?',
         answer: 'A golden test set and RAGAS-style measures track faithfulness, relevance and retrieval quality. Citations, tool boundaries, traces and low-confidence fallbacks keep responses reviewable and human-led.',
       },
     ],
-    references: boutiqueReferences,
+    references: productDiscoveryReferences,
     ownership: 'Reference architecture · LangGraph orchestration · retrieval design · API contracts · evaluation · guardrails',
   },
 }

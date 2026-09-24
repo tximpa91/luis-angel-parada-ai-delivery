@@ -339,7 +339,7 @@ function CaseStudyPage({ study }) {
           <div className="pf-article-meta" aria-label="Article details" data-reveal>
             <p><span>Author</span><strong>Luis Angel Parada</strong></p>
             <p><span>Status</span><strong>{study.status}</strong></p>
-            <p><span>Last reviewed</span><strong><time dateTime="2026-09-23">23 September 2026</time></strong></p>
+            <p><span>Last reviewed</span><strong><time dateTime="2026-09-24">24 September 2026</time></strong></p>
           </div>
           <aside className="pf-editorial-note" id="evidence-basis" data-reveal>
             <span>Evidence basis</span>

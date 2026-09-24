@@ -13,7 +13,7 @@ export const aiDeliveryReferences = [
   },
 ]
 
-export const boutiqueReferences = [
+export const productDiscoveryReferences = [
   {
     label: 'LangGraph reference',
     href: 'https://reference.langchain.com/python/langgraph/overview',

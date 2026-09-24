@@ -203,7 +203,7 @@ function Hero() {
         <div className="article-meta" aria-label="Article details">
           <span>By Luis Angel Parada</span>
           <span>Independent operating model</span>
-          <time dateTime="2026-09-23">Reviewed 23 September 2026</time>
+          <time dateTime="2026-09-24">Reviewed 24 September 2026</time>
         </div>
         <div className="hero-actions">
           <a className="button button--gold" href="#contact">
@@ -341,19 +341,27 @@ function InteractiveRoadmap() {
 }
 
 function Architecture() {
-  const steps = ['Context', 'Implement', 'Validate', 'Deploy + QA', 'Decide']
+  const steps = [
+    'Intent',
+    'Classify risk',
+    'Approve context',
+    'Implement',
+    'Validate independently',
+    'Deploy + evidence',
+    'Human GO / NO-GO',
+  ]
   return (
     <div className="architecture reveal" id="architecture">
       <div className="architecture-copy">
-        <p className="section-number">The controlled loop</p>
+        <p className="section-number">Conceptual architecture</p>
         <h3>No agent approves its own output.</h3>
         <p>
-          Repository context and an approved change feed a bounded implementation role. A separate
-          validator returns PASS, FAIL, or ESCALATE with evidence. The Delivery Lead keeps the final
-          decision.
+          Intent and risk determine the approved context for a bounded implementation role. A
+          separate validator returns PASS, FAIL, or ESCALATE with evidence. An accountable person
+          keeps the final release decision.
         </p>
       </div>
-      <ol className="architecture-flow">
+      <ol className="architecture-flow" aria-label="Conceptual AI delivery architecture">
         {steps.map((step, index) => (
           <li key={step}>
             <span>{String(index + 1).padStart(2, '0')}</span>
@@ -403,7 +411,7 @@ function AnswersSection() {
           <span>Related architecture</span>
           <p>See how governed orchestration, hybrid retrieval and evaluation fit together in a product system.</p>
           <a href="/work/applied-ai-product-discovery">
-            Open the independent boutique AI reference architecture <Arrow />
+            Open the independent AI product discovery architecture <Arrow />
           </a>
         </div>
       </div>

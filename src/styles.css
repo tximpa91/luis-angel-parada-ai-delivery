@@ -725,7 +725,7 @@ em {
 
 .architecture-flow {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 18px;
   align-self: center;
   margin: 0;
@@ -1214,6 +1214,14 @@ footer nav {
     grid-template-columns: 1fr;
   }
 
+  .architecture-flow {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .architecture-flow li:nth-child(4) svg {
+    display: none;
+  }
+
   .verdicts {
     grid-column: 1;
   }
@@ -1375,6 +1383,10 @@ footer nav {
   .architecture-flow {
     grid-template-columns: 1fr;
     gap: 0;
+  }
+
+  .architecture-flow li:nth-child(4) svg {
+    display: block;
   }
 
   .architecture-flow li {
