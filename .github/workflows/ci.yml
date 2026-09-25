@@ -48,8 +48,8 @@ jobs:
             fi
             sleep 1
           done
-          curl --fail --silent http://127.0.0.1:8080/ | grep -F "I build engineering organisations and the systems behind ambitious digital products."
-          curl --fail --silent http://127.0.0.1:8080/leadership-profile | grep -F "Engineering leader who stays close to the system."
+          curl --fail --silent http://127.0.0.1:8080/ | grep -F "I lead engineering organisations and turn applied AI into working systems."
+          curl --fail --silent http://127.0.0.1:8080/leadership-profile | grep -F "Engineering leadership for platforms, teams and applied AI."
           curl --fail --silent http://127.0.0.1:8080/leadership-profile | grep -F '<link rel="canonical" href="https://luisangelparada.com/leadership-profile"'
           curl --fail --silent http://127.0.0.1:8080/work/commerce-platform | grep -F "A commerce platform engineered for global scale."
           curl --fail --silent http://127.0.0.1:8080/work/commerce-platform | grep -F "Operating claims, with their context."

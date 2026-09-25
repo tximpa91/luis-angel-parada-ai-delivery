@@ -6,9 +6,9 @@ const WEBSITE_ID = `${SITE_URL}/#website`
 
 export const routeSeo = {
   '/': {
-    title: 'Luis Angel Parada | Digital Engineering & Applied AI Leader',
+    title: 'Luis Angel Parada | Head of Engineering & Applied AI Leader',
     description:
-      'Luis Angel Parada is a Switzerland-based engineering leader managing five managers and a 26-person global organisation across platforms, commerce and applied AI.',
+      'Luis Angel Parada is a Switzerland-based Global Head of Digital Engineering leading 26 people across platform engineering, global commerce and applied AI.',
     image: '/assets/portfolio-systems.png',
     imageAlt: 'Luis Angel Parada portfolio: engineering systems, teams and outcomes',
     openGraphType: 'website',
@@ -16,9 +16,9 @@ export const routeSeo = {
     breadcrumbLabel: 'Portfolio',
   },
   '/leadership-profile': {
-    title: 'Engineering Leadership Profile | Luis Angel Parada',
+    title: 'Head of Engineering & Applied AI Leadership | Luis Angel Parada',
     description:
-      'Leadership profile of Luis Angel Parada: Global Head of Digital Engineering leading five managers and a 26-person engineering organisation across six countries.',
+      'Luis Angel Parada brings manager-of-managers leadership, platform scale and applied AI delivery to Head or Director of Engineering and Applied AI leadership roles.',
     image: '/assets/portfolio-systems.png',
     imageAlt: 'Luis Angel Parada engineering leadership profile',
     openGraphType: 'profile',
@@ -163,7 +163,7 @@ export function getStructuredData(pathname) {
         mainEntity: { '@id': PERSON_ID },
         isPartOf: { '@id': WEBSITE_ID },
         inLanguage: 'en',
-        dateModified: '2026-09-24',
+        dateModified: '2026-09-25',
         publishingPrinciples: `${SITE_URL}/#editorial-standard`,
       }
     : {
@@ -193,7 +193,7 @@ export function getStructuredData(pathname) {
         publishingPrinciples: `${SITE_URL}/#editorial-standard`,
         inLanguage: 'en',
         datePublished: '2026-09-22',
-        dateModified: '2026-09-24',
+        dateModified: '2026-09-25',
       }
 
   const breadcrumb = pathname === '/' ? null : {

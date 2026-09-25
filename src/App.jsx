@@ -130,11 +130,11 @@ function PortfolioHome() {
       <main>
         <section className="pf-hero" id="top">
           <div className="pf-hero-copy" data-reveal>
-            <p className="pf-kicker">Global Head of Digital Engineering · Switzerland</p>
-            <h1>I build engineering organisations and the systems behind ambitious digital products.</h1>
+            <p className="pf-kicker">Head / Director of Engineering · Applied AI Leadership</p>
+            <h1>I lead engineering organisations and turn applied AI into working systems.</h1>
             <p className="pf-lede">
-              I lead a 26-person organisation across six countries while staying close to architecture,
-              delivery and applied AI. I turn complex technology into accountable teams and measurable outcomes.
+              As Global Head of Digital Engineering, I lead a 26-person organisation across six countries.
+              I connect strategy, teams and architecture to scale platforms and make AI useful, governed and accountable.
             </p>
             <div className="pf-actions">
               <a className="pf-button pf-button--primary" href="#work">Explore selected work <Arrow /></a>
@@ -299,9 +299,9 @@ function PortfolioHome() {
         <section className="pf-contact" id="contact">
           <p className="pf-eyebrow">05 / Contact</p>
           <div data-reveal>
-            <h2>Looking for an engineering leader who can still build?</h2>
-            <p>Open to senior engineering and applied AI leadership conversations in Switzerland and internationally.</p>
-            <a className="pf-button pf-button--light" href={`mailto:${EMAIL}?subject=Engineering%20leadership%20conversation`}>Discuss a leadership role <Arrow diagonal /></a>
+            <h2>Looking for a Head of Engineering or Applied AI leader?</h2>
+            <p>Open to Head / Director of Engineering and Applied AI leadership conversations in Switzerland and internationally.</p>
+            <a className="pf-button pf-button--light" href={`mailto:${EMAIL}?subject=Engineering%20and%20Applied%20AI%20leadership%20conversation`}>Discuss a leadership role <Arrow diagonal /></a>
           </div>
           <nav aria-label="Contact links">
             <a href="https://www.linkedin.com/in/luis-angel-parada" target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a>
@@ -339,7 +339,7 @@ function CaseStudyPage({ study }) {
           <div className="pf-article-meta" aria-label="Article details" data-reveal>
             <p><span>Author</span><strong>Luis Angel Parada</strong></p>
             <p><span>Status</span><strong>{study.status}</strong></p>
-            <p><span>Last reviewed</span><strong><time dateTime="2026-09-24">24 September 2026</time></strong></p>
+            <p><span>Last reviewed</span><strong><time dateTime="2026-09-25">25 September 2026</time></strong></p>
           </div>
           <aside className="pf-editorial-note" id="evidence-basis" data-reveal>
             <span>Evidence basis</span>
@@ -481,13 +481,13 @@ function LeadershipProfile() {
           </nav>
           <div className="pf-profile-heading" data-reveal>
             <div>
-              <p className="pf-eyebrow">Engineering & applied AI leadership</p>
-              <h1>Engineering leader who stays close to the system.</h1>
+              <p className="pf-eyebrow">Head / Director of Engineering · Applied AI Leadership</p>
+              <h1>Engineering leadership for platforms, teams and applied AI.</h1>
             </div>
             <div>
               <p>Global Head of Digital Engineering with a decade spanning product engineering, cloud platforms, global commerce and governed AI delivery.</p>
               <div className="pf-profile-actions">
-                <a className="pf-button pf-button--primary" href={`mailto:${EMAIL}?subject=Engineering%20leadership%20conversation`}>Start a conversation <Arrow diagonal /></a>
+                <a className="pf-button pf-button--primary" href={`mailto:${EMAIL}?subject=Engineering%20and%20Applied%20AI%20leadership%20conversation`}>Start a conversation <Arrow diagonal /></a>
                 <button className="pf-print-button" type="button" onClick={() => window.print()}>Print / save as PDF</button>
               </div>
             </div>
@@ -530,15 +530,15 @@ function LeadershipProfile() {
         <section className="pf-profile-close">
           <div data-reveal>
             <p className="pf-eyebrow">Profile</p>
-            <h2>Based in Switzerland. Available for the right senior leadership challenge.</h2>
+            <h2>Based in Switzerland. Open to engineering and applied AI leadership.</h2>
           </div>
           <dl data-reveal>
             <div><dt>Education</dt><dd>B.Sc. Software Engineering</dd></div>
             <div><dt>Languages</dt><dd>Spanish · Native<br />English · C1</dd></div>
             <div><dt>Location</dt><dd>Switzerland · Permit B</dd></div>
-            <div><dt>Focus</dt><dd>Engineering leadership · platforms · applied AI</dd></div>
+            <div><dt>Target roles</dt><dd>Head / Director of Engineering · Applied AI leadership</dd></div>
           </dl>
-          <a className="pf-button pf-button--light" href={`mailto:${EMAIL}?subject=Engineering%20leadership%20conversation`}>Discuss a role <Arrow diagonal /></a>
+          <a className="pf-button pf-button--light" href={`mailto:${EMAIL}?subject=Engineering%20and%20Applied%20AI%20leadership%20conversation`}>Discuss a role <Arrow diagonal /></a>
         </section>
       </main>
       <PortfolioFooter />

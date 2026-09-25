@@ -195,7 +195,7 @@ function Hero() {
           <span aria-hidden="true">/</span>
           <span aria-current="page">AI Delivery Lifecycle</span>
         </nav>
-        <p className="role-line">Engineering & Applied AI Leader</p>
+        <p className="role-line">Head / Director of Engineering · Applied AI Leadership</p>
         <h1>I turn AI ambition into a delivery system your engineers can trust.</h1>
         <p className="hero-lede">
           I help companies move from AI-assisted coding to governed, human-led AI delivery.
@@ -203,7 +203,7 @@ function Hero() {
         <div className="article-meta" aria-label="Article details">
           <span>By Luis Angel Parada</span>
           <span>Independent operating model</span>
-          <time dateTime="2026-09-24">Reviewed 24 September 2026</time>
+          <time dateTime="2026-09-25">Reviewed 25 September 2026</time>
         </div>
         <div className="hero-actions">
           <a className="button button--gold" href="#contact">
@@ -471,7 +471,7 @@ function ContactSection() {
       <div className="contact-heading reveal">
         <p className="section-number">06 / Leadership conversation</p>
         <h2>If AI is entering your SDLC, I can lead the <em>system around it.</em></h2>
-        <p>I am looking for a senior engineering role where platform leadership and applied AI become durable organisational capability.</p>
+        <p>I am open to Head / Director of Engineering and Applied AI leadership roles where AI becomes durable organisational capability.</p>
       </div>
 
       <div className="challenge-picker reveal">
