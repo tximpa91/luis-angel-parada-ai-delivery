@@ -1089,6 +1089,7 @@ body.ai-mode {
 .pf-profile-remit article > span { color: var(--pf-blue); font-size: 11px; font-weight: 700; letter-spacing: .14em; }
 .pf-profile-remit h3 { margin: 46px 0 20px; font-family: var(--pf-serif); font-size: 36px; font-weight: 400; letter-spacing: -.03em; }
 .pf-profile-remit p { margin: 0; color: var(--pf-slate); line-height: 1.65; }
+.pf-profile-remit .pf-text-link { max-width: 100%; margin-top: 24px; }
 
 .pf-profile-experience { border-top: 1px solid var(--pf-line); }
 .pf-profile-experience ol { margin: 72px 0 0 24%; padding: 0; border-top: 1px solid var(--pf-ink); list-style: none; }

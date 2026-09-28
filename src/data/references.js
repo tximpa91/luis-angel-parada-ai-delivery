@@ -1,5 +1,9 @@
 export const aiDeliveryReferences = [
   {
+    label: 'AWS AI-Driven Development Life Cycle',
+    href: 'https://aws.amazon.com/blogs/devops/ai-driven-development-life-cycle/',
+  },
+  {
     label: 'NIST AI Risk Management Framework',
     href: 'https://www.nist.gov/itl/ai-risk-management-framework',
   },

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import AIDeliveryPage from './pages/AIDeliveryPage.jsx'
-import { career, caseStudies, leadershipScope, practices, projects, proof, spectrum } from './data/portfolio.js'
+import PlatformDeepDive, { PlatformSectionNav } from './components/PlatformDeepDive.jsx'
+import { career, caseStudies, leadershipScope, practices, projects, spectrum } from './data/portfolio.js'
 import { getSeoForPath, getStructuredData, routeSeo } from './seo.js'
 
 const EMAIL = 'luisparada364@icloud.com'
@@ -133,8 +134,9 @@ function PortfolioHome() {
             <p className="pf-kicker">Head / Director of Engineering · Applied AI Leadership</p>
             <h1>I lead engineering organisations and turn applied AI into working systems.</h1>
             <p className="pf-lede">
-              As Global Head of Digital Engineering, I lead a 26-person organisation across six countries.
-              I connect strategy, teams and architecture to scale platforms and make AI useful, governed and accountable.
+              I bring global engineering leadership, hands-on distributed-system ownership and the ability to lead AI transformation.
+              As Global Head of Digital Engineering, I lead a 26-person organisation across six countries and own a shared platform for three live brands.
+              I can help you connect technology strategy, team ownership and dependable delivery—whether you are scaling a platform or changing how engineering works with AI.
             </p>
             <div className="pf-actions">
               <a className="pf-button pf-button--primary" href="#work">Explore selected work <Arrow /></a>
@@ -155,23 +157,6 @@ function PortfolioHome() {
           <div className="pf-hero-note" aria-hidden="true">
             <span>Systems</span><span>Teams</span><span>Outcomes</span>
           </div>
-        </section>
-
-        <section className="pf-proof" aria-label="Selected engineering outcomes">
-          {proof.map((item, index) => (
-            <div className="pf-proof-item" data-reveal style={{ '--delay': `${index * 60}ms` }} key={item.label}>
-              <strong>{item.value}</strong>
-              <span>{item.label}</span>
-            </div>
-          ))}
-          <aside className="pf-proof-context" data-reveal>
-            <span>Evidence context</span>
-            <p>
-              Scale, delivery and operating-cost figures are explained in the{' '}
-              <RouteLink to="/work/commerce-platform">global commerce case study</RouteLink>.
-              Team scope is stated in the <a href="#career">career record</a>.
-            </p>
-          </aside>
         </section>
 
         <section className="pf-leadership" aria-labelledby="leadership-scope-title">
@@ -202,7 +187,7 @@ function PortfolioHome() {
               <p className="pf-eyebrow">01 / Selected work</p>
               <h2>Systems that make<br />ambition operational.</h2>
             </div>
-            <p>Three views into the work: how software is delivered, how platforms scale, and how applied AI becomes a dependable product.</p>
+            <p>Explore the experience and technical thinking I bring to your organisation: AI engineering transformation, ownership of a three-brand distributed platform, and an independent AI product-discovery reference architecture.</p>
           </div>
           <div className="pf-projects">
             {projects.map((project, index) => (
@@ -283,9 +268,8 @@ function PortfolioHome() {
               <div><dt>Location</dt><dd>Switzerland · Permit B</dd></div>
             </dl>
             <p className="pf-editorial-standard" id="editorial-standard">
-              <strong>Editorial standard.</strong> This portfolio separates first-hand operating results,
-              original frameworks and independent reference architectures. Every case labels its status
-              and evidence basis.
+              <strong>About the work.</strong> Case studies explain my responsibilities and decisions.
+              Independent reference architectures are labelled separately; employer and client details stay private.
             </p>
           </div>
           <div className="pf-spectrum" data-reveal>
@@ -299,9 +283,9 @@ function PortfolioHome() {
         <section className="pf-contact" id="contact">
           <p className="pf-eyebrow">05 / Contact</p>
           <div data-reveal>
-            <h2>Looking for a Head of Engineering or Applied AI leader?</h2>
-            <p>Open to Head / Director of Engineering and Applied AI leadership conversations in Switzerland and internationally.</p>
-            <a className="pf-button pf-button--light" href={`mailto:${EMAIL}?subject=Engineering%20and%20Applied%20AI%20leadership%20conversation`}>Discuss a leadership role <Arrow diagonal /></a>
+            <h2>Need a leader for complex platforms and AI transformation?</h2>
+            <p>Let’s discuss a permanent leadership role or a contract to lead platform strategy, engineering delivery or AI transformation. Based in Switzerland, open to international conversations.</p>
+            <a className="pf-button pf-button--light" href={`mailto:${EMAIL}?subject=Engineering%20leadership%20role%20or%20contract`}>Discuss a role or contract <Arrow diagonal /></a>
           </div>
           <nav aria-label="Contact links">
             <a href="https://www.linkedin.com/in/luis-angel-parada" target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a>
@@ -339,12 +323,13 @@ function CaseStudyPage({ study }) {
           <div className="pf-article-meta" aria-label="Article details" data-reveal>
             <p><span>Author</span><strong>Luis Angel Parada</strong></p>
             <p><span>Status</span><strong>{study.status}</strong></p>
-            <p><span>Last reviewed</span><strong><time dateTime="2026-09-25">25 September 2026</time></strong></p>
+            <p><span>Last reviewed</span><strong><time dateTime={study.platformDetail ? '2026-09-27' : '2026-09-25'}>{study.platformDetail ? '27 September 2026' : '25 September 2026'}</time></strong></p>
           </div>
           <aside className="pf-editorial-note" id="evidence-basis" data-reveal>
             <span>Evidence basis</span>
             <p>{study.editorialBasis}</p>
           </aside>
+          {study.platformDetail ? <PlatformSectionNav /> : null}
           <div className="pf-case-art" data-reveal>
             <img
               src={study.image}
@@ -363,23 +348,7 @@ function CaseStudyPage({ study }) {
             <h2 id="role-summary-title">{study.roleSummary}</h2>
           </section>
         )}
-        {study.evidence && (
-          <section className="pf-evidence-ledger" aria-labelledby="evidence-ledger-title">
-            <div className="pf-evidence-heading" data-reveal>
-              <p className="pf-eyebrow">Evidence ledger</p>
-              <h2 id="evidence-ledger-title">Operating claims, with their context.</h2>
-            </div>
-            <div className="pf-evidence-grid">
-              {study.evidence.map((item, index) => (
-                <article data-reveal style={{ '--delay': `${index * 50}ms` }} key={item.claim}>
-                  <span>{item.claim}</span>
-                  <h3>{item.value}</h3>
-                  <p>{item.context}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-        )}
+        {study.platformDetail ? <PlatformDeepDive /> : null}
         {study.decisions && (
           <section className="pf-decisions" aria-labelledby="key-decisions-title">
             <div className="pf-decisions-heading" data-reveal>
@@ -448,8 +417,8 @@ function CaseStudyPage({ study }) {
           <h2>{study.ownership}</h2>
         </section>
         <section className="pf-next">
-          <div><p className="pf-eyebrow">Continue</p><h2>See the AI delivery operating system.</h2></div>
-          <RouteLink className="pf-button pf-button--primary" to="/ai-delivery">Open AI delivery <Arrow /></RouteLink>
+          <div><p className="pf-eyebrow">Continue</p><h2>See how I can lead AI engineering transformation.</h2></div>
+          <RouteLink className="pf-button pf-button--primary" to="/ai-delivery">Explore AI transformation <Arrow /></RouteLink>
         </section>
       </main>
       <PortfolioFooter />
@@ -458,17 +427,37 @@ function CaseStudyPage({ study }) {
 }
 
 function LeadershipProfile() {
-  const impact = [
+  const scope = [
     ['Organisation', '5 direct managers · 26 people · 6 countries'],
-    ['Platform scale', '40 markets · up to 1B requests in a peak month'],
-    ['Delivery', '273 deployments per week · 6-minute average deployment'],
-    ['Economics', 'Approximately $800k annual Opex removed'],
+    ['Platform scope', '3 live brands · 40 transactional markets'],
+    ['System ownership', 'Services · integrations · queues · workers'],
+    ['Operating remit', 'Architecture · delivery · reliability'],
   ]
   const remit = [
-    ['Organisation', 'Manager-of-managers leadership, hiring, coaching and operating-model design.'],
-    ['Technology', 'Roadmap ownership, architecture direction, platform strategy and applied AI.'],
-    ['Operations', 'SRE, on-call, incident leadership, post-mortems, observability and FinOps.'],
-    ['Commercial', 'Tool and vendor selection, contract negotiation and vendor and hiring budgets.'],
+    {
+      title: 'Lead the engineering organisation',
+      detail: 'Connect the roadmap to team responsibilities, hiring, coaching and delivery decisions. I bring manager-of-managers experience across backend, frontend, DevOps, QA and delivery.',
+      link: '#profile-experience-title',
+      cta: 'Explore my leadership experience',
+    },
+    {
+      title: 'Own complex distributed platforms',
+      detail: 'Set architecture direction across frontend, backend, integrations, queues and workers—and stay accountable for reliability. My experience includes choosing a shared multibrand architecture to support further launches with the same team.',
+      link: '/work/commerce-platform',
+      cta: 'Explore my platform decisions',
+    },
+    {
+      title: 'Lead AI engineering transformation',
+      detail: 'Move beyond isolated AI tools to a repeatable engineering practice. I connect use-case discovery, reusable skills, MCP context and specialist development agents with governed AI-DLC delivery automation.',
+      link: '/ai-delivery#transformation',
+      cta: 'Explore my transformation approach',
+    },
+    {
+      title: 'Connect technology and business decisions',
+      detail: 'Bring architecture, operational risk and delivery capacity into roadmap, vendor and investment choices. My remit includes contract negotiation, vendor and hiring budgets, incident leadership and FinOps.',
+      link: '#profile-experience-title',
+      cta: 'Review my career and responsibilities',
+    },
   ]
 
   return (
@@ -482,32 +471,35 @@ function LeadershipProfile() {
           <div className="pf-profile-heading" data-reveal>
             <div>
               <p className="pf-eyebrow">Head / Director of Engineering · Applied AI Leadership</p>
-              <h1>Engineering leadership for platforms, teams and applied AI.</h1>
+              <h1>I lead complex platforms, engineering teams and AI transformation.</h1>
             </div>
             <div>
-              <p>Global Head of Digital Engineering with a decade spanning product engineering, cloud platforms, global commerce and governed AI delivery.</p>
+              <p>I bring the leadership to align teams, the technical depth to own distributed systems, and the experience to change how engineering delivers with AI. A decade from hands-on engineering to Global Head of Digital Engineering grounds the capability I bring to your next leadership role or contract.</p>
               <div className="pf-profile-actions">
-                <a className="pf-button pf-button--primary" href={`mailto:${EMAIL}?subject=Engineering%20and%20Applied%20AI%20leadership%20conversation`}>Start a conversation <Arrow diagonal /></a>
+                <a className="pf-button pf-button--primary" href={`mailto:${EMAIL}?subject=Engineering%20leadership%20role%20or%20contract`}>Discuss a role or contract <Arrow diagonal /></a>
                 <button className="pf-print-button" type="button" onClick={() => window.print()}>Print / save as PDF</button>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="pf-profile-impact" aria-label="Leadership impact">
-          {impact.map(([label, value], index) => (
+        <section className="pf-profile-impact" aria-label="Leadership scope">
+          {scope.map(([label, value], index) => (
             <article data-reveal style={{ '--delay': `${index * 50}ms` }} key={label}><span>{label}</span><strong>{value}</strong></article>
           ))}
         </section>
 
         <section className="pf-profile-section">
           <div className="pf-profile-section-heading" data-reveal>
-            <p className="pf-eyebrow">Leadership remit</p>
-            <h2>Accountable from roadmap to reliability.</h2>
+            <p className="pf-eyebrow">What you can hire me to lead</p>
+            <h2>Teams, platforms and transformation. One accountable leader.</h2>
           </div>
           <div className="pf-profile-remit">
-            {remit.map(([title, detail], index) => (
-              <article data-reveal style={{ '--delay': `${index * 50}ms` }} key={title}><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{detail}</p></article>
+            {remit.map((item, index) => (
+              <article data-reveal style={{ '--delay': `${index * 50}ms` }} key={item.title}>
+                <span>{String(index + 1).padStart(2, '0')}</span><h3>{item.title}</h3><p>{item.detail}</p>
+                <RouteLink className="pf-text-link" to={item.link}>{item.cta} <Arrow /></RouteLink>
+              </article>
             ))}
           </div>
         </section>
@@ -529,16 +521,16 @@ function LeadershipProfile() {
 
         <section className="pf-profile-close">
           <div data-reveal>
-            <p className="pf-eyebrow">Profile</p>
-            <h2>Based in Switzerland. Open to engineering and applied AI leadership.</h2>
+            <p className="pf-eyebrow">Roles & contracts</p>
+            <h2>Let’s discuss the engineering challenge you need me to own.</h2>
           </div>
           <dl data-reveal>
             <div><dt>Education</dt><dd>B.Sc. Software Engineering</dd></div>
             <div><dt>Languages</dt><dd>Spanish · Native<br />English · C1</dd></div>
             <div><dt>Location</dt><dd>Switzerland · Permit B</dd></div>
-            <div><dt>Target roles</dt><dd>Head / Director of Engineering · Applied AI leadership</dd></div>
+            <div><dt>Opportunities</dt><dd>Head / Director of Engineering · VP Engineering / CTO-level mandates · Applied AI leadership · Permanent roles or contracts</dd></div>
           </dl>
-          <a className="pf-button pf-button--light" href={`mailto:${EMAIL}?subject=Engineering%20and%20Applied%20AI%20leadership%20conversation`}>Discuss a role <Arrow diagonal /></a>
+          <a className="pf-button pf-button--light" href={`mailto:${EMAIL}?subject=Engineering%20leadership%20role%20or%20contract`}>Discuss a role or contract <Arrow diagonal /></a>
         </section>
       </main>
       <PortfolioFooter />

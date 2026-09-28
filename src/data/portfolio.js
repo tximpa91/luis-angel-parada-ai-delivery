@@ -1,12 +1,5 @@
 import { productDiscoveryReferences } from './references.js'
 
-export const proof = [
-  { value: '1B', label: 'peak monthly requests' },
-  { value: '273', label: 'deployments / week' },
-  { value: '6 min', label: 'average deployment' },
-  { value: '$800k', label: 'annual Opex saved' },
-]
-
 export const leadershipScope = [
   {
     value: '5',
@@ -33,11 +26,11 @@ export const leadershipScope = [
 export const projects = [
   {
     index: '01',
-    title: 'AI Delivery Operating System',
-    description: 'From AI-assisted coding to governed, evidence-led software delivery.',
-    meta: 'Implementation · independent validation · deployment · QA',
+    title: 'AI Engineering Transformation',
+    description: 'I can lead the shift from individual AI tools to an accountable engineering delivery practice—connecting people, reusable skills, system context and specialist-agent workflows.',
+    meta: 'Organisation & adoption · context & agents · AI-DLC delivery',
     link: '/ai-delivery',
-    cta: 'Open case study',
+    cta: 'Explore the transformation I can lead',
     image: '/assets/ai-delivery-system.png',
     imageWidth: 1536,
     imageHeight: 1024,
@@ -47,8 +40,8 @@ export const projects = [
     index: '02',
     title: 'Global Commerce Platform',
     description:
-      'A shared multibrand architecture built for global reach, reliability and continuous delivery.',
-    meta: '40 transactional markets · up to 1B monthly requests',
+      'My architecture decision for three live brands: shared frontend and backend capabilities, distributed integrations and a foundation for further launches with the same team.',
+    meta: '3 live brands · distributed systems · 40 transactional markets',
     link: '/work/commerce-platform',
     cta: 'Explore the platform',
     image: '/assets/commerce-platform.png',
@@ -118,7 +111,7 @@ export const practices = [
   {
     index: '03',
     title: 'Platform architecture',
-    detail: 'Design and evolve resilient platforms that enable global commerce and accelerate what comes next.',
+    detail: 'Own complex distributed platforms—from frontend and backend boundaries to queues, workers, data projections and operational recovery.',
   },
 ]
 
@@ -133,7 +126,7 @@ export const spectrum = [
   },
   {
     title: 'Platforms',
-    detail: 'AWS · Kubernetes · Terraform · GitOps · Cloudflare · observability',
+    detail: 'AWS · Kubernetes · Terraform · Cloudflare · Azure Service Bus · RQ · observability',
   },
   {
     title: 'Engineering',
@@ -147,76 +140,55 @@ export const caseStudies = {
     breadcrumbLabel: 'Global Commerce Platform',
     status: 'Engineering leadership case study',
     editorialBasis:
-      'First-hand engineering leadership case study. Scale, delivery and operating-cost figures summarize platform operating data from the period described; employer and client identity are intentionally omitted.',
-    title: 'A commerce platform engineered for global scale.',
+      'First-hand engineering leadership case study focused on architecture decisions, delivery responsibilities and operational ownership. Employer and client identity are intentionally omitted.',
+    title: 'Three brands. One shared platform direction.',
     intro:
-      'A shared, multibrand platform that turns complex global operations into one observable and continuously delivered engineering system.',
+      'I own a distributed commerce platform and chose its multibrand architecture across frontend and backend. The goal: release more brands with the same engineering team while retaining distinct experiences and clear system boundaries.',
+    platformDetail: true,
     image: '/assets/commerce-platform.png',
     imageAlt: 'Diagram of a cloud-native global commerce platform spanning markets, services and delivery pipelines',
     imageWidth: 1774,
     imageHeight: 887,
     facts: [
       { value: '40', label: 'transactional markets' },
-      { value: '26', label: 'AWS EKS microservices' },
-      { value: '176', label: 'pipelines and environments' },
-      { value: '6 min', label: 'average deployment' },
-    ],
-    evidence: [
-      {
-        claim: 'Peak traffic',
-        value: 'Up to 1B requests in a peak month',
-        context: 'Observed operating scale across the multibrand commerce platform during peak periods.',
-      },
-      {
-        claim: 'Delivery cadence',
-        value: '273 deployments per week',
-        context: 'A delivery-throughput measure across the platform pipeline and environment landscape.',
-      },
-      {
-        claim: 'Deployment speed',
-        value: '6-minute average deployment',
-        context: 'Average pipeline deployment duration used to track delivery-system performance.',
-      },
-      {
-        claim: 'Operating leverage',
-        value: 'Approximately $800k annual Opex removed',
-        context: 'Annualized infrastructure savings attributed to the Akamai-to-Cloudflare migration.',
-      },
+      { value: '3', label: 'live brands' },
+      { value: 'Async', label: 'queues, topics and workers' },
+      { value: 'IaC', label: 'infrastructure and delivery' },
     ],
     roleSummary:
-      'I led the architecture and zero-to-production delivery, aligned engineering execution with the roadmap, and owned SDLC, release, vendor and reliability decisions across the platform.',
+      'I own the platform direction—from multibrand architecture to engineering delivery and operational accountability.',
     decisions: [
       {
         title: 'One platform instead of duplicated stacks',
-        detail: 'Established a shared multibrand architecture with brand-aware routing, common services and backward-compatible evolution across markets.',
+        detail: 'Chose shared frontend and backend capabilities with explicit brand boundaries. Build-time frontend selection, brand traits and common service contracts make reuse deliberate rather than accidental.',
       },
       {
         title: 'Delivery as an observable system',
         detail: 'Standardised infrastructure and delivery around Terraform, ArgoCD and operational telemetry so teams could release frequently with evidence.',
       },
       {
-        title: 'Move control and cost to the edge',
-        detail: 'Led the staged Akamai-to-Cloudflare migration to improve platform control while removing approximately $800k in annual operating cost.',
+        title: 'Own the edge migration',
+        detail: 'Led the staged Akamai-to-Cloudflare migration, connecting edge configuration, delivery planning and operational ownership.',
       },
     ],
     chapters: [
       {
         label: 'Context',
-        title: 'One platform, many markets.',
-        copy: 'The challenge was bigger than shipping features: align architecture, delivery, reliability and team ownership across a global commerce estate serving millions of visitors.',
+        title: 'One platform, distinct responsibilities.',
+        copy: 'The architecture has to connect brand experiences, commerce state, customer systems, background work and operational ownership. Shared foundations must coexist with brand-specific capabilities and market rules.',
       },
       {
         label: 'System',
-        title: 'Cloud-native by design.',
-        copy: 'Twenty-six microservices run on AWS EKS with infrastructure expressed through Terraform, delivery orchestrated by ArgoCD and change flowing through a broad pipeline and environment landscape.',
+        title: 'More than synchronous services.',
+        copy: 'Containerised services on AWS EKS operate alongside Azure queues and topics, RQ background jobs, persistent price scheduling, serverless asset processing and derived search/data models. Each execution model brings different recovery and consistency requirements.',
       },
       {
-        label: 'Outcome',
-        title: 'Scale with operational leverage.',
-        copy: 'The platform supports up to one billion requests in peak months and 273 deployments per week. The Akamai-to-Cloudflare migration also removed approximately $800k in annual operating cost.',
+        label: 'Ownership',
+        title: 'Shared architecture. Accountable operations.',
+        copy: 'My scope connects the multibrand architecture, infrastructure and delivery foundations with operational ownership. The platform case includes the staged Akamai-to-Cloudflare migration and the responsibilities across services, integrations and engineering teams.',
       },
     ],
-    ownership: 'Technology roadmap · SDLC · release governance · platform delivery · vendors · reliability',
+    ownership: 'Multibrand architecture · distributed systems · technology roadmap · delivery governance · operational ownership',
   },
   '/work/applied-ai-product-discovery': {
     number: '03 / Independent AI reference architecture',

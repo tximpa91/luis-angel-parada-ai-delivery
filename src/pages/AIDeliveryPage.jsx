@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { aiDeliveryReferences } from '../data/references.js'
+import AITransformation from '../components/AITransformation.jsx'
 
 const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'luisparada364@icloud.com'
 const SOURCE_REPOSITORY = 'https://github.com/tximpa91/luis-angel-parada-ai-delivery'
@@ -130,9 +131,9 @@ function Header() {
         Luis Angel Parada
       </a>
       <nav className={open ? 'site-nav site-nav--open' : 'site-nav'} aria-label="Primary navigation">
-        <a href="/ai-delivery#capability" onClick={() => setOpen(false)}>Capability</a>
+        <a href="/ai-delivery#transformation" onClick={() => setOpen(false)}>Transformation</a>
         <a href="/ai-delivery#delivery-model" onClick={() => setOpen(false)}>Delivery model</a>
-        <a href="/ai-delivery#proof-pack" onClick={() => setOpen(false)}>Proof pack</a>
+        <a href="/ai-delivery#proof-pack" onClick={() => setOpen(false)}>Delivery records</a>
         <a href="/ai-delivery#answers" onClick={() => setOpen(false)}>Answers</a>
         <a href="/ai-delivery#contact" onClick={() => setOpen(false)}>Contact</a>
       </nav>
@@ -193,24 +194,24 @@ function Hero() {
         <nav className="breadcrumb" aria-label="Breadcrumb">
           <a href="/">Portfolio</a>
           <span aria-hidden="true">/</span>
-          <span aria-current="page">AI Delivery Lifecycle</span>
+          <span aria-current="page">AI Engineering Transformation</span>
         </nav>
         <p className="role-line">Head / Director of Engineering · Applied AI Leadership</p>
-        <h1>I turn AI ambition into a delivery system your engineers can trust.</h1>
+        <h1>I can lead your organisation’s AI engineering transformation.</h1>
         <p className="hero-lede">
-          I help companies move from AI-assisted coding to governed, human-led AI delivery.
+          I help engineering organisations turn AI adoption into a dependable way of delivering software. I bring the leadership to change team practices, the technical depth to connect agents with complex platforms, and hands-on experience building governed AI-DLC workflows.
         </p>
         <div className="article-meta" aria-label="Article details">
           <span>By Luis Angel Parada</span>
-          <span>Independent operating model</span>
-          <time dateTime="2026-09-25">Reviewed 25 September 2026</time>
+          <span>Engineering leadership & transformation</span>
+          <time dateTime="2026-09-27">Reviewed 27 September 2026</time>
         </div>
         <div className="hero-actions">
           <a className="button button--gold" href="#contact">
-            Discuss a leadership role <Arrow />
+            Discuss a role or contract <Arrow />
           </a>
-          <a className="text-link" href="#delivery-model">
-            See the delivery model <Arrow />
+          <a className="text-link" href="#transformation-journey">
+            Explore the experience I bring <Arrow />
           </a>
         </div>
       </div>
@@ -226,12 +227,11 @@ function Hero() {
 function EvidenceBasis() {
   return (
     <aside className="provenance-band" id="evidence-basis">
-      <span>Evidence basis</span>
+      <span>Experience behind the approach</span>
       <p>
-        AI-DLC is an original operating model by Luis Angel Parada, informed by first-hand platform
-        delivery and SDLC governance work. It is a personal framework—not an industry standard or a
-        prior client deliverable. Public risk, secure-development and supply-chain frameworks are
-        cited as external foundations.
+        My transformation work connects use-case discovery, reusable skills, MCP context and specialised
+        development agents with delivery automation. The experience below explains the decisions I have
+        led; the framework shows how I would apply that approach to your organisation.
       </p>
     </aside>
   )
@@ -241,7 +241,7 @@ function CapabilitySection() {
   return (
     <section className="capability section" id="capability">
       <div className="section-intro reveal">
-        <p className="section-number">02 / Operating model</p>
+        <p className="section-number">03 / Operating model</p>
         <h2>AI needs an operating model.</h2>
         <p>
           A useful agent can complete a task. A delivery system must also control context,
@@ -279,7 +279,7 @@ function DeliveryModel() {
   return (
     <section className="delivery section" id="delivery-model">
       <div className="delivery-heading reveal">
-        <p className="section-number">03 / Delivery roadmap</p>
+        <p className="section-number">04 / Delivery roadmap</p>
         <h2>A practical path from assisted coding to <em>governed delivery.</em></h2>
         <p>
           A focused path to real outcomes, with clear separation of agent execution and human
@@ -383,7 +383,7 @@ function AnswersSection() {
   return (
     <section className="answers section" id="answers">
       <div className="answers-heading reveal">
-        <p className="section-number">05 / Direct answers</p>
+        <p className="section-number">06 / Direct answers</p>
         <h2>Questions an AI delivery leader should be able to answer.</h2>
         <p>Clear definitions make the operating model easier to review, compare and challenge.</p>
       </div>
@@ -423,9 +423,9 @@ function ProofPack() {
   return (
     <section className="proof-pack section" id="proof-pack">
       <div className="proof-pack-heading reveal">
-        <p className="section-number">04 / Tangible proof</p>
-        <h2>What the operating model actually produces.</h2>
-        <p>AI-DLC is not a diagram alone. These are the working records that make an AI-assisted change reviewable, controllable and ready for a human decision.</p>
+        <p className="section-number">05 / Delivery records</p>
+        <h2>Records that make delivery reviewable.</h2>
+        <p>The workflow I can establish makes intent, risk and release decisions reviewable. A delivery contract, risk classification and traceable evidence record give engineering, security and business stakeholders a shared basis for deciding what can move forward.</p>
       </div>
       <div className="proof-artifacts">
         {proofArtifacts.map((artifact, index) => (
@@ -438,7 +438,7 @@ function ProofPack() {
         ))}
       </div>
       <div className="proof-source reveal">
-        <div><span>Implementation evidence</span><p>The public source includes the Docker build, Cloudflare Worker configuration, Terraform and the portfolio implementation.</p></div>
+        <div><span>Portfolio source</span><p>The public source includes the Docker build, Cloudflare Worker configuration, Terraform and this portfolio. It is not the implementation source for the organisation’s AI delivery automation.</p></div>
         <a href={SOURCE_REPOSITORY} target="_blank" rel="noreferrer">View source repository <Arrow /></a>
       </div>
     </section>
@@ -448,12 +448,12 @@ function ProofPack() {
 function ContactSection() {
   const [selected, setSelected] = useState(challenges[0])
   const [status, setStatus] = useState('')
-  const outreachText = `I would like to speak with Luis Angel Parada about an engineering leadership opportunity focused on ${selected.toLowerCase()}.`
+  const outreachText = `I would like to speak with Luis Angel Parada about a leadership role or contract focused on ${selected.toLowerCase()}.`
 
   const startConversation = async () => {
     if (CONTACT_EMAIL) {
-      const subject = encodeURIComponent(`Engineering leadership conversation: ${selected}`)
-      const body = encodeURIComponent(`${outreachText}\n\nCompany:\nRole or mandate:\nBest time to speak:`)
+      const subject = encodeURIComponent(`Leadership role or contract: ${selected}`)
+      const body = encodeURIComponent(`${outreachText}\n\nCompany:\nRole or contract scope:\nBest time to speak:`)
       window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
       return
     }
@@ -469,9 +469,9 @@ function ContactSection() {
   return (
     <section className="contact section" id="contact">
       <div className="contact-heading reveal">
-        <p className="section-number">06 / Leadership conversation</p>
+        <p className="section-number">07 / Leadership conversation</p>
         <h2>If AI is entering your SDLC, I can lead the <em>system around it.</em></h2>
-        <p>I am open to Head / Director of Engineering and Applied AI leadership roles where AI becomes durable organisational capability.</p>
+        <p>Let’s discuss a permanent engineering or Applied AI leadership role, or a contract to lead your transformation. Tell me the delivery challenge, platform complexity and team mandate you need someone to own.</p>
       </div>
 
       <div className="challenge-picker reveal">
@@ -499,7 +499,7 @@ function ContactSection() {
         </div>
         <div className="contact-actions">
           <button className="button button--gold" type="button" onClick={startConversation}>
-            {CONTACT_EMAIL ? 'Discuss a leadership role' : 'Copy an introduction'} <Arrow />
+            {CONTACT_EMAIL ? 'Discuss a role or contract' : 'Copy an introduction'} <Arrow />
           </button>
           <a className="button button--outline" href="#evidence">
             Review the evidence <Arrow />
@@ -521,6 +521,7 @@ function Footer() {
       <nav aria-label="Footer navigation">
         <a href="/">Portfolio</a>
         <a href="/ai-delivery#capability">Capability</a>
+        <a href="/ai-delivery#transformation">Transformation</a>
         <a href="/ai-delivery#answers">Answers</a>
         <a href={SOURCE_REPOSITORY} target="_blank" rel="noreferrer">Source</a>
         <a href="/ai-delivery#contact">Contact</a>
@@ -536,6 +537,7 @@ function AIDeliveryPage() {
       <main>
         <Hero />
         <EvidenceBasis />
+        <AITransformation />
         <CapabilitySection />
         <DeliveryModel />
         <ProofPack />
