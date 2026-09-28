@@ -477,7 +477,6 @@ function LeadershipProfile() {
               <p>I bring the leadership to align teams, the technical depth to own distributed systems, and the experience to change how engineering delivers with AI. A decade from hands-on engineering to Global Head of Digital Engineering grounds the capability I bring to your next leadership role or contract.</p>
               <div className="pf-profile-actions">
                 <a className="pf-button pf-button--primary" href={`mailto:${EMAIL}?subject=Engineering%20leadership%20role%20or%20contract`}>Discuss a role or contract <Arrow diagonal /></a>
-                <button className="pf-print-button" type="button" onClick={() => window.print()}>Print / save as PDF</button>
               </div>
             </div>
           </div>

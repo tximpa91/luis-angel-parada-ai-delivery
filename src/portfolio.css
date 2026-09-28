@@ -1022,20 +1022,6 @@ body.ai-mode {
 
 .pf-profile-actions .pf-button { min-width: 230px; }
 
-.pf-print-button {
-  min-height: 58px;
-  padding: 0 20px;
-  border: 1px solid var(--pf-ink);
-  background: transparent;
-  color: var(--pf-ink);
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.pf-print-button:hover,
-.pf-print-button:focus-visible { background: var(--pf-ink); color: white; }
-
 .pf-profile-impact {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1318,7 +1304,6 @@ body.ai-mode {
   .pf-profile-heading { margin-top: 58px; }
   .pf-profile-heading h1 { font-size: 59px; }
   .pf-profile-actions { align-items: stretch; flex-direction: column; }
-  .pf-print-button { width: 100%; }
   .pf-profile-impact { grid-template-columns: 1fr; }
   .pf-profile-impact article { min-height: 160px; padding: 22px; }
   .pf-profile-section { padding-block: 82px; }
