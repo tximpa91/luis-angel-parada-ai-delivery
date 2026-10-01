@@ -3,6 +3,7 @@ import { aiDeliveryReferences } from '../data/references.js'
 import AITransformation from '../components/AITransformation.jsx'
 
 const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'luisparada364@icloud.com'
+const LINKEDIN_PROFILE = 'https://www.linkedin.com/in/luis-angel-parada/'
 const SOURCE_REPOSITORY = 'https://github.com/tximpa91/luis-angel-parada-ai-delivery'
 
 const capabilities = [
@@ -523,6 +524,7 @@ function Footer() {
         <a href="/ai-delivery#capability">Capability</a>
         <a href="/ai-delivery#transformation">Transformation</a>
         <a href="/ai-delivery#answers">Answers</a>
+        <a href={LINKEDIN_PROFILE} target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href={SOURCE_REPOSITORY} target="_blank" rel="noreferrer">Source</a>
         <a href="/ai-delivery#contact">Contact</a>
       </nav>

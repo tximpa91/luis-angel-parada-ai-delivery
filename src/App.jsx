@@ -5,6 +5,7 @@ import { career, caseStudies, leadershipScope, practices, projects, spectrum } f
 import { getSeoForPath, getStructuredData, routeSeo } from './seo.js'
 
 const EMAIL = 'luisparada364@icloud.com'
+const LINKEDIN_PROFILE = 'https://www.linkedin.com/in/luis-angel-parada/'
 const SOURCE_REPOSITORY = 'https://github.com/tximpa91/luis-angel-parada-ai-delivery'
 
 function Arrow({ diagonal = false }) {
@@ -288,7 +289,7 @@ function PortfolioHome() {
             <a className="pf-button pf-button--light" href={`mailto:${EMAIL}?subject=Engineering%20leadership%20role%20or%20contract`}>Discuss a role or contract <Arrow diagonal /></a>
           </div>
           <nav aria-label="Contact links">
-            <a href="https://www.linkedin.com/in/luis-angel-parada" target="_blank" rel="noreferrer">LinkedIn <Arrow diagonal /></a>
+            <a href={LINKEDIN_PROFILE} target="_blank" rel="noopener noreferrer">LinkedIn <Arrow diagonal /></a>
             <RouteLink to="/leadership-profile">Leadership profile <Arrow diagonal /></RouteLink>
             <a href={SOURCE_REPOSITORY} target="_blank" rel="noreferrer">View source <Arrow diagonal /></a>
             <a href={`mailto:${EMAIL}`}>Email <Arrow diagonal /></a>
@@ -477,6 +478,7 @@ function LeadershipProfile() {
               <p>I bring the leadership to align teams, the technical depth to own distributed systems, and the experience to change how engineering delivers with AI. A decade from hands-on engineering to Global Head of Digital Engineering grounds the capability I bring to your next leadership role or contract.</p>
               <div className="pf-profile-actions">
                 <a className="pf-button pf-button--primary" href={`mailto:${EMAIL}?subject=Engineering%20leadership%20role%20or%20contract`}>Discuss a role or contract <Arrow diagonal /></a>
+                <a className="pf-button" href={LINKEDIN_PROFILE} target="_blank" rel="noopener noreferrer">View LinkedIn profile <Arrow diagonal /></a>
               </div>
             </div>
           </div>
