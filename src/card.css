@@ -64,10 +64,6 @@
   white-space: nowrap;
 }
 
-.pf-card-period {
-  color: var(--pf-blue);
-}
-
 .pf-card-position {
   max-width: 660px;
   margin: 36px 0 0;

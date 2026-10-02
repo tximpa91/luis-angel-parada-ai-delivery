@@ -554,7 +554,7 @@ function ContactCardPage() {
             <div className="pf-card-intro">
               <img className="pf-card-mark" src="/assets/lap-brand-mark.svg" alt="" width="128" height="128" aria-hidden="true" />
               <p className="pf-eyebrow">Good to meet you</p>
-              <h1 id="card-name">Luis Angel<br /><span>Parada<span className="pf-card-period">.</span></span></h1>
+              <h1 id="card-name">Luis Angel<br /><span>Parada</span></h1>
               <p className="pf-card-position">Engineering leadership for complex platforms and applied AI.</p>
               <p className="pf-card-summary">
                 I lead engineering organisations, own distributed systems and help teams turn AI ambition into dependable delivery.
