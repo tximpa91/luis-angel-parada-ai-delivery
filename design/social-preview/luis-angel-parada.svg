@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <title>Luis Angel Parada social sharing card</title>
+  <rect width="1200" height="630" fill="#090d14" />
+  <rect x="235" width="730" height="630" fill="#f6f6f2" />
+
+  <g fill="none" stroke="#2a3342" stroke-width="1">
+    <path d="M50 0v630M110 0v630M170 0v630M1030 0v630M1090 0v630M1150 0v630" />
+    <path d="M0 90h235M0 150h235M0 210h235M0 270h235M0 330h235M0 390h235M0 450h235M0 510h235M0 570h235" />
+    <path d="M965 90h235M965 150h235M965 210h235M965 270h235M965 330h235M965 390h235M965 450h235M965 510h235M965 570h235" />
+  </g>
+  <g fill="none" stroke="#7d9dff" stroke-width="3" stroke-linecap="square">
+    <path d="M44 440h64V211h90" />
+    <path d="M1002 192h89v180h65" />
+    <path d="M1010 465h68v-92h64" opacity=".7" />
+  </g>
+  <g fill="#1358ff">
+    <rect x="32" y="428" width="24" height="24" />
+    <rect x="96" y="199" width="24" height="24" />
+    <rect x="186" y="199" width="24" height="24" />
+    <rect x="990" y="180" width="24" height="24" />
+    <rect x="1079" y="360" width="24" height="24" />
+    <rect x="1144" y="360" width="24" height="24" />
+  </g>
+  <g fill="#f6f6f2">
+    <circle cx="1078" cy="465" r="7" />
+    <circle cx="1142" cy="373" r="7" />
+  </g>
+
+  <g transform="translate(303 51) scale(.59)" fill="#1358ff">
+    <path d="M20 20h18v68h42v18H20V20Z" />
+    <path fill-rule="evenodd" d="M50 20h28c19 0 30 12 30 29S97 78 78 78H68v13H50V20Zm18 18v22h10c8 0 12-4 12-11s-4-11-12-11H68Z" />
+  </g>
+  <text x="394" y="92" fill="#202b3d" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" letter-spacing="2.3">ENGINEERING LEADERSHIP / APPLIED AI</text>
+
+  <text x="303" y="247" fill="#090d14" font-family="Georgia, 'Times New Roman', serif" font-size="92" letter-spacing="-5">Luis Angel</text>
+  <text x="303" y="349" fill="#090d14" font-family="Georgia, 'Times New Roman', serif" font-size="106" letter-spacing="-6">Parada<tspan fill="#1358ff">.</tspan></text>
+
+  <rect x="306" y="402" width="82" height="5" fill="#1358ff" />
+  <text x="303" y="466" fill="#202b3d" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="500">Complex platforms. AI transformation.</text>
+
+  <line x1="303" y1="559" x2="897" y2="559" stroke="#cfd4dc" stroke-width="2" />
+  <text x="303" y="596" fill="#5c6676" font-family="Arial, Helvetica, sans-serif" font-size="18" letter-spacing="1.5">LUISANGELPARADA.COM</text>
+</svg>

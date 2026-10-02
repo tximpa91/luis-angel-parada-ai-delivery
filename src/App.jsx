@@ -103,7 +103,8 @@ function PortfolioHeader({ compact = false }) {
   return (
     <header className={`pf-header ${scrolled ? 'pf-header--scrolled' : ''} ${compact ? 'pf-header--compact' : ''}`}>
       <RouteLink className="pf-wordmark" to="/" onNavigate={() => setOpen(false)}>
-        Luis Angel Parada
+        <img src="/assets/lap-brand-mark.svg" alt="" width="40" height="40" aria-hidden="true" />
+        <span>Luis Angel Parada</span>
       </RouteLink>
       <nav className={open ? 'pf-nav pf-nav--open' : 'pf-nav'} aria-label="Portfolio navigation">
         {navItems.map(([label, href]) => (
@@ -551,6 +552,7 @@ function ContactCardPage() {
           </div>
           <div className="pf-card-layout">
             <div className="pf-card-intro">
+              <img className="pf-card-mark" src="/assets/lap-brand-mark.svg" alt="" width="128" height="128" aria-hidden="true" />
               <p className="pf-eyebrow">Good to meet you</p>
               <h1 id="card-name">Luis Angel<br /><span>Parada<span className="pf-card-period">.</span></span></h1>
               <p className="pf-card-position">Engineering leadership for complex platforms and applied AI.</p>
@@ -622,13 +624,17 @@ function App({ initialPathname }) {
     setMeta('name', 'description', seo.description)
     setMeta('name', 'robots', seo.robots)
     setMeta('property', 'og:type', seo.openGraphType)
-    setMeta('property', 'og:title', seo.title)
-    setMeta('property', 'og:description', seo.description)
+    setMeta('property', 'og:title', seo.shareTitle)
+    setMeta('property', 'og:description', seo.shareDescription)
     setMeta('property', 'og:image', seo.imageUrl || `https://luisangelparada.com${seo.image}`)
     setMeta('property', 'og:image:alt', seo.imageAlt)
-    setMeta('name', 'twitter:title', seo.title)
-    setMeta('name', 'twitter:description', seo.description)
+    setMeta('property', 'og:image:type', 'image/png')
+    setMeta('property', 'og:image:width', String(seo.imageWidth))
+    setMeta('property', 'og:image:height', String(seo.imageHeight))
+    setMeta('name', 'twitter:title', seo.shareTitle)
+    setMeta('name', 'twitter:description', seo.shareDescription)
     setMeta('name', 'twitter:image', seo.imageUrl || `https://luisangelparada.com${seo.image}`)
+    setMeta('name', 'twitter:image:alt', seo.imageAlt)
 
     let canonical = document.querySelector('link[rel="canonical"]')
     if (seo.canonical) {

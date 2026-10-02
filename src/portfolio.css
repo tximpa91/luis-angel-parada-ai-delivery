@@ -60,11 +60,21 @@ body.ai-mode {
 }
 
 .pf-wordmark {
+  display: inline-flex;
   width: max-content;
+  align-items: center;
+  gap: 7px;
   color: var(--pf-ink);
   font-family: var(--pf-serif);
   font-size: clamp(19px, 1.7vw, 27px);
   letter-spacing: -0.025em;
+}
+
+.pf-wordmark img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  flex: none;
 }
 
 .pf-nav {
@@ -1168,6 +1178,8 @@ body.ai-mode {
   :root { --pf-gutter: 20px; }
 
   .pf-header { height: 70px; grid-template-columns: 1fr auto; }
+  .pf-wordmark { gap: 3px; }
+  .pf-wordmark img { width: 34px; height: 34px; }
   .pf-header-cta { display: none; }
   .pf-menu { display: block; }
   .pf-nav {

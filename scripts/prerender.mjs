@@ -41,13 +41,17 @@ function createHtml(pathname) {
   html = setMeta(html, 'name', 'description', seo.description)
   html = setMeta(html, 'name', 'robots', seo.robots)
   html = setMeta(html, 'property', 'og:type', seo.openGraphType)
-  html = setMeta(html, 'property', 'og:title', seo.title)
-  html = setMeta(html, 'property', 'og:description', seo.description)
+  html = setMeta(html, 'property', 'og:title', seo.shareTitle)
+  html = setMeta(html, 'property', 'og:description', seo.shareDescription)
   html = setMeta(html, 'property', 'og:image', seo.imageUrl || `https://luisangelparada.com${seo.image}`)
   html = setMeta(html, 'property', 'og:image:alt', seo.imageAlt)
-  html = setMeta(html, 'name', 'twitter:title', seo.title)
-  html = setMeta(html, 'name', 'twitter:description', seo.description)
+  html = setMeta(html, 'property', 'og:image:type', 'image/png')
+  html = setMeta(html, 'property', 'og:image:width', String(seo.imageWidth))
+  html = setMeta(html, 'property', 'og:image:height', String(seo.imageHeight))
+  html = setMeta(html, 'name', 'twitter:title', seo.shareTitle)
+  html = setMeta(html, 'name', 'twitter:description', seo.shareDescription)
   html = setMeta(html, 'name', 'twitter:image', seo.imageUrl || `https://luisangelparada.com${seo.image}`)
+  html = setMeta(html, 'name', 'twitter:image:alt', seo.imageAlt)
 
   if (seo.canonical) {
     html = html.replace(

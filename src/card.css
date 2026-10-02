@@ -40,6 +40,13 @@
   align-items: flex-start;
 }
 
+.pf-card-mark {
+  display: block;
+  width: 88px;
+  height: 88px;
+  margin-bottom: 28px;
+}
+
 .pf-card-intro .pf-eyebrow {
   margin: 0;
 }
@@ -216,6 +223,7 @@
 
 @media (max-width: 760px) {
   .pf-card-main { padding-top: 112px; padding-bottom: 48px; }
+  .pf-card-mark { width: 70px; height: 70px; margin-bottom: 22px; }
   .pf-card-topline { font-size: 10px; }
   .pf-card-layout { display: block; }
   .pf-card-intro { padding: 52px 0 58px; }

@@ -9,30 +9,42 @@ export const routeSeo = {
     title: 'Luis Angel Parada | Head of Engineering & Applied AI Leader',
     description:
       'Engineering and Applied AI leader in Switzerland. Luis Angel Parada brings team leadership, distributed-platform ownership and AI transformation to roles and contracts.',
-    image: '/assets/portfolio-systems.png',
-    imageAlt: 'Luis Angel Parada portfolio: engineering systems, teams and outcomes',
+    shareTitle: 'Luis Angel Parada | Engineering Leadership & Applied AI',
+    shareDescription: 'I lead engineering organisations, own complex platforms and help teams turn applied AI into working systems.',
+    image: '/assets/luis-angel-parada-social-v1.png',
+    imageAlt: 'Luis Angel Parada social card: engineering leadership, complex platforms and AI transformation',
+    imageWidth: 1200,
+    imageHeight: 630,
     openGraphType: 'website',
     schemaType: 'ProfilePage',
     breadcrumbLabel: 'Portfolio',
-    dateModified: '2026-09-27',
+    dateModified: '2026-10-02',
   },
   '/leadership-profile': {
     title: 'Head of Engineering & Applied AI Leadership | Luis Angel Parada',
     description:
       'Hire Luis Angel Parada for engineering leadership or AI transformation: manager-of-managers experience, distributed-platform ownership and roles or contracts.',
-    image: '/assets/portfolio-systems.png',
-    imageAlt: 'Luis Angel Parada engineering leadership profile',
+    shareTitle: 'Engineering Leadership | Luis Angel Parada',
+    shareDescription: 'Engineering leader for complex distributed platforms, global teams and applied AI transformation.',
+    image: '/assets/luis-angel-parada-social-v1.png',
+    imageAlt: 'Luis Angel Parada social card: engineering leadership, complex platforms and AI transformation',
+    imageWidth: 1200,
+    imageHeight: 630,
     openGraphType: 'profile',
     schemaType: 'ProfilePage',
     breadcrumbLabel: 'Leadership Profile',
-    dateModified: '2026-09-27',
+    dateModified: '2026-10-02',
   },
   '/card': {
     title: 'Contact Luis Angel Parada | Engineering & Applied AI',
     description:
       'Connect with Luis Angel Parada, an engineering leader for complex platforms and applied AI. Save his contact details or explore his work.',
-    image: '/assets/portfolio-systems.png',
-    imageAlt: 'Luis Angel Parada engineering portfolio',
+    shareTitle: 'Connect with Luis Angel Parada',
+    shareDescription: 'Engineering leadership for complex platforms and applied AI. Save my contact or explore my work.',
+    image: '/assets/luis-angel-parada-social-v1.png',
+    imageAlt: 'Luis Angel Parada social card: engineering leadership, complex platforms and AI transformation',
+    imageWidth: 1200,
+    imageHeight: 630,
     openGraphType: 'profile',
     schemaType: 'ProfilePage',
     breadcrumbLabel: 'Contact Card',
@@ -45,6 +57,8 @@ export const routeSeo = {
       'Luis Angel Parada can lead your AI engineering transformation: team practices, MCP context, specialist agents and governed AI-DLC delivery. Discuss a role or contract.',
     image: '/assets/ai-delivery-system.png',
     imageAlt: 'Governed AI delivery lifecycle and operating model',
+    imageWidth: 1536,
+    imageHeight: 1024,
     openGraphType: 'article',
     schemaType: 'TechArticle',
     breadcrumbLabel: 'AI Engineering Transformation',
@@ -62,6 +76,8 @@ export const routeSeo = {
       'How Luis Angel Parada owns a three-brand distributed commerce platform: shared frontend and backend architecture, Azure messaging, RQ workers, data models and delivery governance.',
     image: '/assets/commerce-platform.png',
     imageAlt: 'Global commerce platform engineering case study',
+    imageWidth: 1774,
+    imageHeight: 887,
     openGraphType: 'article',
     schemaType: 'TechArticle',
     breadcrumbLabel: 'Global Commerce Platform',
@@ -78,6 +94,8 @@ export const routeSeo = {
       'An independent, non-deployed technical reference architecture for governed AI product discovery using LangGraph, RAG, FastAPI, Bedrock, evaluation and guardrails.',
     image: '/assets/applied-ai-discovery.png',
     imageAlt: 'Independent conceptual AI product discovery reference architecture',
+    imageWidth: 1774,
+    imageHeight: 887,
     openGraphType: 'article',
     schemaType: 'TechArticle',
     breadcrumbLabel: 'AI Product Discovery Architecture',
@@ -93,8 +111,10 @@ export const routeSeo = {
 export const notFoundSeo = {
   title: 'Page Not Found | Luis Angel Parada',
   description: 'The requested page could not be found.',
-  image: '/assets/portfolio-systems.png',
-  imageAlt: 'Luis Angel Parada engineering portfolio',
+  image: '/assets/luis-angel-parada-social-v1.png',
+  imageAlt: 'Luis Angel Parada social card: engineering leadership, complex platforms and AI transformation',
+  imageWidth: 1200,
+  imageHeight: 630,
   openGraphType: 'website',
   robots: 'noindex, follow',
 }
@@ -103,12 +123,19 @@ export const indexableRoutes = Object.keys(routeSeo)
 
 export function getSeoForPath(pathname) {
   const seo = routeSeo[pathname]
-  if (!seo) return notFoundSeo
+  if (!seo) return {
+    ...notFoundSeo,
+    shareTitle: notFoundSeo.title,
+    shareDescription: notFoundSeo.description,
+    imageUrl: `${SITE_URL}${notFoundSeo.image}`,
+  }
 
   return {
     ...seo,
     canonical: `${SITE_URL}${pathname === '/' ? '/' : pathname}`,
     imageUrl: `${SITE_URL}${seo.image}`,
+    shareTitle: seo.shareTitle || seo.title,
+    shareDescription: seo.shareDescription || seo.description,
     robots: seo.robots || 'index, follow, max-image-preview:large',
   }
 }

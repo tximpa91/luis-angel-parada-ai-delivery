@@ -1,0 +1,11 @@
+{
+  "name": "Luis Angel Parada social sharing card",
+  "source": "design/social-preview/luis-angel-parada.svg",
+  "export": "public/assets/luis-angel-parada-social-v1.png",
+  "dimensions": { "width": 1200, "height": 630 },
+  "format": "image/png",
+  "usedByRoutes": ["/", "/leadership-profile", "/card"],
+  "palette": ["#f6f6f2", "#090d14", "#1358ff"],
+  "provenance": "Original portfolio copy, palette, and LP mark; no third-party imagery",
+  "renderMethod": "Chromium SVG render at 1x device scale"
+}
