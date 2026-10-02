@@ -27,6 +27,18 @@ export const routeSeo = {
     breadcrumbLabel: 'Leadership Profile',
     dateModified: '2026-09-27',
   },
+  '/card': {
+    title: 'Contact Luis Angel Parada | Engineering & Applied AI',
+    description:
+      'Connect with Luis Angel Parada, an engineering leader for complex platforms and applied AI. Save his contact details or explore his work.',
+    image: '/assets/portfolio-systems.png',
+    imageAlt: 'Luis Angel Parada engineering portfolio',
+    openGraphType: 'profile',
+    schemaType: 'ProfilePage',
+    breadcrumbLabel: 'Contact Card',
+    dateModified: '2026-10-02',
+    robots: 'noindex, follow',
+  },
   '/ai-delivery': {
     title: 'AI Engineering Transformation & AI-DLC | Luis Angel Parada',
     description:
@@ -97,7 +109,7 @@ export function getSeoForPath(pathname) {
     ...seo,
     canonical: `${SITE_URL}${pathname === '/' ? '/' : pathname}`,
     imageUrl: `${SITE_URL}${seo.image}`,
-    robots: 'index, follow, max-image-preview:large',
+    robots: seo.robots || 'index, follow, max-image-preview:large',
   }
 }
 

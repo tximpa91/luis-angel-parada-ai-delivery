@@ -539,6 +539,50 @@ function LeadershipProfile() {
   )
 }
 
+function ContactCardPage() {
+  return (
+    <div className="pf-shell pf-card-shell">
+      <PortfolioHeader compact />
+      <main id="top" className="pf-card-main">
+        <section className="pf-card" aria-labelledby="card-name">
+          <div className="pf-card-topline">
+            <span>Digital contact card</span>
+            <span>Based in Switzerland</span>
+          </div>
+          <div className="pf-card-layout">
+            <div className="pf-card-intro">
+              <p className="pf-eyebrow">Good to meet you</p>
+              <h1 id="card-name">Luis Angel<br /><span>Parada<span className="pf-card-period">.</span></span></h1>
+              <p className="pf-card-position">Engineering leadership for complex platforms and applied AI.</p>
+              <p className="pf-card-summary">
+                I lead engineering organisations, own distributed systems and help teams turn AI ambition into dependable delivery.
+              </p>
+              <div className="pf-card-actions">
+                <a className="pf-button pf-button--primary" href="/luis-angel-parada.vcf" download="Luis-Angel-Parada.vcf">
+                  Save my contact <span className="pf-card-download" aria-hidden="true">↓</span>
+                </a>
+                <a className="pf-button pf-card-email" href={`mailto:${EMAIL}?subject=Great%20to%20meet%20you`}>
+                  Send an email <Arrow diagonal />
+                </a>
+              </div>
+              <p className="pf-card-hint">Keep this page handy, or save my details to your contacts.</p>
+            </div>
+            <nav className="pf-card-links" aria-label="Explore Luis Angel Parada's work and profile">
+              <div className="pf-card-links-heading"><span>Explore</span><span>01 — 04</span></div>
+              <RouteLink to="/" className="pf-card-link"><span><small>01 / Overview</small><strong>Portfolio</strong></span><Arrow diagonal /></RouteLink>
+              <RouteLink to="/leadership-profile" className="pf-card-link"><span><small>02 / Leadership</small><strong>Engineering leadership</strong></span><Arrow diagonal /></RouteLink>
+              <RouteLink to="/ai-delivery" className="pf-card-link"><span><small>03 / Applied AI</small><strong>AI transformation</strong></span><Arrow diagonal /></RouteLink>
+              <a href={LINKEDIN_PROFILE} className="pf-card-link" target="_blank" rel="noopener noreferrer"><span><small>04 / Connect</small><strong>LinkedIn</strong></span><Arrow diagonal /></a>
+              <p className="pf-card-links-note">Platforms · Teams · AI delivery</p>
+            </nav>
+          </div>
+        </section>
+      </main>
+      <PortfolioFooter />
+    </div>
+  )
+}
+
 function PortfolioFooter() {
   return (
     <footer className="pf-footer">
@@ -617,6 +661,7 @@ function App({ initialPathname }) {
 
   if (pathname === '/ai-delivery') return <AIDeliveryPage />
   if (pathname === '/leadership-profile') return <LeadershipProfile />
+  if (pathname === '/card') return <ContactCardPage />
   if (pathname === '/') return <PortfolioHome />
   if (routeSeo[pathname] && caseStudies[pathname]) return <CaseStudyPage study={caseStudies[pathname]} />
   return <NotFound />

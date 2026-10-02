@@ -17,6 +17,11 @@ export default {
     headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
     headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()')
 
+    if (url.pathname === '/luis-angel-parada.vcf' && assetResponse.ok) {
+      headers.set('Content-Type', 'text/vcard; charset=utf-8')
+      headers.set('Content-Disposition', 'attachment; filename="Luis-Angel-Parada.vcf"')
+    }
+
     if (/^\/assets\/index-[\w-]+\.(?:css|js)$/.test(url.pathname)) {
       headers.set('Cache-Control', 'public, max-age=31536000, immutable')
     } else if (url.pathname.startsWith('/assets/')) {

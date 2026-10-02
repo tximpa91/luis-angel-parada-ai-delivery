@@ -1,0 +1,240 @@
+.pf-card-main {
+  min-height: 100svh;
+  padding: 126px var(--pf-gutter) 84px;
+}
+
+.pf-card {
+  max-width: var(--pf-max);
+  margin: 0 auto;
+}
+
+.pf-card-topline,
+.pf-card-links-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.pf-card-topline {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--pf-ink);
+  color: var(--pf-slate);
+}
+
+.pf-card-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(360px, .88fr);
+  min-height: 655px;
+  border-bottom: 1px solid var(--pf-line);
+}
+
+.pf-card-intro {
+  display: flex;
+  min-width: 0;
+  padding: clamp(52px, 6vw, 96px) clamp(34px, 5vw, 80px) 62px 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.pf-card-intro .pf-eyebrow {
+  margin: 0;
+}
+
+.pf-card-intro h1 {
+  margin: 30px 0 0;
+  font-family: var(--pf-serif);
+  font-size: clamp(66px, 7.2vw, 128px);
+  font-weight: 400;
+  letter-spacing: -.065em;
+  line-height: .91;
+}
+
+.pf-card-intro h1 > span {
+  white-space: nowrap;
+}
+
+.pf-card-period {
+  color: var(--pf-blue);
+}
+
+.pf-card-position {
+  max-width: 660px;
+  margin: 36px 0 0;
+  color: var(--pf-ink-soft);
+  font-size: clamp(22px, 2vw, 31px);
+  font-weight: 500;
+  letter-spacing: -.03em;
+  line-height: 1.27;
+}
+
+.pf-card-summary {
+  max-width: 570px;
+  margin: 22px 0 0;
+  color: var(--pf-slate);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.pf-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.pf-card-actions .pf-button {
+  min-width: 215px;
+}
+
+.pf-card-download {
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.pf-card-email {
+  border-color: var(--pf-ink);
+  color: var(--pf-ink);
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.pf-card-email:hover,
+.pf-card-email:focus-visible {
+  background: var(--pf-ink);
+  color: white;
+}
+
+.pf-card-hint {
+  margin: 18px 0 0;
+  color: var(--pf-slate);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.pf-card-links {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  padding: 38px clamp(26px, 3.5vw, 56px) 30px;
+  overflow: hidden;
+  background: var(--pf-ink);
+  color: white;
+  flex-direction: column;
+}
+
+.pf-card-links::before {
+  position: absolute;
+  top: -120px;
+  right: -150px;
+  width: 400px;
+  height: 400px;
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+}
+
+.pf-card-links::after {
+  position: absolute;
+  top: -75px;
+  right: -105px;
+  width: 310px;
+  height: 310px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+}
+
+.pf-card-links-heading {
+  position: relative;
+  z-index: 1;
+  margin-bottom: auto;
+  padding-bottom: 60px;
+  color: #a6b1c3;
+}
+
+.pf-card-link {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 96px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid #455063;
+  transition: color 160ms ease, padding-left 160ms ease;
+}
+
+.pf-card-link:hover,
+.pf-card-link:focus-visible {
+  padding-left: 10px;
+  color: #86aaff;
+}
+
+.pf-card-link span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pf-card-link small {
+  color: #9facbf;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.pf-card-link strong {
+  font-family: var(--pf-serif);
+  font-size: clamp(23px, 2.1vw, 34px);
+  font-weight: 400;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+}
+
+.pf-card-links-note {
+  margin: 26px 0 0;
+  color: #9facbf;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1040px) {
+  .pf-card-layout { grid-template-columns: minmax(0, 1fr) minmax(330px, .85fr); }
+  .pf-card-intro h1 { font-size: clamp(64px, 7.2vw, 86px); }
+  .pf-card-actions .pf-button { min-width: 190px; }
+}
+
+@media (max-width: 760px) {
+  .pf-card-main { padding-top: 112px; padding-bottom: 48px; }
+  .pf-card-topline { font-size: 10px; }
+  .pf-card-layout { display: block; }
+  .pf-card-intro { padding: 52px 0 58px; }
+  .pf-card-intro h1 { margin-top: 24px; font-size: clamp(62px, 12.8vw, 96px); }
+  .pf-card-position { margin-top: 30px; font-size: clamp(22px, 5.4vw, 29px); }
+  .pf-card-summary { font-size: 15px; }
+  .pf-card-actions { width: 100%; }
+  .pf-card-actions .pf-button { width: 100%; }
+  .pf-card-links { margin: 0 calc(var(--pf-gutter) * -1); padding: 36px var(--pf-gutter); }
+  .pf-card-links-heading { padding-bottom: 62px; }
+  .pf-card-link { min-height: 91px; }
+  .pf-card-link strong { font-size: 28px; }
+}
+
+@media (max-width: 380px) {
+  .pf-card-intro h1 { font-size: 59px; }
+  .pf-card-topline span:last-child { text-align: right; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-card-link { transition: none; }
+}
