@@ -7,6 +7,7 @@ const rootDirectory = resolve(import.meta.dirname, '..')
 const outputDirectory = resolve(rootDirectory, 'dist')
 const template = await readFile(resolve(outputDirectory, 'index.html'), 'utf8')
 const serverBundle = await import(pathToFileURL(resolve(rootDirectory, 'dist-ssr/entry-server.js')))
+const isoDateTimeWithZone = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})$/
 
 function escapeAttribute(value) {
   return value
@@ -25,6 +26,13 @@ function setMeta(html, attribute, key, content) {
 function createHtml(pathname) {
   const seo = getSeoForPath(pathname)
   const structuredData = getStructuredData(pathname)
+  for (const item of structuredData?.['@graph'] || []) {
+    if (item.dateModified && (
+      !isoDateTimeWithZone.test(item.dateModified) || Number.isNaN(Date.parse(item.dateModified))
+    )) {
+      throw new Error(`Invalid dateModified for ${pathname}: expected an ISO 8601 date-time with timezone`)
+    }
+  }
   const rendered = serverBundle.render(pathname)
   const resourceHints = rendered.match(/<link\s+rel="preload"[^>]*\/?>/gi) || []
   const appMarkup = rendered.replace(/<link\s+rel="preload"[^>]*\/?>/gi, '')

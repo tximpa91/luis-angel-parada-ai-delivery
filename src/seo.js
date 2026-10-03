@@ -18,7 +18,7 @@ export const routeSeo = {
     openGraphType: 'website',
     schemaType: 'ProfilePage',
     breadcrumbLabel: 'Portfolio',
-    dateModified: '2026-10-02',
+    dateModified: '2026-10-02T11:33:32+02:00',
   },
   '/leadership-profile': {
     title: 'Head of Engineering & Applied AI Leadership | Luis Angel Parada',
@@ -33,7 +33,7 @@ export const routeSeo = {
     openGraphType: 'profile',
     schemaType: 'ProfilePage',
     breadcrumbLabel: 'Leadership Profile',
-    dateModified: '2026-10-02',
+    dateModified: '2026-10-02T11:33:32+02:00',
   },
   '/card': {
     title: 'Contact Luis Angel Parada | Engineering & Applied AI',
@@ -48,7 +48,7 @@ export const routeSeo = {
     openGraphType: 'profile',
     schemaType: 'ProfilePage',
     breadcrumbLabel: 'Contact Card',
-    dateModified: '2026-10-02',
+    dateModified: '2026-10-02T12:01:49+02:00',
     robots: 'noindex, follow',
   },
   '/ai-delivery': {
@@ -68,7 +68,7 @@ export const routeSeo = {
     backstory: 'Luis Angel Parada describes his first-hand transformation work and states that L3 is operating and L4 implementation is underway. The maturity lens references an AWS conference framework and public AI-DLC methodology; it is not AWS certification or a claim of a completed autonomous software factory.',
     about: ['AI engineering transformation', 'Model Context Protocol', 'Specialised development subagents', 'AI-SDLC maturity', 'AI delivery lifecycle', 'Human-in-the-loop delivery'],
     citations: aiDeliveryReferences,
-    dateModified: '2026-09-27',
+    dateModified: '2026-09-28T09:04:08+02:00',
   },
   '/work/commerce-platform': {
     title: 'Multibrand & Distributed Platform Architecture | Luis Angel Parada',
@@ -86,7 +86,7 @@ export const routeSeo = {
     abstract: 'A first-hand engineering leadership case study of a three-brand commerce platform, explaining shared architecture, asynchronous execution, data ownership and the objective of further brand launches with the same team.',
     backstory: 'A first-hand account of architecture decisions, delivery responsibilities and operational ownership. Employer and client identity are intentionally omitted.',
     about: ['Multibrand architecture', 'Distributed systems', 'Azure Service Bus', 'Background workers', 'Platform engineering', 'Continuous delivery'],
-    dateModified: '2026-09-27',
+    dateModified: '2026-09-28T09:04:08+02:00',
   },
   '/work/applied-ai-product-discovery': {
     title: 'AI Product Discovery Reference Architecture | Luis Angel Parada',
@@ -105,6 +105,7 @@ export const routeSeo = {
     backstory: 'An original personal reference architecture by Luis Angel Parada. It is supported by public product documentation and has not been commissioned or deployed for an employer or client.',
     about: ['LangGraph', 'Retrieval-augmented generation', 'Amazon Bedrock', 'AI evaluation', 'AI guardrails'],
     citations: productDiscoveryReferences,
+    dateModified: '2026-09-28T09:04:08+02:00',
   },
 }
 
@@ -206,7 +207,7 @@ export function getStructuredData(pathname) {
         mainEntity: { '@id': PERSON_ID },
         isPartOf: { '@id': WEBSITE_ID },
         inLanguage: 'en',
-        dateModified: seo.dateModified || '2026-09-25',
+        ...(seo.dateModified ? { dateModified: seo.dateModified } : {}),
         publishingPrinciples: `${SITE_URL}/#editorial-standard`,
       }
     : {
@@ -236,7 +237,7 @@ export function getStructuredData(pathname) {
         publishingPrinciples: `${SITE_URL}/#editorial-standard`,
         inLanguage: 'en',
         datePublished: '2026-09-22',
-        dateModified: seo.dateModified || '2026-09-25',
+        ...(seo.dateModified ? { dateModified: seo.dateModified } : {}),
       }
 
   const breadcrumb = pathname === '/' ? null : {
