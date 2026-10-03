@@ -132,7 +132,7 @@ function PortfolioHome() {
       <PortfolioHeader />
       <main>
         <section className="pf-hero" id="top">
-          <div className="pf-hero-copy" data-reveal>
+          <div className="pf-hero-copy">
             <p className="pf-kicker">Head / Director of Engineering · Applied AI Leadership</p>
             <h1>I lead engineering organisations and turn applied AI into working systems.</h1>
             <p className="pf-lede">
@@ -145,16 +145,20 @@ function PortfolioHome() {
               <RouteLink className="pf-text-link" to="/leadership-profile">Leadership profile <Arrow /></RouteLink>
             </div>
           </div>
-          <div className="pf-hero-art" data-reveal aria-hidden="true">
+          <div className="pf-hero-art" aria-hidden="true">
             <span className="pf-orbit pf-orbit--one" />
             <span className="pf-orbit pf-orbit--two" />
-            <img
-              src="/assets/portfolio-systems.png"
-              alt=""
-              width="1672"
-              height="941"
-              fetchPriority="high"
-            />
+            <picture>
+              <source media="(max-width: 760px)" srcSet="/assets/portfolio-systems-mobile.webp" type="image/webp" />
+              <img
+                src="/assets/portfolio-systems.webp"
+                alt=""
+                width="1672"
+                height="941"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
           <div className="pf-hero-note" aria-hidden="true">
             <span>Systems</span><span>Teams</span><span>Outcomes</span>
@@ -209,7 +213,8 @@ function PortfolioHome() {
                     alt=""
                     width={project.imageWidth}
                     height={project.imageHeight}
-                    loading={index === 0 ? 'eager' : 'lazy'}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </RouteLink>
               </article>

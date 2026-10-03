@@ -37,6 +37,13 @@ function createHtml(pathname) {
     html = html.replace('</head>', `    ${resourceHints.join('\n    ')}\n  </head>`)
   }
 
+  if (pathname === '/') {
+    html = html.replace(
+      '</head>',
+      '    <link rel="preload" as="image" href="/assets/portfolio-systems.webp" media="(min-width: 1181px)" fetchpriority="high" />\n  </head>',
+    )
+  }
+
   html = html.replace(/<title>[^<]*<\/title>/i, `<title>${escapeAttribute(seo.title)}</title>`)
   html = setMeta(html, 'name', 'description', seo.description)
   html = setMeta(html, 'name', 'robots', seo.robots)
