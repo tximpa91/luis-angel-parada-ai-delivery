@@ -17,7 +17,7 @@ export const platformDomains = [
     title: 'Commerce & financial lifecycles',
     subtitle: 'Business invariants across independently failing systems.',
     technologies: 'Python services · typed APIs · payment-provider integrations',
-    description: 'Orders, payments, financing, fraud, gifting, fulfilment and after-sales are connected domains with different responsibilities. The difficult work is coordinating their state—not simply connecting their APIs.',
+    description: 'Orders, payments, financing, fraud, gifting, fulfilment and after-sales are connected domains with different responsibilities. The difficult work is coordinating their state, not simply connecting their APIs.',
     capabilities: [
       ['Order lifecycle', 'Order creation, capture, shipment, tracking, returns and refunds involve multiple transitions, including partial payments and split fulfilment.'],
       ['Market-specific rules', 'Payment methods, financing eligibility, currencies and provider configuration vary by market and brand while using shared transaction contracts.'],
@@ -59,7 +59,7 @@ export const platformDomains = [
     description: 'Container workloads, infrastructure-as-code and edge policies form the operating environment. APIs, event consumers and maintenance jobs have different resource, scaling and recovery characteristics.',
     capabilities: [
       ['Workload separation', 'Kubernetes manifests distinguish APIs, workers and scheduled jobs, with independent replica counts, resource budgets, health checks and secret integration.'],
-      ['Edge policy', 'Domain routing, locale redirects, cache keys, security rules and maintenance behaviour are part of the platform contract—not decorative infrastructure.'],
+      ['Edge policy', 'Domain routing, locale redirects, cache keys, security rules and maintenance behaviour are part of the platform contract, not decorative infrastructure.'],
       ['Edge coordination', 'Cache-warming work uses Worker service bindings, KV and Durable Objects to coordinate dispatch, regional completion, duplicate callbacks and recovery deadlines.'],
     ],
     tradeoff: 'Desired infrastructure configuration is not proof of live health. Cache-hit behaviour, worker progress, database saturation and recovery need their own evidence, beyond a green deployment or liveness probe.',

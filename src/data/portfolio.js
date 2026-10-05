@@ -27,7 +27,7 @@ export const projects = [
   {
     index: '01',
     title: 'AI Engineering Transformation',
-    description: 'I can lead the shift from individual AI tools to an accountable engineering delivery practice—connecting people, reusable skills, system context and specialist-agent workflows.',
+    description: 'I can lead the shift from individual AI tools to an accountable engineering delivery practice, connecting people, reusable skills, system context and specialist-agent workflows.',
     meta: 'Organisation & adoption · context & agents · AI-DLC delivery',
     link: '/ai-delivery',
     cta: 'Explore the transformation I can lead',
@@ -66,31 +66,31 @@ export const projects = [
 
 export const career = [
   {
-    date: '2026—Now',
+    date: '2026 to present',
     role: 'Global Head of Digital Engineering',
     company: 'Global luxury brand',
     detail: 'Five direct managers and a 26-person organisation across six countries, with accountability for the technology roadmap, hiring, vendors, budgets, reliability and applied AI.',
   },
   {
-    date: '2024—2026',
+    date: '2024 to 2026',
     role: 'Delivery Lead, Digital Platforms',
     company: 'Global luxury brand',
     detail: 'Led zero-to-production platform delivery, SDLC and release governance for a shared multibrand commerce architecture.',
   },
   {
-    date: '2022—2024',
+    date: '2022 to 2024',
     role: 'Technical Lead Engineer',
     company: 'Beyond Pricing',
     detail: 'Led four engineers delivering event-driven integrations and production Go services.',
   },
   {
-    date: '2022—2024',
+    date: '2022 to 2024',
     role: 'Cloud Platform Engineer & MongoDB PS Consultant',
     company: 'Cogniflare',
     detail: 'Concurrent professional-services engagement alongside Beyond Pricing, delivering enterprise architecture assessments, MongoDB training and cloud platform work through April 2024.',
   },
   {
-    date: '2016—2021',
+    date: '2016 to 2021',
     role: 'Engineering foundations',
     company: 'Worldline · Techonrails · A3SEC · NAGRA · CEPSA',
     detail: 'Built the hands-on foundation across AWS migration, distributed systems, cybersecurity, product development and full-stack delivery.',
@@ -111,7 +111,7 @@ export const practices = [
   {
     index: '03',
     title: 'Platform architecture',
-    detail: 'Own complex distributed platforms—from frontend and backend boundaries to queues, workers, data projections and operational recovery.',
+    detail: 'Own complex distributed platforms across frontend and backend boundaries, queues, workers, data projections and operational recovery.',
   },
 ]
 
@@ -156,7 +156,7 @@ export const caseStudies = {
       { value: 'IaC', label: 'infrastructure and delivery' },
     ],
     roleSummary:
-      'I own the platform direction—from multibrand architecture to engineering delivery and operational accountability.',
+      'I own the platform direction, from multibrand architecture through engineering delivery and operational accountability.',
     decisions: [
       {
         title: 'One platform instead of duplicated stacks',
@@ -193,7 +193,7 @@ export const caseStudies = {
   '/work/applied-ai-product-discovery': {
     number: '03 / Independent AI reference architecture',
     breadcrumbLabel: 'AI Product Discovery Architecture',
-    status: 'Conceptual reference architecture — not deployed',
+    status: 'Conceptual reference architecture, not deployed',
     editorialBasis:
       'Original conceptual reference architecture by Luis Angel Parada. Technical choices are explained against public product documentation; the architecture has not been commissioned or deployed for an employer or client.',
     title: 'A technical blueprint for governed AI product discovery.',

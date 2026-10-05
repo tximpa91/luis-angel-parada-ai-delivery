@@ -8,7 +8,7 @@ function TransformationJourney() {
       <div className="ai-transformation-journey-heading">
         <p className="section-number">Experience behind the capability</p>
         <h3 id="transformation-journey-title">From discovering useful work to changing how it is delivered.</h3>
-        <p>I bring experience across the transformation—not just the choice of AI tools. These are the decisions I have led, from discovering useful work to establishing specialist-agent development and delivery automation.</p>
+        <p>I bring experience across the transformation, beyond the choice of AI tools. These are the decisions I have led, from discovering useful work to establishing specialist-agent development and delivery automation.</p>
       </div>
       <ol>
         {transformationJourney.map((step, index) => (
@@ -46,7 +46,7 @@ export default function AITransformation() {
       <div className="ai-maturity-heading">
         <p className="section-number">02 / AI engineering transformation</p>
         <h2 id="ai-transformation-title">Transform the organisation.<br />Not just the tools.</h2>
-        <p>I can help you choose where AI belongs, prepare the context and platform foundations, and change how your teams plan, implement and verify software. The goal is organisational capability: clear ownership, reusable practices and controlled delivery—not simply more AI-generated code.</p>
+        <p>I can help you choose where AI belongs, prepare the context and platform foundations, and change how your teams plan, implement and verify software. The goal is organisational capability: clear ownership, reusable practices and controlled delivery, not simply more AI-generated code.</p>
       </div>
       <TransformationJourney />
       <div className="ai-transformation-mandate" aria-labelledby="transformation-mandate-title">
@@ -100,7 +100,7 @@ export default function AITransformation() {
         <ol>{transformationSteps.map(([title, detail], index) => <li key={title}><span>{String(index + 1).padStart(2, '0')}</span><div><h4>{title}</h4><p>{detail}</p></div></li>)}</ol>
       </div>
       <div className="ai-transformation-bridge">
-        <h3>Platform ownership is the foundation—not a separate story.</h3>
+        <h3>Platform ownership is the foundation, not a separate story.</h3>
         <p>Agents working across services need understandable contracts, data ownership, permissions, environments and recovery paths. My ownership of a three-brand distributed platform grounds this transformation approach in real engineering complexity, not only agent tooling.</p>
         <div><a href="/work/commerce-platform">Explore the platform case study ↗</a><a href="#delivery-model">Continue to the delivery workflow ↓</a></div>
       </div>

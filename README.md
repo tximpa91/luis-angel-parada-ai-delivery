@@ -1,13 +1,13 @@
-# Luis Angel Parada — Engineering portfolio
+# Luis Angel Parada: Engineering portfolio
 
 Personal portfolio for Luis Angel Parada: engineering leadership, global commerce platforms,
 applied AI, cloud architecture, and governed software delivery.
 
 The portfolio homepage is supported by three project stories:
 
-- `/ai-delivery` — the original AI Delivery Operating System experience
-- `/work/commerce-platform` — the global commerce platform case study
-- `/work/applied-ai-product-discovery` — an independent technical applied-AI reference architecture
+- `/ai-delivery`: the original AI Delivery Operating System experience
+- `/work/commerce-platform`: the global commerce platform case study
+- `/work/applied-ai-product-discovery`: an independent technical applied-AI reference architecture
 
 The React client is built and tested through Docker. Production uses Cloudflare Workers Static
 Assets so the portfolio can run on Cloudflare's free tier without a persistent container. The live
@@ -94,18 +94,18 @@ Docker CI runs on pushes and pull requests. Production deployment is a manual Gi
 
 ## Project structure
 
-- `src/` — React client
-- `src/seo.js` — route metadata and structured data
-- `scripts/prerender.mjs` — static route generation after the Vite build
-- `public/assets/` — generated production artwork used by the portfolio
-- `design/portfolio-concepts/` — accepted visual direction and responsive references
-- `nginx/default.conf` — SPA routing, health check, caching, and security headers
-- `worker/index.js` — canonical hostname redirect and static asset routing
-- `infra/terraform/` — zone verification and Worker Custom Domains
-- `wrangler.jsonc` — Cloudflare Worker Static Assets configuration
-- `Dockerfile` — production client image
-- `Dockerfile.deploy` — containerized Wrangler deployment toolchain
-- `.github/workflows/` — Docker CI and production deployment
+- `src/`: React client
+- `src/seo.js`: route metadata and structured data
+- `scripts/prerender.mjs`: static route generation after the Vite build
+- `public/assets/`: generated production artwork used by the portfolio
+- `design/portfolio-concepts/`: accepted visual direction and responsive references
+- `nginx/default.conf`: SPA routing, health check, caching, and security headers
+- `worker/index.js`: canonical hostname redirect and static asset routing
+- `infra/terraform/`: zone verification and Worker Custom Domains
+- `wrangler.jsonc`: Cloudflare Worker Static Assets configuration
+- `Dockerfile`: production client image
+- `Dockerfile.deploy`: containerized Wrangler deployment toolchain
+- `.github/workflows/`: Docker CI and production deployment
 
 Released under the [MIT License](LICENSE).
 

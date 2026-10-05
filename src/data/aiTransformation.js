@@ -3,7 +3,7 @@ export const transformationJourney = [
     title: 'Discover use cases. Build reusable skills.',
     focus: 'Use-case discovery',
     detail: 'I started by discovering where AI could support engineering work and developing reusable skills around those use cases.',
-    decision: 'Start with the work to be done, then define the skills that support it—not with a tool rollout alone.',
+    decision: 'Start with the work to be done, then define the skills that support it. A tool rollout alone is not enough.',
   },
   {
     title: 'Identify the context. Define MCP needs.',
@@ -68,7 +68,7 @@ export const maturityStages = [
     controls: 'Constrain autonomy by risk, permissions and proven verification. Keep stop conditions, rollback and human ownership of intent, exceptions and risk acceptance.',
     evidence: 'A defined class of low-risk work repeatedly meets acceptance and recovery criteria within a monitored, revocable automation boundary.',
     metrics: 'Accepted business outcomes · cost per outcome · failure and recovery burden',
-    caution: 'This is an implementation direction—not a claim of an autonomous software factory already delivered. High-risk financial, security or regulatory decisions do not automatically become autonomous.',
+    caution: 'This is an implementation direction, not a claim of an autonomous software factory already delivered. High-risk financial, security or regulatory decisions do not automatically become autonomous.',
   },
 ]
 
@@ -82,6 +82,6 @@ export const transformationSteps = [
 export const transformationMandate = [
   ['People & leadership', 'Define engineering responsibilities, coach managers and teams, and build shared ownership across product, development, QA, security and operations. Transformation must change how people collaborate, not only which tools they use.'],
   ['The delivery operating model', 'Connect intent, planning, implementation, verification and release through shared context and clear decision rights. Replace disconnected AI activity with repeatable, accountable ways of working.'],
-  ['Platforms & engineering foundations', 'Make repositories, service contracts, environments, permissions and recovery paths usable for controlled agent work. Distributed-system complexity is part of the transformation—not something an agent can ignore.'],
+  ['Platforms & engineering foundations', 'Make repositories, service contracts, environments, permissions and recovery paths usable for controlled agent work. Distributed-system complexity is part of the transformation and must be understood by the agents.'],
   ['Governance, adoption & value', 'Establish risk boundaries, evidence gates and cost ownership. Lead a bounded pilot, enable the teams, expand what works and measure accepted outcomes, stability, rework and operating effort.'],
 ]

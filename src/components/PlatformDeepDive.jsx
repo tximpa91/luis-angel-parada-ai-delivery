@@ -27,7 +27,7 @@ export default function PlatformDeepDive() {
     <div className="pf-platform-detail">
       <section className="pf-platform-section pf-platform-strategy" aria-labelledby="platform-strategy">
         <SectionHeading number="01 / Business & architecture" id="platform-strategy" title="More brands. The same engineering team.">
-          I chose a shared multibrand architecture across frontend and backend. The objective is to make the next launch a controlled extension of the platform—not another independently maintained stack.
+          I chose a shared multibrand architecture across frontend and backend. The objective is to make the next launch a controlled extension of the platform, not another independently maintained stack.
         </SectionHeading>
         <div className="pf-platform-strategy-grid">
           <article className="pf-platform-brand-count"><strong>3</strong><h3>live brands</h3><p>One platform direction, with explicit boundaries for different experiences and capabilities.</p></article>
@@ -77,7 +77,7 @@ export default function PlatformDeepDive() {
 
       <section className="pf-platform-section" aria-labelledby="platform-reliability">
         <SectionHeading number="04 / Engineering judgement" id="platform-reliability" title="Complexity is an ownership problem.">
-          Owning a distributed platform means understanding where it can fail, who owns the state and how it recovers. These are the operating principles I use to evaluate the architecture—not a claim that every control is already complete.
+          Owning a distributed platform means understanding where it can fail, who owns the state and how it recovers. These are the operating principles I use to evaluate the architecture, not a claim that every control is already complete.
         </SectionHeading>
         <div className="pf-platform-principles">
           {platformPrinciples.map((principle, index) => <article key={principle.title}><span className="pf-eyebrow">{String(index + 1).padStart(2, '0')}</span><h3>{principle.title}</h3><p>{principle.detail}</p></article>)}

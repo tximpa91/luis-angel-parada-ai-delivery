@@ -516,7 +516,7 @@ function Footer() {
   return (
     <footer>
       <div>
-        <p>Luis Angel Parada — Engineering & Applied AI Leader</p>
+        <p>Luis Angel Parada | Engineering & Applied AI Leader</p>
         <span>Human-led. Evidence-driven.</span>
       </div>
       <nav aria-label="Footer navigation">

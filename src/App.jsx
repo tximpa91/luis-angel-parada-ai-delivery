@@ -138,7 +138,7 @@ function PortfolioHome() {
             <p className="pf-lede">
               I bring global engineering leadership, hands-on distributed-system ownership and the ability to lead AI transformation.
               As Global Head of Digital Engineering, I lead a 26-person organisation across six countries and own a shared platform for three live brands.
-              I can help you connect technology strategy, team ownership and dependable delivery—whether you are scaling a platform or changing how engineering works with AI.
+              I can help you connect technology strategy, team ownership and dependable delivery, whether you are scaling a platform or changing how engineering works with AI.
             </p>
             <div className="pf-actions">
               <a className="pf-button pf-button--primary" href="#work">Explore selected work <Arrow /></a>
@@ -172,7 +172,7 @@ function PortfolioHome() {
               <h2 id="leadership-scope-title">Manager of managers.<br />Operator of systems.</h2>
             </div>
             <div>
-              <p>I connect organisation design, platform architecture and delivery economics—then stay accountable when the system is under pressure.</p>
+              <p>I connect organisation design, platform architecture and delivery economics, then stay accountable when the system is under pressure.</p>
               <RouteLink className="pf-text-link" to="/leadership-profile">Read the full profile <Arrow /></RouteLink>
             </div>
           </div>
@@ -248,7 +248,7 @@ function PortfolioHome() {
           <div className="pf-practice-heading" data-reveal>
             <p className="pf-eyebrow">03 / Practice</p>
             <h2>Leadership that stays close to the system.</h2>
-            <p>I lead through clear operating models, technical depth and evidence—connecting people, architecture and outcomes.</p>
+            <p>I lead through clear operating models, technical depth and evidence to connect people, architecture and outcomes.</p>
           </div>
           <div className="pf-practice-grid">
             {practices.map((item, index) => (
@@ -267,7 +267,7 @@ function PortfolioHome() {
             <h2>Technology is the medium. Better systems are the work.</h2>
           </div>
           <div className="pf-about-copy" data-reveal>
-            <p>I am an engineering leader and hands-on builder based in Switzerland. My work connects product ambition, platform architecture, delivery discipline and applied AI—so teams can move faster without losing control.</p>
+            <p>I am an engineering leader and hands-on builder based in Switzerland. My work connects product ambition, platform architecture, delivery discipline and applied AI so teams can move faster without losing control.</p>
             <dl>
               <div><dt>Current role</dt><dd>Global Head of Digital Engineering</dd></div>
               <div><dt>Education</dt><dd>B.Sc. Software Engineering</dd></div>
@@ -360,7 +360,7 @@ function CaseStudyPage({ study }) {
           <section className="pf-decisions" aria-labelledby="key-decisions-title">
             <div className="pf-decisions-heading" data-reveal>
               <p className="pf-eyebrow">Key decisions</p>
-              <h2 id="key-decisions-title">What I chose—and why it mattered.</h2>
+              <h2 id="key-decisions-title">What I chose and why it mattered.</h2>
             </div>
             <div className="pf-decisions-grid">
               {study.decisions.map((decision, index) => (
@@ -449,7 +449,7 @@ function LeadershipProfile() {
     },
     {
       title: 'Own complex distributed platforms',
-      detail: 'Set architecture direction across frontend, backend, integrations, queues and workers—and stay accountable for reliability. My experience includes choosing a shared multibrand architecture to support further launches with the same team.',
+      detail: 'Set architecture direction across frontend, backend, integrations, queues and workers, and stay accountable for reliability. My experience includes choosing a shared multibrand architecture to support further launches with the same team.',
       link: '/work/commerce-platform',
       cta: 'Explore my platform decisions',
     },
@@ -575,7 +575,7 @@ function ContactCardPage() {
               <p className="pf-card-hint">Keep this page handy, or save my details to your contacts.</p>
             </div>
             <nav className="pf-card-links" aria-label="Explore Luis Angel Parada's work and profile">
-              <div className="pf-card-links-heading"><span>Explore</span><span>01 — 04</span></div>
+              <div className="pf-card-links-heading"><span>Explore</span><span>01 to 04</span></div>
               <RouteLink to="/" className="pf-card-link"><span><small>01 / Overview</small><strong>Portfolio</strong></span><Arrow diagonal /></RouteLink>
               <RouteLink to="/leadership-profile" className="pf-card-link"><span><small>02 / Leadership</small><strong>Engineering leadership</strong></span><Arrow diagonal /></RouteLink>
               <RouteLink to="/ai-delivery" className="pf-card-link"><span><small>03 / Applied AI</small><strong>AI transformation</strong></span><Arrow diagonal /></RouteLink>
