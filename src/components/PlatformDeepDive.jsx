@@ -27,14 +27,14 @@ export default function PlatformDeepDive() {
     <div className="pf-platform-detail">
       <section className="pf-platform-section pf-platform-strategy" aria-labelledby="platform-strategy">
         <SectionHeading number="01 / Business & architecture" id="platform-strategy" title="More brands. The same engineering team.">
-          I chose a shared multibrand architecture across frontend and backend. The objective is to make the next launch a controlled extension of the platform, not another independently maintained stack.
+          I chose a shared multibrand architecture across frontend and backend. We launched three brands with the same engineering team. The shared foundation now supports further launches through common capabilities and explicit brand boundaries.
         </SectionHeading>
         <div className="pf-platform-strategy-grid">
           <article className="pf-platform-brand-count"><strong>3</strong><h3>live brands</h3><p>One platform direction, with explicit boundaries for different experiences and capabilities.</p></article>
           <article><span className="pf-eyebrow">What is shared</span><h3>Capabilities, not just code.</h3><p>Common commerce journeys, service contracts, market configuration, integration patterns and delivery foundations create a reusable base.</p></article>
           <article><span className="pf-eyebrow">What stays distinct</span><h3>Identity and business rules.</h3><p>Brand presentation, supported features, market policy, provider configuration and customer-data context remain deliberate choices.</p></article>
         </div>
-        <aside className="pf-platform-note"><strong>The business objective</strong><p>Release additional brands with the same engineering team. Three live brands describe the current scope; reduced launch effort and staffing efficiency are outcomes to measure, not assumed results.</p></aside>
+        <aside className="pf-platform-note"><strong>The business result</strong><p>Three brands launched with the same engineering team. My architecture decision connected shared frontend and backend capabilities with distinct brand experiences; further launches can build on that foundation.</p></aside>
       </section>
 
       <section className="pf-platform-section" aria-labelledby="platform-domains">

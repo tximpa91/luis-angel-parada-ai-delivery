@@ -20,7 +20,7 @@ function TransformationJourney() {
           </li>
         ))}
       </ol>
-      <p className="ai-transformation-journey-status"><strong>Experience to build on</strong>L3 AI-DLC orchestration is operating in my work, with L4 implementation underway. I bring that experience to defining the right transformation path for your team and systems.</p>
+      <p className="ai-transformation-journey-status"><strong>Experience to build on</strong>My operating L3 AI-DLC workflow supports production releases with human approval. I bring that experience to defining the transformation path for your team and systems, with L4 implementation underway.</p>
     </section>
   )
 }

@@ -27,8 +27,8 @@ export const projects = [
   {
     index: '01',
     title: 'AI Engineering Transformation',
-    description: 'I can lead the shift from individual AI tools to an accountable engineering delivery practice, connecting people, reusable skills, system context and specialist-agent workflows.',
-    meta: 'Organisation & adoption · context & agents · AI-DLC delivery',
+    description: 'I bring operating L3 AI-DLC experience through to production releases with human approval, connecting team practices, reusable skills, MCP context and specialist agents.',
+    meta: 'AI-DLC · specialist agents · production releases with human approval',
     link: '/ai-delivery',
     cta: 'Explore the transformation I can lead',
     image: '/assets/ai-delivery-system.webp',
@@ -40,7 +40,7 @@ export const projects = [
     index: '02',
     title: 'Global Commerce Platform',
     description:
-      'My architecture decision for three live brands: shared frontend and backend capabilities, distributed integrations and a foundation for further launches with the same team.',
+      'Three brands launched with the same engineering team. My architecture decision brought shared frontend and backend capabilities together with distributed integrations and clear brand boundaries.',
     meta: '3 live brands · distributed systems · 40 transactional markets',
     link: '/work/commerce-platform',
     cta: 'Explore the platform',
@@ -141,10 +141,17 @@ export const caseStudies = {
     status: 'Engineering leadership case study',
     editorialBasis:
       'First-hand engineering leadership case study focused on architecture decisions, delivery responsibilities and operational ownership. Employer and client identity are intentionally omitted.',
-    title: 'Three brands. One shared platform direction.',
+    title: 'Multibrand commerce architecture. Three brands, one shared platform.',
     intro:
-      'I own a distributed commerce platform and chose its multibrand architecture across frontend and backend. The goal: release more brands with the same engineering team while retaining distinct experiences and clear system boundaries.',
+      'I own a distributed commerce platform and chose its multibrand architecture across frontend and backend. We launched three brands with the same engineering team, retaining distinct experiences and clear system boundaries.',
     platformDetail: true,
+    summaryTitle: 'The platform challenge and my architecture decision.',
+    summary: [
+      ['Business challenge', 'Launch distinct brand experiences through shared capabilities, without growing the engineering team for each brand.'],
+      ['My responsibility', 'Own architecture across frontend and backend, engineering delivery and operational accountability.'],
+      ['Architecture decision', 'Share core capabilities with explicit brand boundaries. Coordinate distributed services through APIs, queues, topics and background workers.'],
+      ['Result', 'Three brands launched with the same engineering team. The shared platform operates across 40 transactional markets while retaining distinct brand experiences.'],
+    ],
     image: '/assets/commerce-platform.webp',
     imageAlt: 'Diagram of a cloud-native global commerce platform spanning markets, services and delivery pipelines',
     imageWidth: 1774,
@@ -199,6 +206,13 @@ export const caseStudies = {
     title: 'A technical blueprint for governed AI product discovery.',
     intro:
       'A personal, employer-neutral conceptual architecture for combining conversational guidance with trustworthy product context. It has not been commissioned or deployed for any employer or client.',
+    summaryTitle: 'A grounded AI product discovery blueprint.',
+    summary: [
+      ['Design challenge', 'Answer open-ended product questions using approved catalogue data, availability and commercial rules.'],
+      ['My contribution', 'An independent reference architecture connecting conversational intent, retrieval, agent orchestration and evaluation.'],
+      ['Design decisions', 'LangGraph coordinates bounded workflows; hybrid RAG supplies product context; FastAPI and Bedrock define service and model boundaries.'],
+      ['Deliverable', 'A conceptual technical blueprint with evaluation and guardrail design. It has not been commissioned or deployed for an employer or client.'],
+    ],
     image: '/assets/applied-ai-discovery.webp',
     imageAlt: 'Conceptual AI product discovery architecture using LangGraph, hybrid retrieval and Bedrock',
     imageWidth: 1774,

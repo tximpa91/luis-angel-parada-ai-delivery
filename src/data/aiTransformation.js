@@ -20,7 +20,7 @@ export const transformationJourney = [
   {
     title: 'Automate delivery through AI-DLC.',
     focus: 'L3 operating · L4 underway',
-    detail: 'I extended the work into AI-DLC system delivery automation. L3 orchestration is operating, and L4 implementation is underway.',
+    detail: 'I established an L3 AI-DLC workflow spanning specialist-agent development, testing and independent validation through to production releases with human approval. L4 implementation is underway.',
     decision: 'Bring specialist agent work into an operating delivery workflow, then build the next layer of automation on that foundation.',
   },
 ]

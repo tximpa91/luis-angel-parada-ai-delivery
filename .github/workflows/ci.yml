@@ -53,9 +53,9 @@ jobs:
           curl --fail --silent http://127.0.0.1:8080/leadership-profile | grep -F "What you can hire me to lead"
           curl --fail --silent http://127.0.0.1:8080/leadership-profile | grep -F "Discuss a role or contract"
           curl --fail --silent http://127.0.0.1:8080/leadership-profile | grep -F '<link rel="canonical" href="https://luisangelparada.com/leadership-profile"'
-          curl --fail --silent http://127.0.0.1:8080/work/commerce-platform | grep -F "Three brands. One shared platform direction."
+          curl --fail --silent http://127.0.0.1:8080/work/commerce-platform | grep -F "Multibrand commerce architecture. Three brands, one shared platform."
           curl --fail --silent http://127.0.0.1:8080/work/commerce-platform | grep -F "Queues, topics &amp; background workers"
-          curl --fail --silent http://127.0.0.1:8080/work/commerce-platform | grep -F "What I chose—and why it mattered."
+          curl --fail --silent http://127.0.0.1:8080/work/commerce-platform | grep -F "What I chose and why it mattered."
           curl --fail --silent http://127.0.0.1:8080/work/applied-ai-product-discovery | grep -F "A technical blueprint for governed AI product discovery."
           curl --fail --silent http://127.0.0.1:8080/ai-delivery | grep -F '<link rel="canonical" href="https://luisangelparada.com/ai-delivery"'
           curl --fail --silent http://127.0.0.1:8080/ai-delivery | grep -F 'id="seo-jsonld"'

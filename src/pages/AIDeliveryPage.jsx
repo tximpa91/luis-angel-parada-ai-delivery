@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { aiDeliveryReferences } from '../data/references.js'
 import AITransformation from '../components/AITransformation.jsx'
+import ExecutiveSummary from '../components/ExecutiveSummary.jsx'
+import { professionalProfile } from '../data/profile.js'
 
 const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || 'luisparada364@icloud.com'
 const LINKEDIN_PROFILE = 'https://www.linkedin.com/in/luis-angel-parada/'
@@ -200,12 +202,12 @@ function Hero() {
         <p className="role-line">Head / Director of Engineering · Applied AI Leadership</p>
         <h1>I can lead your organisation’s AI engineering transformation.</h1>
         <p className="hero-lede">
-          I help engineering organisations turn AI adoption into a dependable way of delivering software. I bring the leadership to change team practices, the technical depth to connect agents with complex platforms, and hands-on experience building governed AI-DLC workflows.
+          I help engineering organisations turn AI adoption into a dependable way of delivering software. I bring the leadership to change team practices, the technical depth to connect agents with complex platforms, and experience taking a governed AI-DLC workflow through to production releases with human approval.
         </p>
         <div className="article-meta" aria-label="Article details">
           <span>By Luis Angel Parada</span>
           <span>Engineering leadership & transformation</span>
-          <time dateTime="2026-09-27">Reviewed 27 September 2026</time>
+          <time dateTime={professionalProfile.reviewedOn}>Reviewed {professionalProfile.reviewedLabel}</time>
         </div>
         <div className="hero-actions">
           <a className="button button--gold" href="#contact">
@@ -227,14 +229,17 @@ function Hero() {
 
 function EvidenceBasis() {
   return (
-    <aside className="provenance-band" id="evidence-basis">
-      <span>Experience behind the approach</span>
-      <p>
-        My transformation work connects use-case discovery, reusable skills, MCP context and specialised
-        development agents with delivery automation. The experience below explains the decisions I have
-        led; the framework shows how I would apply that approach to your organisation.
-      </p>
-    </aside>
+    <ExecutiveSummary
+      id="evidence-basis"
+      title="AI transformation, from discovery to delivery."
+      dark
+      items={[
+        ['Engineering challenge', 'Turn individual AI use into a repeatable delivery practice across teams and complex platforms.'],
+        ['My leadership decisions', 'Discover useful work, build reusable skills, define MCP context needs and establish specialist agents for backend and platform development.'],
+        ['Experience I bring', 'An operating L3 AI-DLC workflow spanning specialist-agent development, testing and independent validation through to production releases with human approval. L4 implementation is underway.'],
+        ['What you can hire me to lead', 'AI engineering leadership or a transformation contract connecting team adoption, system context, specialist agents and governed delivery.'],
+      ]}
+    />
   )
 }
 
@@ -472,7 +477,7 @@ function ContactSection() {
       <div className="contact-heading reveal">
         <p className="section-number">07 / Leadership conversation</p>
         <h2>If AI is entering your SDLC, I can lead the <em>system around it.</em></h2>
-        <p>Let’s discuss a permanent engineering or Applied AI leadership role, or a contract to lead your transformation. Tell me the delivery challenge, platform complexity and team mandate you need someone to own.</p>
+        <p>Let’s discuss a permanent engineering or Applied AI leadership role, or a contract to lead your transformation. Based in Switzerland, open to remote teams across Europe. Tell me the delivery challenge, platform complexity and team mandate you need someone to own.</p>
       </div>
 
       <div className="challenge-picker reveal">

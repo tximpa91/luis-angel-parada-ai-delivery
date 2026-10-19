@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import AIDeliveryPage from './pages/AIDeliveryPage.jsx'
+import ExecutiveSummary from './components/ExecutiveSummary.jsx'
 import PlatformDeepDive, { PlatformSectionNav } from './components/PlatformDeepDive.jsx'
 import { career, caseStudies, leadershipScope, practices, projects, spectrum } from './data/portfolio.js'
+import { engagementOptions, professionalProfile } from './data/profile.js'
 import { getSeoForPath, getStructuredData, routeSeo } from './seo.js'
 
 const EMAIL = 'luisparada364@icloud.com'
@@ -136,13 +138,11 @@ function PortfolioHome() {
             <p className="pf-kicker">Head / Director of Engineering · Applied AI Leadership</p>
             <h1>I lead engineering organisations and turn applied AI into working systems.</h1>
             <p className="pf-lede">
-              I bring global engineering leadership, hands-on distributed-system ownership and the ability to lead AI transformation.
-              As Global Head of Digital Engineering, I lead a 26-person organisation across six countries and own a shared platform for three live brands.
-              I can help you connect technology strategy, team ownership and dependable delivery, whether you are scaling a platform or changing how engineering works with AI.
+              {professionalProfile.introduction}
             </p>
             <div className="pf-actions">
               <a className="pf-button pf-button--primary" href="#work">Explore selected work <Arrow /></a>
-              <RouteLink className="pf-text-link" to="/leadership-profile">Leadership profile <Arrow /></RouteLink>
+              <RouteLink className="pf-text-link" to="/leadership-profile#opportunities">Roles & contracts <Arrow /></RouteLink>
             </div>
           </div>
           <div className="pf-hero-art" aria-hidden="true">
@@ -291,8 +291,9 @@ function PortfolioHome() {
           <p className="pf-eyebrow">05 / Contact</p>
           <div data-reveal>
             <h2>Need a leader for complex platforms and AI transformation?</h2>
-            <p>Let’s discuss a permanent leadership role or a contract to lead platform strategy, engineering delivery or AI transformation. Based in Switzerland, open to international conversations.</p>
+            <p>Let’s discuss a permanent leadership role or a contract to lead platform strategy, engineering delivery or AI transformation. {professionalProfile.region}</p>
             <a className="pf-button pf-button--light" href={`mailto:${EMAIL}?subject=Engineering%20leadership%20role%20or%20contract`}>Discuss a role or contract <Arrow diagonal /></a>
+            <RouteLink className="pf-text-link pf-contact-opportunities" to="/leadership-profile#opportunities">Explore roles and contract mandates <Arrow /></RouteLink>
           </div>
           <nav aria-label="Contact links">
             <a href={LINKEDIN_PROFILE} target="_blank" rel="noopener noreferrer">LinkedIn <Arrow diagonal /></a>
@@ -330,12 +331,13 @@ function CaseStudyPage({ study }) {
           <div className="pf-article-meta" aria-label="Article details" data-reveal>
             <p><span>Author</span><strong>Luis Angel Parada</strong></p>
             <p><span>Status</span><strong>{study.status}</strong></p>
-            <p><span>Last reviewed</span><strong><time dateTime={study.platformDetail ? '2026-09-27' : '2026-09-25'}>{study.platformDetail ? '27 September 2026' : '25 September 2026'}</time></strong></p>
+            <p><span>Last reviewed</span><strong><time dateTime={professionalProfile.reviewedOn}>{professionalProfile.reviewedLabel}</time></strong></p>
           </div>
           <aside className="pf-editorial-note" id="evidence-basis" data-reveal>
             <span>Evidence basis</span>
             <p>{study.editorialBasis}</p>
           </aside>
+          <ExecutiveSummary id="case-summary" title={study.summaryTitle} items={study.summary} />
           {study.platformDetail ? <PlatformSectionNav /> : null}
           <div className="pf-case-art" data-reveal>
             <img
@@ -449,13 +451,13 @@ function LeadershipProfile() {
     },
     {
       title: 'Own complex distributed platforms',
-      detail: 'Set architecture direction across frontend, backend, integrations, queues and workers, and stay accountable for reliability. My experience includes choosing a shared multibrand architecture to support further launches with the same team.',
+      detail: 'Set architecture direction across frontend, backend, integrations, queues and workers, and stay accountable for reliability. I chose the shared frontend and backend architecture behind three brand launches with the same engineering team.',
       link: '/work/commerce-platform',
       cta: 'Explore my platform decisions',
     },
     {
       title: 'Lead AI engineering transformation',
-      detail: 'Move beyond isolated AI tools to a repeatable engineering practice. I connect use-case discovery, reusable skills, MCP context and specialist development agents with governed AI-DLC delivery automation.',
+      detail: 'I bring an operating L3 AI-DLC workflow through to production releases with human approval. I connect use-case discovery, reusable skills, MCP context, specialist development agents and team adoption to establish a repeatable engineering practice.',
       link: '/ai-delivery#transformation',
       cta: 'Explore my transformation approach',
     },
@@ -481,7 +483,7 @@ function LeadershipProfile() {
               <h1>I lead complex platforms, engineering teams and AI transformation.</h1>
             </div>
             <div>
-              <p>I bring the leadership to align teams, the technical depth to own distributed systems, and the experience to change how engineering delivers with AI. A decade from hands-on engineering to Global Head of Digital Engineering grounds the capability I bring to your next leadership role or contract.</p>
+              <p>As Global Head of Digital Engineering, I lead a 26-person organisation across six countries from Switzerland. I bring the leadership to align managers and teams, the technical depth to own distributed platforms, and experience establishing AI delivery practices.</p>
               <div className="pf-profile-actions">
                 <a className="pf-button pf-button--primary" href={`mailto:${EMAIL}?subject=Engineering%20leadership%20role%20or%20contract`}>Discuss a role or contract <Arrow diagonal /></a>
                 <a className="pf-button" href={LINKEDIN_PROFILE} target="_blank" rel="noopener noreferrer">View LinkedIn profile <Arrow diagonal /></a>
@@ -494,6 +496,23 @@ function LeadershipProfile() {
           {scope.map(([label, value], index) => (
             <article data-reveal style={{ '--delay': `${index * 50}ms` }} key={label}><span>{label}</span><strong>{value}</strong></article>
           ))}
+        </section>
+
+        <section className="pf-profile-section pf-engagement-options" id="opportunities" aria-labelledby="opportunities-title">
+          <div className="pf-profile-section-heading" data-reveal>
+            <p className="pf-eyebrow">Roles & contracts</p>
+            <h2 id="opportunities-title">Engineering leadership for your next stage.</h2>
+          </div>
+          <div className="pf-engagement-grid">
+            {engagementOptions.map((option) => (
+              <article key={option.title} data-reveal>
+                <h3>{option.title}</h3>
+                <p>{option.detail}</p>
+                <a className="pf-text-link" href={`mailto:${EMAIL}?subject=${encodeURIComponent(option.subject)}`}>{option.action} <Arrow diagonal /></a>
+              </article>
+            ))}
+          </div>
+          <p className="pf-engagement-region">{professionalProfile.region}</p>
         </section>
 
         <section className="pf-profile-section">

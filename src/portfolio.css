@@ -811,6 +811,7 @@ body.ai-mode {
 .pf-contact > div { max-width: var(--pf-max); margin: 80px auto 0; }
 .pf-contact h2 { max-width: 1200px; font-size: clamp(64px, 7.5vw, 122px); line-height: 0.9; }
 .pf-contact > div > p { max-width: 620px; margin: 34px 0 0; font-size: 20px; line-height: 1.55; }
+.pf-contact-opportunities { display: flex; width: max-content; max-width: 100%; margin-top: 18px; color: white; }
 .pf-button--light { width: 280px; margin-top: 42px; border-color: white; background: white; color: var(--pf-blue); }
 .pf-button--light:hover, .pf-button--light:focus-visible { background: var(--pf-ink); color: white; }
 .pf-contact nav { display: flex; max-width: var(--pf-max); margin: 120px auto 0; border-top: 1px solid rgba(255,255,255,.48); }
@@ -1087,6 +1088,15 @@ body.ai-mode {
 .pf-profile-remit p { margin: 0; color: var(--pf-slate); line-height: 1.65; }
 .pf-profile-remit .pf-text-link { max-width: 100%; margin-top: 24px; }
 
+.pf-engagement-options { scroll-margin-top: 100px; }
+.pf-engagement-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 42px; border-top: 1px solid var(--pf-line); }
+.pf-engagement-grid article { min-width: 0; padding: 32px 32px 32px 0; border-bottom: 1px solid var(--pf-line); }
+.pf-engagement-grid article + article { padding-left: 32px; border-left: 1px solid var(--pf-line); }
+.pf-engagement-grid h3 { margin: 0 0 20px; font-family: var(--pf-serif); font-size: clamp(30px, 3vw, 44px); font-weight: 400; letter-spacing: -.03em; line-height: 1.12; }
+.pf-engagement-grid p { margin: 0; color: var(--pf-slate); font-size: 17px; line-height: 1.65; }
+.pf-engagement-grid .pf-text-link { max-width: 100%; margin-top: 24px; }
+.pf-engagement-region { max-width: 760px; margin: 24px 0 0; color: var(--pf-slate); font-size: 16px; line-height: 1.65; }
+
 .pf-profile-experience { border-top: 1px solid var(--pf-line); }
 .pf-profile-experience ol { margin: 72px 0 0 24%; padding: 0; border-top: 1px solid var(--pf-ink); list-style: none; }
 .pf-profile-experience li { display: grid; grid-template-columns: 150px 1fr; gap: 34px; padding: 34px 0; border-bottom: 1px solid var(--pf-line); }
@@ -1200,6 +1210,9 @@ body.ai-mode {
   .pf-hero { gap: 30px; padding-top: 112px; padding-bottom: 64px; }
   .pf-hero h1 { font-size: clamp(52px, 15.3vw, 72px); }
   .pf-lede { margin-top: 24px; font-size: 18px; }
+  .pf-engagement-grid { grid-template-columns: 1fr; }
+  .pf-engagement-grid article,
+  .pf-engagement-grid article + article { padding: 28px 0; border-left: 0; }
   .pf-actions { align-items: stretch; margin-top: 32px; flex-direction: column; gap: 14px; }
   .pf-button { width: 100%; min-width: 0; }
   .pf-text-link { width: max-content; }
