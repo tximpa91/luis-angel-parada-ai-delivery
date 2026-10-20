@@ -8,12 +8,14 @@ RUN npm ci
 COPY index.html vite.config.js ./
 COPY src ./src
 COPY public ./public
-COPY scripts/prerender.mjs ./scripts/prerender.mjs
+COPY scripts ./scripts
+COPY worker ./worker
+COPY tests ./tests
 
 ARG VITE_CONTACT_EMAIL=""
 ENV VITE_CONTACT_EMAIL=${VITE_CONTACT_EMAIL}
 
-RUN npm run build
+RUN npm run build && npm test
 
 FROM nginxinc/nginx-unprivileged:1.27-alpine AS runtime
 

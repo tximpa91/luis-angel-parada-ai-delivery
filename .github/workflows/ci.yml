@@ -25,7 +25,7 @@ jobs:
           docker run --rm --entrypoint sh \
             -e VITE_CONTACT_EMAIL=portfolio@example.com \
             luis-angel-parada-deploy:ci -lc '
-              npm run build &&
+              npm run build && npm test &&
               npm run deploy -- --dry-run --outdir=/tmp/wrangler-dry-run
             '
 

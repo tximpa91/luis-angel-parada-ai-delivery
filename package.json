@@ -9,6 +9,7 @@
     "build:client": "vite build",
     "build:ssr": "vite build --ssr src/entry-server.jsx --outDir dist-ssr",
     "build:prerender": "node scripts/prerender.mjs",
+    "test": "node --test tests/*.test.mjs",
     "preview": "vite preview",
     "docker:build": "docker build --platform linux/amd64 -t luis-angel-parada-ai-delivery:local .",
     "docker:up": "docker compose up --build app",
@@ -23,6 +24,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "6.1.1",
+    "linkedom": "0.18.13",
+    "turndown": "7.2.4",
     "wrangler": "4.136.1"
   }
 }

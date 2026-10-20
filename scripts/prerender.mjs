@@ -2,6 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { getSeoForPath, getStructuredData, indexableRoutes } from '../src/seo.js'
+import { createMarkdown, markdownAssetPath } from './markdown.mjs'
 
 const rootDirectory = resolve(import.meta.dirname, '..')
 const outputDirectory = resolve(rootDirectory, 'dist')
@@ -92,7 +93,11 @@ for (const pathname of indexableRoutes) {
     ? resolve(outputDirectory, 'index.html')
     : resolve(outputDirectory, pathname.slice(1), 'index.html')
   await mkdir(dirname(outputPath), { recursive: true })
-  await writeFile(outputPath, createHtml(pathname))
+  const html = createHtml(pathname)
+  await writeFile(outputPath, html)
+  const markdownPath = resolve(outputDirectory, markdownAssetPath(pathname).slice(1))
+  await mkdir(dirname(markdownPath), { recursive: true })
+  await writeFile(markdownPath, createMarkdown(html, getSeoForPath(pathname)))
 }
 
 await writeFile(resolve(outputDirectory, '404.html'), createHtml('/404'))
