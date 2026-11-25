@@ -120,6 +120,7 @@ function PortfolioHeader({ compact = false }) {
         {navItems.map(([label, href]) => (
           <a href={href} key={label} onClick={() => setOpen(false)}>{label}</a>
         ))}
+        <a className="pf-nav-cta" href={`mailto:${EMAIL}`} onClick={() => setOpen(false)}>Let’s talk <Arrow diagonal /></a>
       </nav>
       <a className="pf-header-cta" href={`mailto:${EMAIL}`}>Let’s talk <Arrow diagonal /></a>
       <button
@@ -163,7 +164,8 @@ function PortfolioHome() {
                 alt=""
                 width="1672"
                 height="941"
-                loading="lazy"
+                loading="eager"
+                fetchPriority="high"
                 decoding="async"
               />
             </picture>
@@ -329,7 +331,7 @@ function CaseStudyPage({ study }) {
             <span aria-hidden="true">/</span>
             <span aria-current="page">{study.breadcrumbLabel}</span>
           </nav>
-          <div className="pf-case-heading" data-reveal>
+          <div className="pf-case-heading">
             <div>
               <p className="pf-eyebrow">{study.number}</p>
               <h1>{study.title}</h1>
@@ -622,7 +624,7 @@ function PortfolioFooter() {
     <footer className="pf-footer">
       <div><strong>Luis Angel Parada</strong><span>Switzerland</span></div>
       <p>Human-led. Evidence-driven.</p>
-      <a href="#top">Back to top ↑</a>
+      <a className="pf-back-top" href="#top">Back to top ↑</a>
     </footer>
   )
 }
