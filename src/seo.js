@@ -5,6 +5,18 @@ const SITE_URL = 'https://luisangelparada.com'
 const PERSON_ID = `${SITE_URL}/#person`
 const WEBSITE_ID = `${SITE_URL}/#website`
 
+const careerFinderApp = {
+  '@type': 'WebApplication',
+  '@id': 'https://careers.luisangelparada.com/demo#app',
+  name: 'Career Finder',
+  url: 'https://careers.luisangelparada.com/demo',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description:
+    'An invite-only AI job-search board built and operated by Luis Angel Parada on Cloudflare Workers and D1. It searches public employer boards for each profile, uses Claude for fit estimates and deep research, and never applies on the user\'s behalf.',
+  creator: { '@id': PERSON_ID },
+}
+
 export const routeSeo = {
   '/': {
     title: 'Luis Angel Parada | Head of Engineering & AI | Switzerland',
@@ -261,6 +273,6 @@ export function getStructuredData(pathname) {
 
   return {
     '@context': 'https://schema.org',
-    '@graph': [person, website, page, ...(breadcrumb ? [breadcrumb] : [])],
+    '@graph': [person, website, page, ...(pathname === '/' ? [careerFinderApp] : []), ...(breadcrumb ? [breadcrumb] : [])],
   }
 }

@@ -62,6 +62,20 @@ export const projects = [
     imageHeight: 887,
     tone: 'light',
   },
+  {
+    index: '04',
+    title: 'Career Finder: AI Job Search',
+    description:
+      'A live, invite-only job board I built and run: it searches public employer boards for each profile twice a day, uses Claude for fit estimates and deep research, and keeps a private shortlist.',
+    meta: 'Live product · Claude API · Cloudflare Workers, D1 & Workflows',
+    link: 'https://careers.luisangelparada.com/demo',
+    external: true,
+    cta: 'Try the live demo',
+    image: '/assets/career-finder.png',
+    imageWidth: 1774,
+    imageHeight: 887,
+    tone: 'dark',
+  },
 ]
 
 export const career = [

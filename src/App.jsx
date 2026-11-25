@@ -33,6 +33,14 @@ function usePathname(initialPathname) {
 }
 
 function RouteLink({ to, children, className = '', onNavigate, ...props }) {
+  if (/^https?:\/\//.test(to)) {
+    return (
+      <a className={className} href={to} target="_blank" rel="noopener" {...props}>
+        {children}
+      </a>
+    )
+  }
+
   const handleClick = (event) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || props.target === '_blank') return
     event.preventDefault()
@@ -193,7 +201,7 @@ function PortfolioHome() {
               <p className="pf-eyebrow">01 / Selected work</p>
               <h2>Systems that make<br />ambition operational.</h2>
             </div>
-            <p>Explore the experience and technical thinking I bring to your organisation: AI engineering transformation, ownership of a three-brand distributed platform, and an independent AI product-discovery reference architecture.</p>
+            <p>Explore the experience and technical thinking I bring to your organisation: AI engineering transformation, ownership of a three-brand distributed platform, an independent AI product-discovery reference architecture, and Career Finder, a live AI job-search product I built and run.</p>
           </div>
           <div className="pf-projects">
             {projects.map((project, index) => (

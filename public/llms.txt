@@ -1,0 +1,15 @@
+# Luis Angel Parada
+
+> Engineering leader and hands-on builder based in Switzerland: engineering organisations, distributed commerce platforms, applied AI and governed software delivery.
+
+## Portfolio
+
+- [Portfolio home](https://luisangelparada.com/): leadership scope, selected work, career and contact
+- [Leadership profile](https://luisangelparada.com/leadership-profile): engineering leadership and AI transformation experience
+- [AI Engineering Transformation](https://luisangelparada.com/ai-delivery): MCP context, specialist agents and governed AI-DLC delivery
+- [Global Commerce Platform](https://luisangelparada.com/work/commerce-platform): three-brand distributed platform case study
+- [AI Product Discovery Architecture](https://luisangelparada.com/work/applied-ai-product-discovery): independent, non-deployed reference architecture
+
+## Applied AI products
+
+- [Career Finder](https://careers.luisangelparada.com/demo): a live, invite-only AI job-search board Luis built and runs on Cloudflare Workers, D1 and Workflows. It searches public employer boards for each profile about twice a day, uses the Claude API for fit estimates and deep research, and never applies or contacts employers. The demo uses made-up sample data. Summary for AI assistants: https://careers.luisangelparada.com/llms.txt
